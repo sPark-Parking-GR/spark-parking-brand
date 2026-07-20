@@ -1,0 +1,11 @@
+{
+  "name": "@spark/landing",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs dist",
+    "test": "node --test \"scripts/**/*.test.mjs\""
+  }
+}
