@@ -156,7 +156,7 @@ function phoneMock(t) {
               </div>
               <div style="padding:12px;border-radius:14px;background:var(--pCard);border:1px solid var(--pCardBorder)">
                 <div style="display:flex;align-items:flex-start"><div><div style="font-family:var(--fontDisplay);font-weight:700;font-size:14px;color:var(--pInk)">${esc(p.spotB)}</div><div style="font-size:11px;color:var(--pMuted);margin-top:2px">${esc(p.spotBSub)}</div></div><div style="margin-left:auto;text-align:right;padding-left:10px"><div style="font-size:16px;font-weight:800;color:var(--pPrice)">—</div><div style="font-size:10px;color:var(--pMuted)">${esc(p.total)}</div></div></div>
-                <div style="display:flex;align-items:center;gap:9px;margin-top:9px"><span style="padding:3px 9px;border-radius:999px;font-size:10px;font-weight:800;color:var(--pFull);background:var(--pFullBg)">${esc(p.full)}</span><span style="font-size:11px;color:var(--pMuted)">1.7 km</span></div>
+                <div style="display:flex;align-items:center;gap:9px;margin-top:9px"><span style="font-size:11px;color:var(--pMuted)">1.7 km</span></div>
               </div>
             </div>
           </div>

@@ -116,7 +116,7 @@ export const LOCALES = {
         { t: 'Ανάλυση εσόδων', d: 'Δες προβολές, μετατροπές και έσοδα ανά σημείο με μια ματιά.' }
       ],
       ctaHead: 'Μετάτρεψε τις κενές θέσεις σε έσοδα.',
-      ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες τον χώρο σου ζωντανά στον χάρτη του sPark.',
+      ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
       mailSubject: 'sPark — αίτημα παρουσίασης'
     },
     footer: {
@@ -127,7 +127,7 @@ export const LOCALES = {
       businessTitle: 'Επιχειρήσεις',
       businessLinks: ['Πώς λειτουργεί', 'Κλείσε παρουσίαση'],
       contactTitle: 'Επικοινωνία',
-      contactNote: 'Οδηγοί και επιχειρήσεις — στείλε μας email και θα σου απαντήσει άνθρωπος.',
+      contactNote: 'Είτε οδηγός είσαι είτε επιχείρηση, στείλε μας ένα email — θα σου απαντήσει ένας πραγματικός άνθρωπος, όχι κάποιο bot.',
       generalSubject: 'sPark — γενική επικοινωνία',
       rights: '© 2026 sPark. Με επιφύλαξη παντός δικαιώματος.',
       place: 'Θεσσαλονίκη · Για εξυπνότερες πόλεις'
@@ -139,7 +139,6 @@ export const LOCALES = {
       cheapest: 'Φθηνότερα',
       total: 'σύνολο',
       available: 'Ελεύθερο',
-      full: 'Πλήρες',
       spotA: 'Πλατεία Αριστοτέλους',
       spotASub: 'Aristotelous Square',
       spotB: 'Υπαίθριο πάρκινγκ',
@@ -265,7 +264,7 @@ export const LOCALES = {
       businessTitle: 'Businesses',
       businessLinks: ['How it works', 'Book a demo'],
       contactTitle: 'Contact',
-      contactNote: 'Drivers and operators alike — email us and a human replies.',
+      contactNote: 'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
       generalSubject: 'sPark — general enquiry',
       rights: '© 2026 sPark. All rights reserved.',
       place: 'Athens · Made for smarter cities'
@@ -277,7 +276,6 @@ export const LOCALES = {
       cheapest: 'Cheapest',
       total: 'total',
       available: 'Available',
-      full: 'Full',
       spotA: 'Aristotelous Square',
       spotASub: 'Πλατεία Αριστοτέλους',
       spotB: 'Surface parking',

@@ -51,6 +51,7 @@ html[lang="el"] { --fontDisplay: 'Manrope', system-ui, sans-serif; }
 body { font-family: var(--fontBody); -webkit-font-smoothing: antialiased; }
 button { font-family: inherit; }
 img { max-width: 100%; }
+p { text-align: justify; }
 
 :root, :root[data-theme="light"] {
   --spark-cream:#E7E0D4; --spark-navy:#020C14;
@@ -61,7 +62,7 @@ img { max-width: 100%; }
   --heroGlow:radial-gradient(55% 60% at 72% 22%, rgba(30,136,199,0.13), transparent 68%);
   --radiusLg:24px; --introAlign:center; --introMx:auto;
   --footerBg:#0C1B2A; --footerInk:#F4F0E8; --footerMuted:#8CA0B2;
-  --pFrame:#CDD4DB; --pFrameBorder:rgba(12,27,42,0.10); --pOuterShadow:0 34px 80px rgba(12,27,42,0.22); --pMap:#E9EDF0; --pMapLine:rgba(12,27,42,0.05); --pRoad:rgba(12,27,42,0.10); --pSheet:#FFFFFF; --pCard:#F4F7F9; --pCardBorder:rgba(12,27,42,0.08); --pCardActive:rgba(30,136,199,0.5); --pInk:#0C1B2A; --pMuted:#5E6B77; --pAccent:#1E88C7; --pPrice:#1479B8; --pSeg:#EEF2F5; --pSegBorder:rgba(12,27,42,0.06); --pAvail:#1F9D55; --pAvailBg:rgba(31,157,85,0.14); --pFull:#E0574E; --pFullBg:rgba(224,87,78,0.14); --pRecenter:#FFFFFF; --pRecenterBorder:rgba(12,27,42,0.10); --pHandle:#5E6B77;
+  --pFrame:#CDD4DB; --pFrameBorder:rgba(12,27,42,0.10); --pOuterShadow:0 34px 80px rgba(12,27,42,0.22); --pMap:#E9EDF0; --pMapLine:rgba(12,27,42,0.05); --pRoad:rgba(12,27,42,0.10); --pSheet:#FFFFFF; --pCard:#F4F7F9; --pCardBorder:rgba(12,27,42,0.08); --pCardActive:rgba(30,136,199,0.5); --pInk:#0C1B2A; --pMuted:#5E6B77; --pAccent:#1E88C7; --pPrice:#1479B8; --pSeg:#EEF2F5; --pSegBorder:rgba(12,27,42,0.06); --pAvail:#1F9D55; --pAvailBg:rgba(31,157,85,0.14); --pRecenter:#FFFFFF; --pRecenterBorder:rgba(12,27,42,0.10); --pHandle:#5E6B77;
   --dChrome:#EAECEF; --dChromeBorder:rgba(12,27,42,0.08); --dOuterShadow:0 34px 80px rgba(12,27,42,0.22); --dMain:linear-gradient(160deg,#FBFCFE,#EAF1F6); --dHeadBorder:rgba(12,27,42,0.07); --dInk:#0C1B2A; --dMuted:#5E6B77; --dCard:#FFFFFF; --dCardBorder:rgba(12,27,42,0.08); --dCardShadow:0 6px 16px rgba(12,27,42,0.05); --dChartTrack:#DCE6EE;
 }
 
@@ -73,7 +74,7 @@ img { max-width: 100%; }
   --heroGlow:radial-gradient(55% 60% at 72% 22%, rgba(36,158,217,0.20), transparent 68%);
   --radiusLg:18px; --introAlign:left; --introMx:0;
   --footerBg:#020A12; --footerInk:#E7E0D4; --footerMuted:#6E8296;
-  --pFrame:#05090F; --pFrameBorder:rgba(255,255,255,0.10); --pOuterShadow:0 34px 80px rgba(0,0,0,0.55); --pMap:#0B0E12; --pMapLine:rgba(255,255,255,0.035); --pRoad:rgba(255,255,255,0.06); --pSheet:#0C1622; --pCard:#0A1420; --pCardBorder:rgba(255,255,255,0.06); --pCardActive:rgba(36,158,217,0.4); --pInk:#EAF2F7; --pMuted:#7E93A6; --pAccent:#249ED9; --pPrice:#3BB0E8; --pSeg:#0E1A28; --pSegBorder:rgba(255,255,255,0.06); --pAvail:#34C77B; --pAvailBg:rgba(34,150,90,0.16); --pFull:#F87171; --pFullBg:rgba(224,74,74,0.16); --pRecenter:#0E1A28; --pRecenterBorder:rgba(255,255,255,0.10); --pHandle:#7E93A6;
+  --pFrame:#05090F; --pFrameBorder:rgba(255,255,255,0.10); --pOuterShadow:0 34px 80px rgba(0,0,0,0.55); --pMap:#0B0E12; --pMapLine:rgba(255,255,255,0.035); --pRoad:rgba(255,255,255,0.06); --pSheet:#0C1622; --pCard:#0A1420; --pCardBorder:rgba(255,255,255,0.06); --pCardActive:rgba(36,158,217,0.4); --pInk:#EAF2F7; --pMuted:#7E93A6; --pAccent:#249ED9; --pPrice:#3BB0E8; --pSeg:#0E1A28; --pSegBorder:rgba(255,255,255,0.06); --pAvail:#34C77B; --pAvailBg:rgba(34,150,90,0.16); --pRecenter:#0E1A28; --pRecenterBorder:rgba(255,255,255,0.10); --pHandle:#7E93A6;
   --dChrome:#0E1826; --dChromeBorder:rgba(255,255,255,0.08); --dOuterShadow:0 34px 80px rgba(0,0,0,0.55); --dMain:linear-gradient(160deg,#0A1420,#0E1E30); --dHeadBorder:rgba(255,255,255,0.07); --dInk:#EAF2F7; --dMuted:#8399AC; --dCard:#0E2233; --dCardBorder:rgba(255,255,255,0.08); --dCardShadow:none; --dChartTrack:#12314A;
 }
 
@@ -86,7 +87,7 @@ img { max-width: 100%; }
     --heroGlow:radial-gradient(55% 60% at 72% 22%, rgba(36,158,217,0.20), transparent 68%);
     --radiusLg:18px; --introAlign:left; --introMx:0;
     --footerBg:#020A12; --footerInk:#E7E0D4; --footerMuted:#6E8296;
-    --pFrame:#05090F; --pFrameBorder:rgba(255,255,255,0.10); --pOuterShadow:0 34px 80px rgba(0,0,0,0.55); --pMap:#0B0E12; --pMapLine:rgba(255,255,255,0.035); --pRoad:rgba(255,255,255,0.06); --pSheet:#0C1622; --pCard:#0A1420; --pCardBorder:rgba(255,255,255,0.06); --pCardActive:rgba(36,158,217,0.4); --pInk:#EAF2F7; --pMuted:#7E93A6; --pAccent:#249ED9; --pPrice:#3BB0E8; --pSeg:#0E1A28; --pSegBorder:rgba(255,255,255,0.06); --pAvail:#34C77B; --pAvailBg:rgba(34,150,90,0.16); --pFull:#F87171; --pFullBg:rgba(224,74,74,0.16); --pRecenter:#0E1A28; --pRecenterBorder:rgba(255,255,255,0.10); --pHandle:#7E93A6;
+    --pFrame:#05090F; --pFrameBorder:rgba(255,255,255,0.10); --pOuterShadow:0 34px 80px rgba(0,0,0,0.55); --pMap:#0B0E12; --pMapLine:rgba(255,255,255,0.035); --pRoad:rgba(255,255,255,0.06); --pSheet:#0C1622; --pCard:#0A1420; --pCardBorder:rgba(255,255,255,0.06); --pCardActive:rgba(36,158,217,0.4); --pInk:#EAF2F7; --pMuted:#7E93A6; --pAccent:#249ED9; --pPrice:#3BB0E8; --pSeg:#0E1A28; --pSegBorder:rgba(255,255,255,0.06); --pAvail:#34C77B; --pAvailBg:rgba(34,150,90,0.16); --pRecenter:#0E1A28; --pRecenterBorder:rgba(255,255,255,0.10); --pHandle:#7E93A6;
     --dChrome:#0E1826; --dChromeBorder:rgba(255,255,255,0.08); --dOuterShadow:0 34px 80px rgba(0,0,0,0.55); --dMain:linear-gradient(160deg,#0A1420,#0E1E30); --dHeadBorder:rgba(255,255,255,0.07); --dInk:#EAF2F7; --dMuted:#8399AC; --dCard:#0E2233; --dCardBorder:rgba(255,255,255,0.08); --dCardShadow:none; --dChartTrack:#12314A;
   }
 }
