@@ -51,7 +51,7 @@ html[lang="el"] { --fontDisplay: 'Manrope', system-ui, sans-serif; }
 body { font-family: var(--fontBody); -webkit-font-smoothing: antialiased; }
 button { font-family: inherit; }
 img { max-width: 100%; }
-p { text-align: justify; }
+.footer p, .footer-note { text-align: justify; }
 
 :root, :root[data-theme="light"] {
   --spark-cream:#E7E0D4; --spark-navy:#020C14;
