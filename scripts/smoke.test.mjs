@@ -121,7 +121,6 @@ test('body content is in the HTML, not only built by JS', () => {
     assert.ok(html.includes(locale.drivers.steps[0].d), `${code}: steps missing from static HTML`);
     assert.ok(html.includes(locale.drivers.features[0].d), `${code}: features missing from static HTML`);
     assert.ok(html.includes(locale.drivers.chips[2]), `${code}: hero chips missing from static HTML`);
-    assert.ok(html.includes(locale.pricing.plans[1].feats[0]), `${code}: pricing missing from static HTML`);
     for (const id of ['stepsGrid', 'featuresGrid', 'heroChips']) {
       assert.doesNotMatch(html, new RegExp(`id="${id}">\\s*</div>`), `${code}: #${id} is empty`);
     }
@@ -290,28 +289,6 @@ test('images inside the initially-hidden dashboard mock are not lazy', () => {
       );
     }
   });
-});
-
-test('long price amounts are scaled down so they cannot distort the grid', () => {
-  const THRESHOLD = 8;
-  assert.match(css, /\.price-card \{ min-width:0;/, 'price cards need min-width:0 or a long word inflates its column');
-  assert.match(css, /\.price-amt \.big\.is-long \{ font-size:clamp\(/, 'missing the is-long size rule');
-  assert.match(css, /\.price-amt \.big \{[^}]*overflow-wrap:break-word/, 'amounts need a break-word fallback');
-
-  for (const code of LOCALE_CODES) {
-    for (const plan of LOCALES[code].pricing.plans) {
-      const long = plan.amount.length > THRESHOLD;
-      const rendered = pages[code].match(
-        new RegExp(`<span class="big([^"]*)">${plan.amount.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</span>`)
-      );
-      assert.ok(rendered, `${code}: could not find rendered amount "${plan.amount}"`);
-      assert.equal(
-        rendered[1].includes('is-long'),
-        long,
-        `${code}/${plan.name}: "${plan.amount}" is ${plan.amount.length} chars — is-long should be ${long}`
-      );
-    }
-  }
 });
 
 test('visitors never download the full-size mark — it is the social image only', () => {

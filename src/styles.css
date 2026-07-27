@@ -45,9 +45,8 @@ html, body { margin: 0; padding: 0; }
 :root {
   --fontBody: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fontDisplay: 'Sora', 'Manrope', system-ui, sans-serif;
-  --amtLine: 51px;
 }
-html[lang="el"] { --fontDisplay: 'Manrope', system-ui, sans-serif; --amtLine: 55px; }
+html[lang="el"] { --fontDisplay: 'Manrope', system-ui, sans-serif; }
 
 body { font-family: var(--fontBody); -webkit-font-smoothing: antialiased; }
 button { font-family: inherit; }
@@ -193,7 +192,6 @@ body { background:var(--bg); }
 .sec-sub { font-size:17px; line-height:1.6; color:var(--muted); margin:0; }
 .steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 .features-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start; }
 
 .step-card { padding:28px; border-radius:var(--radiusLg); background:var(--panel); border:1px solid var(--line); box-shadow:var(--cardShadow2); }
 .step-num { font-family:var(--fontDisplay); font-weight:800; font-size:15px; color:#fff; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:linear-gradient(180deg,var(--blue),var(--blue2)); margin-bottom:20px; }
@@ -204,23 +202,6 @@ body { background:var(--bg); }
 .feat-icon { width:46px; height:46px; border-radius:13px; background:var(--panel2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
 .feat-card h3 { font-family:var(--fontDisplay); font-weight:700; font-size:17px; margin:0 0 8px; color:var(--ink); line-height:1.25; }
 .feat-card p { font-size:14px; line-height:1.55; color:var(--muted); margin:0; }
-
-.price-intro { text-align:center; max-width:600px; margin:0 auto 44px; }
-.price-card { min-width:0; padding:30px; border-radius:var(--radiusLg); background:var(--panel); border:1px solid var(--line); box-shadow:var(--cardShadow2); }
-.price-card.popular { border:2px solid var(--blue); box-shadow:0 22px 50px rgba(36,158,217,0.22); position:relative; }
-.price-badge { position:absolute; top:-13px; left:30px; padding:5px 12px; border-radius:999px; font-weight:800; font-size:11px; letter-spacing:0.06em; color:#fff; background:linear-gradient(180deg,var(--blue),var(--blue2)); }
-.price-name { font-family:var(--fontDisplay); font-weight:700; font-size:19px; color:var(--ink); margin-bottom:6px; }
-.price-amt { display:flex; align-items:baseline; gap:6px; margin-bottom:6px; min-height:var(--amtLine); }
-.price-amt .big { font-family:var(--fontDisplay); font-weight:800; font-size:40px; color:var(--ink); overflow-wrap:break-word; }
-.price-amt .big.is-long { font-size:clamp(20px, 2.1vw, 28px); letter-spacing:-0.01em; }
-.price-amt .per { font-size:15px; color:var(--muted); }
-.price-desc { font-size:14px; color:var(--muted); margin:0 0 22px; }
-.price-feats { display:flex; flex-direction:column; gap:12px; margin-bottom:26px; }
-.price-feats > div { display:flex; gap:10px; align-items:center; }
-.price-feats span { font-size:14px; color:var(--ink); }
-.price-btn-outline, .price-btn-fill { display:block; width:100%; padding:14px; border-radius:12px; cursor:pointer; font-weight:700; font-size:15px; text-align:center; text-decoration:none; }
-.price-btn-outline { background:transparent; color:var(--ink); border:1px solid var(--line); }
-.price-btn-fill { border:none; color:#fff; background:linear-gradient(180deg,var(--blue),var(--blue2)); box-shadow:0 12px 26px rgba(36,158,217,0.32); }
 
 .cta-section { padding:40px var(--pad) 96px; background:var(--bg); }
 .cta-band { max-width:1176px; margin:0 auto; position:relative; overflow:hidden; border-radius:28px; padding:60px 56px; background:linear-gradient(135deg,var(--blue2),var(--blue)); box-shadow:0 30px 70px rgba(13,128,182,0.35); }
@@ -266,7 +247,6 @@ body { background:var(--bg); }
   .nav-right { gap:12px; }
   .nav-right .btn-primary { display:none; }
   .steps-grid { grid-template-columns:1fr; }
-  .pricing-grid { grid-template-columns:1fr; }
   .section { padding:64px var(--pad); }
   .hero { padding:56px var(--pad) 64px; }
   .cta-band { padding:44px 28px; }

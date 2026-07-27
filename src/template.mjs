@@ -130,22 +130,6 @@ const features = (list) =>
     )
     .join('\n        ');
 
-const pricing = (t) =>
-  t.pricing.plans
-    .map(
-      (p) => `<div class="price-card${p.popular ? ' popular' : ''}">
-          ${p.popular ? `<div class="price-badge">${esc(t.pricing.badge)}</div>` : ''}
-          <div class="price-name">${esc(p.name)}</div>
-          <div class="price-amt"><span class="big${p.amount.length > 8 ? ' is-long' : ''}">${esc(p.amount)}</span>${p.per ? `<span class="per">${esc(p.per)}</span>` : ''}</div>
-          <p class="price-desc">${esc(p.desc)}</p>
-          <div class="price-feats">
-            ${p.feats.map((f) => `<div>${CHECK}<span>${esc(f)}</span></div>`).join('\n            ')}
-          </div>
-          <a class="${p.popular ? 'price-btn-fill' : 'price-btn-outline'}" href="${mailto(p.mailSubject)}">${esc(p.cta)}</a>
-        </div>`
-    )
-    .join('\n        ');
-
 function phoneMock(t) {
   const p = t.phone;
   return `<div class="phone-mock" id="phoneMock" aria-hidden="true">
@@ -258,8 +242,7 @@ export function renderPage(code) {
     audiences: {
       drivers: { ...t.drivers },
       business: { ...t.business }
-    },
-    pricingVisibleFor: 'business'
+    }
   };
 
   return `<!DOCTYPE html>
@@ -279,7 +262,6 @@ ${head(t)}
       <nav class="nav-links">
         <a href="#how" data-nav="drivers">${esc(t.nav.drivers)}</a>
         <a href="#how" data-nav="business">${esc(t.nav.business)}</a>
-        <a href="#pricing" data-nav="business">${esc(t.nav.pricing)}</a>
       </nav>
       <div class="lang-switch" role="group" aria-label="${esc(t.langLabel)}">${langSwitch(t)}</div>
       <button class="theme-toggle" id="themeToggle" aria-label="${esc(t.themeToggle)}" title="${esc(t.themeToggle)}"></button>
@@ -340,19 +322,6 @@ ${head(t)}
     </div>
   </section>
 
-  <section class="section section--alt" id="pricing" style="display:none">
-    <div class="container">
-      <div class="price-intro">
-        <div class="sec-eyebrow">${esc(t.pricing.eyebrow)}</div>
-        <h2 class="sec-title" style="margin-bottom:12px">${esc(t.pricing.title)}</h2>
-        <p class="sec-sub">${esc(t.pricing.sub)}</p>
-      </div>
-      <div class="pricing-grid">
-        ${pricing(t)}
-      </div>
-    </div>
-  </section>
-
   <section class="cta-section">
     <div class="cta-band">
       <div class="cta-band-bg"></div>
@@ -379,7 +348,7 @@ ${head(t)}
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.businessTitle)}</div>
-        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="#pricing" data-nav="business">${esc(t.footer.businessLinks[1])}</a><a href="${mailto(t.business.mailSubject)}" data-nav="business">${esc(t.footer.businessLinks[2])}</a></div>
+        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="${mailto(t.business.mailSubject)}" data-nav="business">${esc(t.footer.businessLinks[1])}</a></div>
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.contactTitle)}</div>

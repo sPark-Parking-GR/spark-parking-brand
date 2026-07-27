@@ -1,5 +1,5 @@
 export const SITE = 'https://spark.gr';
-export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com';
+export const CONTACT_EMAIL = 'sales@sparkparking.gr';
 
 export const LOCALES = {
   el: {
@@ -19,7 +19,7 @@ export const LOCALES = {
       siteDescription: 'Ένας ζωντανός χάρτης για κάθε θέση πάρκινγκ στην πόλη.',
       appDescription: 'Βρες και σύγκρινε τιμές και διαθεσιμότητα πάρκινγκ σε έναν ζωντανό χάρτη.'
     },
-    nav: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις', pricing: 'Τιμές' },
+    nav: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις' },
     audience: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις', label: 'Επιλογή κοινού' },
     themeToggle: 'Εναλλαγή θέματος',
     langLabel: 'Γλώσσα',
@@ -119,59 +119,13 @@ export const LOCALES = {
       ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες τον χώρο σου ζωντανά στον χάρτη του sPark.',
       mailSubject: 'sPark — αίτημα παρουσίασης'
     },
-    pricing: {
-      eyebrow: 'Τιμολόγηση για επιχειρήσεις',
-      title: 'Ξεκίνα δωρεάν. Πλήρωσε όταν μεγαλώσεις.',
-      sub: 'Καταχώρισε το πρώτο σου σημείο χωρίς κόστος. Πλήρωσε μόνο όταν χρειαστείς δυναμική τιμολόγηση και έλεγχο πολλών σημείων.',
-      badge: 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ',
-      plans: [
-        {
-          id: 'starter',
-          name: 'Starter',
-          amount: 'Δωρεάν',
-          per: '',
-          desc: 'Για ένα σημείο που μπαίνει στον χάρτη.',
-          feats: ['1 σημείο, έως 25 θέσεις', 'Βασική προβολή στον χάρτη', 'Χειροκίνητες τιμές και ώρες'],
-          cta: 'Ξεκίνα',
-          mailSubject: 'sPark Starter — καταχώριση του χώρου μου',
-          popular: false
-        },
-        {
-          id: 'growth',
-          name: 'Growth',
-          amount: '€49',
-          per: '/ μήνα',
-          desc: 'Για επιχειρήσεις με πολλά σημεία.',
-          feats: [
-            'Έως 5 σημεία',
-            'Δυναμική τιμολόγηση και εκδηλώσεις',
-            'Ζωντανή χωρητικότητα και αναλύσεις',
-            'Προτεραιότητα στον χάρτη'
-          ],
-          cta: 'Κλείσε παρουσίαση',
-          mailSubject: 'sPark — αίτημα παρουσίασης',
-          popular: true
-        },
-        {
-          id: 'enterprise',
-          name: 'Enterprise',
-          amount: 'Προσαρμοσμένο',
-          per: '',
-          desc: 'Για αλυσίδες και δίκτυα πόλης.',
-          feats: ['Απεριόριστα σημεία', 'API και συγχρονισμός με μπάρες', 'Αποκλειστικός υπεύθυνος εξυπηρέτησης'],
-          cta: 'Μίλα με πωλήσεις',
-          mailSubject: 'sPark Enterprise — επικοινωνία με πωλήσεις',
-          popular: false
-        }
-      ]
-    },
     footer: {
       tag: 'Κάνε το παρκάρισμα έξυπνο.',
       desc: 'Ένας χάρτης για κάθε θέση πάρκινγκ στην πόλη — με ζωντανές τιμές για τους οδηγούς και πλήρη έλεγχο για τους διαχειριστές.',
       driversTitle: 'Οδηγοί',
       driversLinks: ['Μπες στη λίστα αναμονής', 'Πώς λειτουργεί', 'Δυνατότητες'],
       businessTitle: 'Επιχειρήσεις',
-      businessLinks: ['Πώς λειτουργεί', 'Τιμές', 'Κλείσε παρουσίαση'],
+      businessLinks: ['Πώς λειτουργεί', 'Κλείσε παρουσίαση'],
       contactTitle: 'Επικοινωνία',
       contactNote: 'Οδηγοί και επιχειρήσεις — στείλε μας email και θα σου απαντήσει άνθρωπος.',
       generalSubject: 'sPark — γενική επικοινωνία',
@@ -222,7 +176,7 @@ export const LOCALES = {
       siteDescription: 'One live map for every parking spot in the city.',
       appDescription: 'Find and compare parking prices and availability on one live map.'
     },
-    nav: { drivers: 'For drivers', business: 'For businesses', pricing: 'Pricing' },
+    nav: { drivers: 'For drivers', business: 'For businesses' },
     audience: { drivers: 'For drivers', business: 'For businesses', label: 'Choose audience' },
     themeToggle: 'Toggle color theme',
     langLabel: 'Language',
@@ -303,54 +257,13 @@ export const LOCALES = {
       ctaSub: 'Book a 20-minute demo and see your lot live on the sPark map.',
       mailSubject: 'sPark demo request'
     },
-    pricing: {
-      eyebrow: 'Pricing for businesses',
-      title: 'Start free. Scale when you grow.',
-      sub: 'List your first location at no cost. Only pay when you need dynamic pricing and multi-site control.',
-      badge: 'MOST POPULAR',
-      plans: [
-        {
-          id: 'starter',
-          name: 'Starter',
-          amount: 'Free',
-          per: '',
-          desc: 'For a single lot getting listed.',
-          feats: ['1 location, up to 25 spots', 'Standard map listing', 'Manual pricing & hours'],
-          cta: 'Get started',
-          mailSubject: 'sPark Starter — list my parking',
-          popular: false
-        },
-        {
-          id: 'growth',
-          name: 'Growth',
-          amount: '€49',
-          per: '/ month',
-          desc: 'For operators running several sites.',
-          feats: ['Up to 5 locations', 'Dynamic & event pricing', 'Live capacity & analytics', 'Priority map placement'],
-          cta: 'Book a demo',
-          mailSubject: 'sPark demo request',
-          popular: true
-        },
-        {
-          id: 'enterprise',
-          name: 'Enterprise',
-          amount: 'Custom',
-          per: '',
-          desc: 'For chains and city-wide networks.',
-          feats: ['Unlimited locations', 'API & gate-system sync', 'Dedicated success manager'],
-          cta: 'Talk to sales',
-          mailSubject: 'sPark Enterprise — talk to sales',
-          popular: false
-        }
-      ]
-    },
     footer: {
       tag: 'Make Parking Smart.',
       desc: 'One map for every parking spot in the city — with live prices for drivers and full control for operators.',
       driversTitle: 'Drivers',
       driversLinks: ['Join the waitlist', 'How it works', 'Features'],
       businessTitle: 'Businesses',
-      businessLinks: ['How it works', 'Pricing', 'Book a demo'],
+      businessLinks: ['How it works', 'Book a demo'],
       contactTitle: 'Contact',
       contactNote: 'Drivers and operators alike — email us and a human replies.',
       generalSubject: 'sPark — general enquiry',
