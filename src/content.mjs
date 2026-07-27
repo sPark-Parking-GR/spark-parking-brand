@@ -1,4 +1,4 @@
-export const SITE = 'https://spark.gr';
+export const SITE = 'https://sparkparking.gr';
 export const CONTACT_EMAIL = 'sales@sparkparking.gr';
 
 export const LOCALES = {
