@@ -88,8 +88,8 @@ ${alternates}
 <meta name="twitter:image" content="${image}">
 ${preloads(t)}
 <link rel="stylesheet" href="${asset(t, 'styles.css')}">
-<link rel="icon" href="${asset(t, 'assets/logo-68.png')}">
-<link rel="apple-touch-icon" href="${asset(t, 'assets/icon-180.png')}">
+<link rel="icon" href="${asset(t, 'assets/spark-mark.ico')}">
+<link rel="apple-touch-icon" href="${asset(t, 'assets/spark-mark.ico')}">
 <script type="application/ld+json">
 ${JSON.stringify(jsonLd, null, 2)}
 </script>
