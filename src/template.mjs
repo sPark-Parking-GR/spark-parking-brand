@@ -183,7 +183,8 @@ function dashMock(t) {
     )
     .join('\n              ');
 
-  return `<div class="dash-mock" id="dashMock" style="display:none" aria-hidden="true">
+  return `<div class="dash-mock-wrap" id="dashMock" style="display:none" aria-hidden="true">
+        <div class="dash-mock">
           <div style="height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:var(--dChrome);border-bottom:1px solid var(--dChromeBorder)">
             <div style="width:11px;height:11px;border-radius:999px;background:#E8695D"></div>
             <div style="width:11px;height:11px;border-radius:999px;background:#E6B24C"></div>
@@ -228,7 +229,8 @@ function dashMock(t) {
               </div>
             </div>
           </div>
-        </div>`;
+        </div>
+      </div>`;
 }
 
 export function renderPage(code) {
