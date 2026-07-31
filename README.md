@@ -25,10 +25,10 @@ dist/            — generated, gitignored
 
 ## Languages
 
-| Locale | URL | Notes |
-|---|---|---|
-| Greek | `/` | Default, `x-default` target |
-| English | `/en/` | |
+| Locale  | URL    | Notes                       |
+| ------- | ------ | --------------------------- |
+| Greek   | `/`    | Default, `x-default` target |
+| English | `/en/` |                             |
 
 Both are **real pre-rendered pages**, not a client-side string swap: correct `lang`, localized `<title>`/meta/JSON-LD, and a reciprocal `hreflang` set. Each page ships only its own locale's copy to the browser, via a `window.__SPARK__` blob the audience toggle reads. The switcher in the header is a plain link, so it works without JS.
 
@@ -58,10 +58,10 @@ Self-hosted from `src/assets/fonts` — **nothing is requested from Google**, so
 
 Each locale preloads only what it needs above the fold, declared in its `LOCALES` entry:
 
-| Page | Preloads | Actually downloads |
-|---|---|---|
-| `/` (el) | `manrope-latin`, `manrope-greek` | those two — Sora is never fetched |
-| `/en/` | `manrope-latin`, `sora-latin` | those two, plus `manrope-greek` for the Greek place names in the phone mockup |
+| Page     | Preloads                         | Actually downloads                                                            |
+| -------- | -------------------------------- | ----------------------------------------------------------------------------- |
+| `/` (el) | `manrope-latin`, `manrope-greek` | those two — Sora is never fetched                                             |
+| `/en/`   | `manrope-latin`, `sora-latin`    | those two, plus `manrope-greek` for the Greek place names in the phone mockup |
 
 Both families are SIL Open Font License 1.1; `OFL-Sora.txt` and `OFL-Manrope.txt` ship next to the font files as the license requires, and a test fails if they go missing.
 
@@ -79,7 +79,7 @@ To refresh or add a weight, download from Google Fonts with a modern browser use
 One constant drives every CTA, in `src/content.mjs`:
 
 ```js
-export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com';
+export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com'
 ```
 
 Each CTA passes its own subject line (waitlist, demo request, general enquiry) — localized per language, so a Greek visitor's email arrives with a Greek subject. The address is also printed as readable text in the footer, not hidden behind a link.
@@ -103,10 +103,10 @@ pnpm --filter @spark/landing test    # markup/copy smoke tests
 
 `dist/` is a plain static directory — drop it on any static host. `/en/` is a real directory with its own `index.html`, so no rewrite rules are needed.
 
-| Host | Setting |
-|---|---|
+| Host                                | Setting                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------- |
 | Vercel / Netlify / Cloudflare Pages | build `pnpm --filter @spark/landing build`, output `apps/landing/dist` |
-| S3 / nginx / GitHub Pages | upload `apps/landing/dist` |
+| S3 / nginx / GitHub Pages           | upload `apps/landing/dist`                                             |
 
 ## SEO
 
