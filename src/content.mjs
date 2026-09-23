@@ -17,7 +17,7 @@ export const LOCALES = {
         'Ζωντανές τιμές και διαθεσιμότητα για κάθε θέση πάρκινγκ στην πόλη — για οδηγούς και για όσους τις διαχειρίζονται.',
       imageAlt: 'Λογότυπο sPark',
       siteDescription: 'Ένας ζωντανός χάρτης για κάθε θέση πάρκινγκ στην πόλη.',
-      appDescription: 'Βρες και σύγκρινε τιμές και διαθεσιμότητα πάρκινγκ σε έναν ζωντανό χάρτη.'
+      appDescription: 'Βρες και σύγκρινε τιμές και διαθεσιμότητα πάρκινγκ σε έναν ζωντανό χάρτη.',
     },
     nav: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις' },
     audience: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις', label: 'Επιλογή κοινού' },
@@ -36,7 +36,7 @@ export const LOCALES = {
         {
           n: '01',
           t: 'Βάλε πινέζα',
-          d: 'Αναζήτησε προορισμό ή μετακίνησε τον χάρτη — το sPark εμφανίζει κάθε χώρο στάθμευσης στην περιοχή.'
+          d: 'Αναζήτησε προορισμό ή μετακίνησε τον χάρτη — το sPark εμφανίζει κάθε χώρο στάθμευσης στην περιοχή.',
         },
         {
           n: '02',
@@ -46,8 +46,8 @@ export const LOCALES = {
         {
           n: '03',
           t: 'Πάρκαρε και φύγε',
-          d: 'Διάλεξε θέση, πλοηγήσου στην είσοδο και δες τη διαθεσιμότητα πριν φτάσεις.'
-        }
+          d: 'Διάλεξε θέση, πλοηγήσου στην είσοδο και δες τη διαθεσιμότητα πριν φτάσεις.',
+        },
       ],
       featEyebrow: 'Γιατί sPark',
       featTitle: 'Σύγκρινε πριν δεσμευτείς.',
@@ -55,11 +55,15 @@ export const LOCALES = {
       features: [
         {
           t: 'Ταξινόμηση κατά τιμή ή απόσταση',
-          d: 'Κατάταξε κάθε κοντινό χώρο στάθμευσης κατά τιμή ή απόσταση με ένα άγγιγμα.'
+          d: 'Κατάταξε κάθε κοντινό χώρο στάθμευσης κατά τιμή ή απόσταση με ένα άγγιγμα.',
         },
         {
           t: 'Τιμή για τη δική σου στάθμευση',
-          d: 'Όρισε άφιξη και αναχώρηση για το πραγματικό σύνολο — αυτοκίνητο, μηχανή, βαν ή φορτηγό.'
+          d: 'Όρισε άφιξη και αναχώρηση για το πραγματικό σύνολο — αυτοκίνητο, μηχανή, βαν ή φορτηγό.',
+        },
+        {
+          t: 'Διαθεσιμότητα σε πραγματικό χρόνο',
+          d: 'Δες τι είναι Ελεύθερο ή Πλήρες πριν ξεκινήσεις.',
         },
         { t: 'Διαθεσιμότητα σε πραγματικό χρόνο', d: 'Δες τις εγκαταστάσεις με διαθεσιμότητα σε πραγματικό χρόνο.' },
         {
@@ -69,7 +73,7 @@ export const LOCALES = {
       ],
       ctaHead: 'Έτοιμος να σταματήσεις να πληρώνεις παραπάνω για πάρκινγκ;',
       ctaSub: 'Μπες στη λίστα αναμονής και θα σε ειδοποιήσουμε μόλις το sPark έρθει στην πόλη σου.',
-      mailSubject: 'sPark — λίστα αναμονής'
+      mailSubject: 'sPark — λίστα αναμονής',
     },
     business: {
       eyebrow: 'Για επιχειρήσεις · πίνακας ελέγχου',
@@ -84,18 +88,18 @@ export const LOCALES = {
         {
           n: '01',
           t: 'Όρισε τα τιμολόγιά σου',
-          d: 'Καθόρισε ωριαία, ημερήσια και δυναμική τιμολόγηση — και άλλαξέ τη όποτε αλλάζει η ζήτηση.'
+          d: 'Καθόρισε ωριαία, ημερήσια και δυναμική τιμολόγηση — και άλλαξέ τη όποτε αλλάζει η ζήτηση.',
         },
         {
           n: '02',
           t: 'Χαρτογράφησε τους χώρους σου',
-          d: 'Σχεδίασε ενεργές ζώνες, όρισε ώρες λειτουργίας και δήλωσε πόσες θέσεις έχει κάθε σημείο.'
+          d: 'Σχεδίασε ενεργές ζώνες, όρισε ώρες λειτουργίας και δήλωσε πόσες θέσεις έχει κάθε σημείο.',
         },
         {
           n: '03',
           t: 'Παρακολούθησε τη ζήτηση',
-          d: 'Δες πληρότητα, προβολές και έσοδα να ενημερώνονται ζωντανά καθώς σε ανακαλύπτουν οδηγοί.'
-        }
+          d: 'Δες πληρότητα, προβολές και έσοδα να ενημερώνονται ζωντανά καθώς σε ανακαλύπτουν οδηγοί.',
+        },
       ],
       featEyebrow: 'Ο πίνακας ελέγχου',
       featTitle: 'Τα πάντα σε ένα κέντρο ελέγχου.',
@@ -111,9 +115,9 @@ export const LOCALES = {
         },
         {
           t: 'Ζώνες και ώρες',
-          d: 'Πολλαπλά σημεία, το καθένα με τις δικές του ενεργές ζώνες και ώρες λειτουργίας.'
+          d: 'Πολλαπλά σημεία, το καθένα με τις δικές του ενεργές ζώνες και ώρες λειτουργίας.',
         },
-        { t: 'Ανάλυση εσόδων', d: 'Δες προβολές, μετατροπές και έσοδα ανά σημείο με μια ματιά.' }
+        { t: 'Ανάλυση εσόδων', d: 'Δες προβολές, μετατροπές και έσοδα ανά σημείο με μια ματιά.' },
       ],
       ctaHead: 'Μετάτρεψε τις κενές θέσεις σε έσοδα.',
       ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
@@ -142,10 +146,18 @@ export const LOCALES = {
       spotA: 'Πλατεία Αριστοτέλους',
       spotASub: 'Aristotelous Square',
       spotB: 'Υπαίθριο πάρκινγκ',
-      spotBSub: 'Εγνατία'
+      spotBSub: 'Εγνατία',
     },
     dash: {
-      nav: ['Επισκόπηση', 'Χώροι', 'Τιμολόγια', 'Κρατήσεις', 'Διαχειριστές', 'Αναλύσεις', 'Αρχείο ενεργειών'],
+      nav: [
+        'Επισκόπηση',
+        'Χώροι',
+        'Τιμολόγια',
+        'Κρατήσεις',
+        'Διαχειριστές',
+        'Αναλύσεις',
+        'Αρχείο ενεργειών',
+      ],
       title: 'Πίνακας ελέγχου',
       overview: 'Επισκόπηση',
       snapshot: 'Μια εικόνα των λειτουργιών στάθμευσης.',
@@ -154,8 +166,8 @@ export const LOCALES = {
       revenue: 'Έσοδα σήμερα',
       chart: 'Έσοδα · τελευταίες 7 ημέρες',
       userName: 'Υπερδιαχειριστής πλατφόρμας',
-      userRole: 'Διαχειριστής πλατφόρμας'
-    }
+      userRole: 'Διαχειριστής πλατφόρμας',
+    },
   },
 
   en: {
@@ -173,7 +185,7 @@ export const LOCALES = {
         'Live prices and availability for every parking spot in the city — for drivers and for the operators who run them.',
       imageAlt: 'sPark logo',
       siteDescription: 'One live map for every parking spot in the city.',
-      appDescription: 'Find and compare parking prices and availability on one live map.'
+      appDescription: 'Find and compare parking prices and availability on one live map.',
     },
     nav: { drivers: 'For drivers', business: 'For businesses' },
     audience: { drivers: 'For drivers', business: 'For businesses', label: 'Choose audience' },
@@ -192,34 +204,40 @@ export const LOCALES = {
         {
           n: '01',
           t: 'Drop a pin',
-          d: 'Search a destination or move the map — sPark surfaces every parking area in view.'
+          d: 'Search a destination or move the map — sPark surfaces every parking area in view.',
         },
         {
           n: '02',
           t: 'Compare prices',
-          d: 'Live tariffs ranked cheapest or nearest. Pick your vehicle and stay to see an exact total.'
+          d: 'Live tariffs ranked cheapest or nearest. Pick your vehicle and stay to see an exact total.',
         },
         {
           n: '03',
           t: 'Park & go',
-          d: 'Pick your spot, navigate to the entrance, and check real-time availability before you arrive.'
-        }
+          d: 'Pick your spot, navigate to the entrance, and check real-time availability before you arrive.',
+        },
       ],
       featEyebrow: 'Why sPark',
       featTitle: 'Compare before you commit.',
       featSub: 'Everything you need to choose the right spot at the right price — in one tap.',
       features: [
-        { t: 'Sort by cheapest or nearest', d: 'Rank every nearby parking area by price or distance in one tap.' },
+        {
+          t: 'Sort by cheapest or nearest',
+          d: 'Rank every nearby parking area by price or distance in one tap.',
+        },
         {
           t: 'Price for your exact stay',
-          d: 'Set arrival and departure for the real total — car, motorbike, van or truck.'
+          d: 'Set arrival and departure for the real total — car, motorbike, van or truck.',
         },
         { t: 'Real-time availability', d: 'See what’s Available or Full before you drive over.' },
-        { t: 'Amenities that matter', d: 'Filter for CCTV, covered and disabled spaces — with free cancellation.' }
+        {
+          t: 'Amenities that matter',
+          d: 'Filter for CCTV, covered and disabled spaces — with free cancellation.',
+        },
       ],
       ctaHead: 'Ready to stop overpaying for parking?',
       ctaSub: 'Join the waitlist and we’ll tell you the moment sPark lands in your city.',
-      mailSubject: 'sPark waitlist — notify me at launch'
+      mailSubject: 'sPark waitlist — notify me at launch',
     },
     business: {
       eyebrow: 'For businesses · web dashboard',
@@ -234,14 +252,18 @@ export const LOCALES = {
         {
           n: '01',
           t: 'Set your tariffs',
-          d: 'Define hourly, daily and dynamic pricing — and change it anytime the market shifts.'
+          d: 'Define hourly, daily and dynamic pricing — and change it anytime the market shifts.',
         },
         {
           n: '02',
           t: 'Map your areas',
-          d: 'Draw active zones, set operating hours and list exactly how many spots each site has.'
+          d: 'Draw active zones, set operating hours and list exactly how many spots each site has.',
         },
-        { n: '03', t: 'Track demand', d: 'Watch occupancy, views and revenue update live as drivers discover you.' }
+        {
+          n: '03',
+          t: 'Track demand',
+          d: 'Watch occupancy, views and revenue update live as drivers discover you.',
+        },
       ],
       featEyebrow: 'The dashboard',
       featTitle: 'Everything in one control room.',
@@ -254,7 +276,7 @@ export const LOCALES = {
       ],
       ctaHead: 'Turn empty spots into revenue.',
       ctaSub: 'Book a 20-minute demo and see your lot live on the sPark map.',
-      mailSubject: 'sPark demo request'
+      mailSubject: 'sPark demo request',
     },
     footer: {
       tag: 'Make Parking Smart.',
@@ -267,7 +289,7 @@ export const LOCALES = {
       contactNote: 'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
       generalSubject: 'sPark — general enquiry',
       rights: '© 2026 sPark. All rights reserved.',
-      place: 'Athens · Made for smarter cities'
+      place: 'Athens · Made for smarter cities',
     },
     phone: {
       areas: '4 parking areas',
@@ -279,7 +301,7 @@ export const LOCALES = {
       spotA: 'Aristotelous Square',
       spotASub: 'Πλατεία Αριστοτέλους',
       spotB: 'Surface parking',
-      spotBSub: 'Egnatia'
+      spotBSub: 'Egnatia',
     },
     dash: {
       nav: ['Overview', 'Facilities', 'Tariffs', 'Bookings', 'Operators', 'Analytics', 'Audit log'],
@@ -291,10 +313,10 @@ export const LOCALES = {
       revenue: 'Revenue today',
       chart: 'Revenue · last 7 days',
       userName: 'Platform Super Admin',
-      userRole: 'Platform admin'
-    }
-  }
-};
+      userRole: 'Platform admin',
+    },
+  },
+}
 
-export const LOCALE_CODES = Object.keys(LOCALES);
-export const DEFAULT_LOCALE = 'el';
+export const LOCALE_CODES = Object.keys(LOCALES)
+export const DEFAULT_LOCALE = 'el'

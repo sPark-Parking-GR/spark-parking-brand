@@ -1,0 +1,7 @@
+dist/
+node_modules/
+reference/
+
+# smoke.test.mjs asserts against this file as raw text (e.g. /\.price-card \{ min-width:0;/),
+# so reformatting it breaks those guards.
+src/styles.css
