@@ -1,33 +1,37 @@
-import { SITE, CONTACT_EMAIL, LOCALES, DEFAULT_LOCALE } from './content.mjs';
+import { SITE, CONTACT_EMAIL, LOCALES, DEFAULT_LOCALE } from './content.mjs'
 
 const esc = (s) =>
-  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
 
-const mailto = (subject) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
+const mailto = (subject) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`
 
 const CHECK =
-  '<svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="8.5" fill="var(--blue)"/><path d="M4.8 8.7l2.3 2.3 5-5.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  '<svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="8.5" fill="var(--blue)"/><path d="M4.8 8.7l2.3 2.3 5-5.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 const FEAT_ICON =
-  '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="19" height="19" rx="6" stroke="var(--blue)" stroke-width="1.6"/><circle cx="11" cy="9.5" r="3" fill="var(--blue)"/><path d="M11 13v4.5" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>';
+  '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="19" height="19" rx="6" stroke="var(--blue)" stroke-width="1.6"/><circle cx="11" cy="9.5" r="3" fill="var(--blue)"/><path d="M11 13v4.5" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>'
 
-const asset = (locale, file) => (locale.dir ? `../${file}` : file);
+const asset = (locale, file) => (locale.dir ? `../${file}` : file)
 
 const preloads = (locale) =>
   locale.fonts
     .map(
       (file) =>
-        `<link rel="preload" href="${asset(locale, `assets/fonts/${file}`)}" as="font" type="font/woff2" crossorigin>`
+        `<link rel="preload" href="${asset(locale, `assets/fonts/${file}`)}" as="font" type="font/woff2" crossorigin>`,
     )
-    .join('\n');
+    .join('\n')
 
 function head(locale) {
-  const t = locale;
-  const url = `${SITE}${t.path}`;
-  const image = `${SITE}/assets/spark-mark.png`;
+  const t = locale
+  const url = `${SITE}${t.path}`
+  const image = `${SITE}/assets/spark-mark.png`
   const alternates = Object.values(LOCALES)
     .map((l) => `<link rel="alternate" hreflang="${l.code}" href="${SITE}${l.path}">`)
-    .join('\n');
+    .join('\n')
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -40,7 +44,7 @@ function head(locale) {
         logo: image,
         slogan: t.footer.tag,
         email: CONTACT_EMAIL,
-        areaServed: { '@type': 'Country', name: 'Greece' }
+        areaServed: { '@type': 'Country', name: 'Greece' },
       },
       {
         '@type': 'WebSite',
@@ -49,7 +53,7 @@ function head(locale) {
         name: 'sPark',
         description: t.meta.siteDescription,
         publisher: { '@id': `${SITE}/#organization` },
-        inLanguage: t.code
+        inLanguage: t.code,
       },
       {
         '@type': 'MobileApplication',
@@ -58,10 +62,10 @@ function head(locale) {
         operatingSystem: 'iOS, Android',
         url: `${SITE}/`,
         publisher: { '@id': `${SITE}/#organization` },
-        description: t.meta.appDescription
-      }
-    ]
-  };
+        description: t.meta.appDescription,
+      },
+    ],
+  }
 
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -98,7 +102,7 @@ ${JSON.stringify(jsonLd, null, 2)}
     var stored = localStorage.getItem('spark-theme');
     if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored;
   } catch (e) {}
-</script>`;
+</script>`
 }
 
 function langSwitch(locale) {
@@ -106,29 +110,29 @@ function langSwitch(locale) {
     .map((l) =>
       l.code === locale.code
         ? `<span class="lang-opt active" aria-current="true">${l.short}</span>`
-        : `<a class="lang-opt" href="${l.path}" hreflang="${l.code}" lang="${l.code}">${l.short}</a>`
+        : `<a class="lang-opt" href="${l.path}" hreflang="${l.code}" lang="${l.code}">${l.short}</a>`,
     )
-    .join('');
+    .join('')
 }
 
 const chips = (list) =>
-  list.map((c) => `<div class="chip">${CHECK}<span>${esc(c)}</span></div>`).join('\n          ');
+  list.map((c) => `<div class="chip">${CHECK}<span>${esc(c)}</span></div>`).join('\n          ')
 
 const steps = (list) =>
   list
     .map(
       (s) =>
-        `<div class="step-card"><div class="step-num">${esc(s.n)}</div><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></div>`
+        `<div class="step-card"><div class="step-num">${esc(s.n)}</div><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></div>`,
     )
-    .join('\n        ');
+    .join('\n        ')
 
 const features = (list) =>
   list
     .map(
       (f) =>
-        `<div class="feat-card"><div class="feat-icon">${FEAT_ICON}</div><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p></div>`
+        `<div class="feat-card"><div class="feat-icon">${FEAT_ICON}</div><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p></div>`,
     )
-    .join('\n        ');
+    .join('\n        ')
 
 const pricing = (t) =>
   t.pricing.plans
@@ -142,12 +146,12 @@ const pricing = (t) =>
             ${p.feats.map((f) => `<div>${CHECK}<span>${esc(f)}</span></div>`).join('\n            ')}
           </div>
           <a class="${p.popular ? 'price-btn-fill' : 'price-btn-outline'}" href="${mailto(p.mailSubject)}">${esc(p.cta)}</a>
-        </div>`
+        </div>`,
     )
-    .join('\n        ');
+    .join('\n        ')
 
 function phoneMock(t) {
-  const p = t.phone;
+  const p = t.phone
   return `<div class="phone-mock" id="phoneMock" aria-hidden="true">
           <div style="position:relative;border-radius:36px;overflow:hidden;height:604px;background:var(--pMap)">
             <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 32px,var(--pMapLine) 32px 33px),repeating-linear-gradient(90deg,transparent 0 32px,var(--pMapLine) 32px 33px)"></div>
@@ -176,7 +180,7 @@ function phoneMock(t) {
               </div>
             </div>
           </div>
-        </div>`;
+        </div>`
 }
 
 const DASH_ICONS = [
@@ -186,18 +190,18 @@ const DASH_ICONS = [
   '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5.5h11M4.5 1.2v2.4M9.5 1.2v2.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
   '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.3" r="2.3" stroke="currentColor" stroke-width="1.2"/><path d="M2.5 12c0-2.3 2-4 4.5-4s4.5 1.7 4.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
   '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="2.5" y="7" width="2.4" height="4" fill="currentColor"/><rect x="5.8" y="4.5" width="2.4" height="6.5" fill="currentColor"/><rect x="9.1" y="2" width="2.4" height="9" fill="currentColor"/></svg>',
-  '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2.5h8M3 5.5h8M3 8.5h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="1" y="10.5" width="3" height="2.4" rx="0.6" stroke="currentColor" stroke-width="1.1"/></svg>'
-];
+  '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2.5h8M3 5.5h8M3 8.5h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="1" y="10.5" width="3" height="2.4" rx="0.6" stroke="currentColor" stroke-width="1.1"/></svg>',
+]
 
 function dashMock(t) {
-  const d = t.dash;
+  const d = t.dash
   const nav = d.nav
     .map((label, i) =>
       i === 0
         ? `<div style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.09);color:#fff;font-size:12px;font-weight:700">${DASH_ICONS[i]}${esc(label)}</div>`
-        : `<div style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;color:#8CA0B2;font-size:12px;font-weight:600">${DASH_ICONS[i]}${esc(label)}</div>`
+        : `<div style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;color:#8CA0B2;font-size:12px;font-weight:600">${DASH_ICONS[i]}${esc(label)}</div>`,
     )
-    .join('\n              ');
+    .join('\n              ')
 
   return `<div class="dash-mock" id="dashMock" style="display:none" aria-hidden="true">
           <div style="height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:var(--dChrome);border-bottom:1px solid var(--dChromeBorder)">
@@ -244,12 +248,12 @@ function dashMock(t) {
               </div>
             </div>
           </div>
-        </div>`;
+        </div>`
 }
 
 export function renderPage(code) {
-  const t = LOCALES[code];
-  const d = t.drivers;
+  const t = LOCALES[code]
+  const d = t.drivers
 
   const runtime = {
     locale: t.code,
@@ -257,10 +261,10 @@ export function renderPage(code) {
     generalSubject: t.footer.generalSubject,
     audiences: {
       drivers: { ...t.drivers },
-      business: { ...t.business }
+      business: { ...t.business },
     },
-    pricingVisibleFor: 'business'
-  };
+    pricingVisibleFor: 'business',
+  }
 
   return `<!DOCTYPE html>
 <html lang="${t.code}">
@@ -400,5 +404,5 @@ ${head(t)}
 <script src="${asset(t, 'main.js')}"></script>
 </body>
 </html>
-`;
+`
 }

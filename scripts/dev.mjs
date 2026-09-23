@@ -1,2 +1,2 @@
-await import('./build.mjs');
-await import('./serve.mjs');
+await import('./build.mjs')
+await import('./serve.mjs')
