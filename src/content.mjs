@@ -289,7 +289,7 @@ export const LOCALES = {
       contactNote: 'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
       generalSubject: 'sPark — general enquiry',
       rights: '© 2026 sPark. All rights reserved.',
-      place: 'Athens · Made for smarter cities',
+      place: 'Thessaloniki · Made for smarter cities',
     },
     phone: {
       areas: '4 parking areas',
