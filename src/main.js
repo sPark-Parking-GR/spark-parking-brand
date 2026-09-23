@@ -82,8 +82,6 @@
       featGrid.appendChild(card)
     })
 
-    $('pricing').style.display = isDrivers ? 'none' : ''
-
     $('ctaHead').textContent = sel.ctaHead
     $('ctaSub').textContent = sel.ctaSub
     $('ctaBtn').textContent = sel.cta1
