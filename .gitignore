@@ -19,3 +19,6 @@ secrets/
 # misc
 .DS_Store
 *.log
+
+# turbo
+.turbo

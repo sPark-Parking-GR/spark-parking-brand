@@ -92,8 +92,8 @@ ${alternates}
 <meta name="twitter:image" content="${image}">
 ${preloads(t)}
 <link rel="stylesheet" href="${asset(t, 'styles.css')}">
-<link rel="icon" href="${asset(t, 'assets/logo-68.png')}">
-<link rel="apple-touch-icon" href="${asset(t, 'assets/icon-180.png')}">
+<link rel="icon" href="${asset(t, 'assets/spark-mark.ico')}">
+<link rel="apple-touch-icon" href="${asset(t, 'assets/spark-mark.ico')}">
 <script type="application/ld+json">
 ${JSON.stringify(jsonLd, null, 2)}
 </script>
@@ -134,22 +134,6 @@ const features = (list) =>
     )
     .join('\n        ')
 
-const pricing = (t) =>
-  t.pricing.plans
-    .map(
-      (p) => `<div class="price-card${p.popular ? ' popular' : ''}">
-          ${p.popular ? `<div class="price-badge">${esc(t.pricing.badge)}</div>` : ''}
-          <div class="price-name">${esc(p.name)}</div>
-          <div class="price-amt"><span class="big${p.amount.length > 8 ? ' is-long' : ''}">${esc(p.amount)}</span>${p.per ? `<span class="per">${esc(p.per)}</span>` : ''}</div>
-          <p class="price-desc">${esc(p.desc)}</p>
-          <div class="price-feats">
-            ${p.feats.map((f) => `<div>${CHECK}<span>${esc(f)}</span></div>`).join('\n            ')}
-          </div>
-          <a class="${p.popular ? 'price-btn-fill' : 'price-btn-outline'}" href="${mailto(p.mailSubject)}">${esc(p.cta)}</a>
-        </div>`,
-    )
-    .join('\n        ')
-
 function phoneMock(t) {
   const p = t.phone
   return `<div class="phone-mock" id="phoneMock" aria-hidden="true">
@@ -176,7 +160,7 @@ function phoneMock(t) {
               </div>
               <div style="padding:12px;border-radius:14px;background:var(--pCard);border:1px solid var(--pCardBorder)">
                 <div style="display:flex;align-items:flex-start"><div><div style="font-family:var(--fontDisplay);font-weight:700;font-size:14px;color:var(--pInk)">${esc(p.spotB)}</div><div style="font-size:11px;color:var(--pMuted);margin-top:2px">${esc(p.spotBSub)}</div></div><div style="margin-left:auto;text-align:right;padding-left:10px"><div style="font-size:16px;font-weight:800;color:var(--pPrice)">—</div><div style="font-size:10px;color:var(--pMuted)">${esc(p.total)}</div></div></div>
-                <div style="display:flex;align-items:center;gap:9px;margin-top:9px"><span style="padding:3px 9px;border-radius:999px;font-size:10px;font-weight:800;color:var(--pFull);background:var(--pFullBg)">${esc(p.full)}</span><span style="font-size:11px;color:var(--pMuted)">1.7 km</span></div>
+                <div style="display:flex;align-items:center;gap:9px;margin-top:9px"><span style="font-size:11px;color:var(--pMuted)">1.7 km</span></div>
               </div>
             </div>
           </div>
@@ -203,7 +187,8 @@ function dashMock(t) {
     )
     .join('\n              ')
 
-  return `<div class="dash-mock" id="dashMock" style="display:none" aria-hidden="true">
+  return `<div class="dash-mock-wrap" id="dashMock" style="display:none" aria-hidden="true">
+        <div class="dash-mock">
           <div style="height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:var(--dChrome);border-bottom:1px solid var(--dChromeBorder)">
             <div style="width:11px;height:11px;border-radius:999px;background:#E8695D"></div>
             <div style="width:11px;height:11px;border-radius:999px;background:#E6B24C"></div>
@@ -248,7 +233,8 @@ function dashMock(t) {
               </div>
             </div>
           </div>
-        </div>`
+        </div>
+      </div>`;
 }
 
 export function renderPage(code) {
@@ -261,10 +247,9 @@ export function renderPage(code) {
     generalSubject: t.footer.generalSubject,
     audiences: {
       drivers: { ...t.drivers },
-      business: { ...t.business },
-    },
-    pricingVisibleFor: 'business',
-  }
+      business: { ...t.business }
+    }
+  };
 
   return `<!DOCTYPE html>
 <html lang="${t.code}">
@@ -283,7 +268,6 @@ ${head(t)}
       <nav class="nav-links">
         <a href="#how" data-nav="drivers">${esc(t.nav.drivers)}</a>
         <a href="#how" data-nav="business">${esc(t.nav.business)}</a>
-        <a href="#pricing" data-nav="business">${esc(t.nav.pricing)}</a>
       </nav>
       <div class="lang-switch" role="group" aria-label="${esc(t.langLabel)}">${langSwitch(t)}</div>
       <button class="theme-toggle" id="themeToggle" aria-label="${esc(t.themeToggle)}" title="${esc(t.themeToggle)}"></button>
@@ -344,19 +328,6 @@ ${head(t)}
     </div>
   </section>
 
-  <section class="section section--alt" id="pricing" style="display:none">
-    <div class="container">
-      <div class="price-intro">
-        <div class="sec-eyebrow">${esc(t.pricing.eyebrow)}</div>
-        <h2 class="sec-title" style="margin-bottom:12px">${esc(t.pricing.title)}</h2>
-        <p class="sec-sub">${esc(t.pricing.sub)}</p>
-      </div>
-      <div class="pricing-grid">
-        ${pricing(t)}
-      </div>
-    </div>
-  </section>
-
   <section class="cta-section">
     <div class="cta-band">
       <div class="cta-band-bg"></div>
@@ -383,7 +354,7 @@ ${head(t)}
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.businessTitle)}</div>
-        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="#pricing" data-nav="business">${esc(t.footer.businessLinks[1])}</a><a href="${mailto(t.business.mailSubject)}" data-nav="business">${esc(t.footer.businessLinks[2])}</a></div>
+        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="${mailto(t.business.mailSubject)}" data-nav="business">${esc(t.footer.businessLinks[1])}</a></div>
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.contactTitle)}</div>

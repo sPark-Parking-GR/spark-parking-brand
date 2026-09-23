@@ -1,5 +1,5 @@
-export const SITE = 'https://spark.gr'
-export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com'
+export const SITE = 'https://sparkparking.gr';
+export const CONTACT_EMAIL = 'sales@sparkparking.gr';
 
 export const LOCALES = {
   el: {
@@ -19,7 +19,7 @@ export const LOCALES = {
       siteDescription: 'Ένας ζωντανός χάρτης για κάθε θέση πάρκινγκ στην πόλη.',
       appDescription: 'Βρες και σύγκρινε τιμές και διαθεσιμότητα πάρκινγκ σε έναν ζωντανό χάρτη.',
     },
-    nav: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις', pricing: 'Τιμές' },
+    nav: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις' },
     audience: { drivers: 'Για οδηγούς', business: 'Για επιχειρήσεις', label: 'Επιλογή κοινού' },
     themeToggle: 'Εναλλαγή θέματος',
     langLabel: 'Γλώσσα',
@@ -41,7 +41,7 @@ export const LOCALES = {
         {
           n: '02',
           t: 'Σύγκρινε τιμές',
-          d: 'Ζωντανά τιμολόγια, ταξινομημένα κατά τιμή ή απόσταση. Διάλεξε όχημα και διάρκεια για ακριβές σύνολο.',
+          d: 'Εγκαταστάσεις ταξινομημένες κατά τιμή ή απόσταση. Διάλεξε όχημα και διάρκεια για δεις το ακριβές σύνολο.'
         },
         {
           n: '03',
@@ -65,10 +65,11 @@ export const LOCALES = {
           t: 'Διαθεσιμότητα σε πραγματικό χρόνο',
           d: 'Δες τι είναι Ελεύθερο ή Πλήρες πριν ξεκινήσεις.',
         },
+        { t: 'Διαθεσιμότητα σε πραγματικό χρόνο', d: 'Δες τις εγκαταστάσεις με διαθεσιμότητα σε πραγματικό χρόνο.' },
         {
           t: 'Παροχές που μετρούν',
-          d: 'Φίλτραρε για CCTV, στεγασμένες θέσεις και θέσεις ΑμεΑ — με δωρεάν ακύρωση.',
-        },
+          d: 'Φίλτραρε με βάση τις παροχές που σε ενδιαφέρουν, για να βρείς την ιδανική θέση.'
+        }
       ],
       ctaHead: 'Έτοιμος να σταματήσεις να πληρώνεις παραπάνω για πάρκινγκ;',
       ctaSub: 'Μπες στη λίστα αναμονής και θα σε ειδοποιήσουμε μόλις το sPark έρθει στην πόλη σου.',
@@ -79,7 +80,7 @@ export const LOCALES = {
       headline: 'Γέμισε κάθε θέση. Έλεγξε τις τιμές σου σε πραγματικό χρόνο.',
       sub: 'Το sPark φέρνει το πάρκινγκ σου μπροστά στους οδηγούς τη στιγμή που ψάχνουν. Διαχειρίσου τιμολόγια, ώρες, ζώνες και χωρητικότητα από έναν πίνακα ελέγχου.',
       cta1: 'Κλείσε παρουσίαση',
-      cta2: 'Μίλα με πωλήσεις',
+      cta2: 'Δες πώς λειτουργεί',
       chips: ['Χωρίς κόστος εγκατάστασης', 'Ενεργοποίηση σε μία μέρα', 'Ακύρωση όποτε θες'],
       stepsEyebrow: 'Πώς λειτουργεί',
       stepsTitle: 'Ο χώρος σου ζωντανός σε τρία βήματα.',
@@ -106,11 +107,11 @@ export const LOCALES = {
       features: [
         {
           t: 'Δυναμική τιμολόγηση',
-          d: 'Κανόνες αιχμής, χαμηλής ζήτησης και εκδηλώσεων που προσαρμόζουν αυτόματα τις τιμές.',
+          d: 'Προσαρμόστε τους κανόνες τιμολόγησης αυτόματα για την άμεση ανταπόκριση στη ζήτηση.'
         },
         {
-          t: 'Ζωντανή χωρητικότητα',
-          d: 'Ενημέρωσε τις ελεύθερες θέσεις σε πραγματικό χρόνο ή συγχρόνισε από το σύστημα μπάρας.',
+          t: 'Πληρότητα σε πραγματικό χρόνο',
+          d: 'Ενημέρωσε τις ελεύθερες θέσεις σε πραγματικό χρόνο και παρακολούθησε τις κρατήσεις σου σε πραγματικό χρόνο.'
         },
         {
           t: 'Ζώνες και ώρες',
@@ -119,62 +120,8 @@ export const LOCALES = {
         { t: 'Ανάλυση εσόδων', d: 'Δες προβολές, μετατροπές και έσοδα ανά σημείο με μια ματιά.' },
       ],
       ctaHead: 'Μετάτρεψε τις κενές θέσεις σε έσοδα.',
-      ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες τον χώρο σου ζωντανά στον χάρτη του sPark.',
-      mailSubject: 'sPark — αίτημα παρουσίασης',
-    },
-    pricing: {
-      eyebrow: 'Τιμολόγηση για επιχειρήσεις',
-      title: 'Ξεκίνα δωρεάν. Πλήρωσε όταν μεγαλώσεις.',
-      sub: 'Καταχώρισε το πρώτο σου σημείο χωρίς κόστος. Πλήρωσε μόνο όταν χρειαστείς δυναμική τιμολόγηση και έλεγχο πολλών σημείων.',
-      badge: 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ',
-      plans: [
-        {
-          id: 'starter',
-          name: 'Starter',
-          amount: 'Δωρεάν',
-          per: '',
-          desc: 'Για ένα σημείο που μπαίνει στον χάρτη.',
-          feats: [
-            '1 σημείο, έως 25 θέσεις',
-            'Βασική προβολή στον χάρτη',
-            'Χειροκίνητες τιμές και ώρες',
-          ],
-          cta: 'Ξεκίνα',
-          mailSubject: 'sPark Starter — καταχώριση του χώρου μου',
-          popular: false,
-        },
-        {
-          id: 'growth',
-          name: 'Growth',
-          amount: '€49',
-          per: '/ μήνα',
-          desc: 'Για επιχειρήσεις με πολλά σημεία.',
-          feats: [
-            'Έως 5 σημεία',
-            'Δυναμική τιμολόγηση και εκδηλώσεις',
-            'Ζωντανή χωρητικότητα και αναλύσεις',
-            'Προτεραιότητα στον χάρτη',
-          ],
-          cta: 'Κλείσε παρουσίαση',
-          mailSubject: 'sPark — αίτημα παρουσίασης',
-          popular: true,
-        },
-        {
-          id: 'enterprise',
-          name: 'Enterprise',
-          amount: 'Προσαρμοσμένο',
-          per: '',
-          desc: 'Για αλυσίδες και δίκτυα πόλης.',
-          feats: [
-            'Απεριόριστα σημεία',
-            'API και συγχρονισμός με μπάρες',
-            'Αποκλειστικός υπεύθυνος εξυπηρέτησης',
-          ],
-          cta: 'Μίλα με πωλήσεις',
-          mailSubject: 'sPark Enterprise — επικοινωνία με πωλήσεις',
-          popular: false,
-        },
-      ],
+      ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
+      mailSubject: 'sPark — αίτημα παρουσίασης'
     },
     footer: {
       tag: 'Κάνε το παρκάρισμα έξυπνο.',
@@ -182,12 +129,12 @@ export const LOCALES = {
       driversTitle: 'Οδηγοί',
       driversLinks: ['Μπες στη λίστα αναμονής', 'Πώς λειτουργεί', 'Δυνατότητες'],
       businessTitle: 'Επιχειρήσεις',
-      businessLinks: ['Πώς λειτουργεί', 'Τιμές', 'Κλείσε παρουσίαση'],
+      businessLinks: ['Πώς λειτουργεί', 'Κλείσε παρουσίαση'],
       contactTitle: 'Επικοινωνία',
-      contactNote: 'Οδηγοί και επιχειρήσεις — στείλε μας email και θα σου απαντήσει άνθρωπος.',
+      contactNote: 'Οδηγοί και επιχειρήσεις — στείλτε μας email και θα σου απαντήσουμε άμεσα.',
       generalSubject: 'sPark — γενική επικοινωνία',
       rights: '© 2026 sPark. Με επιφύλαξη παντός δικαιώματος.',
-      place: 'Αθήνα · Για εξυπνότερες πόλεις',
+      place: 'Θεσσαλονίκη · Για εξυπνότερες πόλεις'
     },
     phone: {
       areas: '4 χώροι στάθμευσης',
@@ -196,7 +143,6 @@ export const LOCALES = {
       cheapest: 'Φθηνότερα',
       total: 'σύνολο',
       available: 'Ελεύθερο',
-      full: 'Πλήρες',
       spotA: 'Πλατεία Αριστοτέλους',
       spotASub: 'Aristotelous Square',
       spotB: 'Υπαίθριο πάρκινγκ',
@@ -241,7 +187,7 @@ export const LOCALES = {
       siteDescription: 'One live map for every parking spot in the city.',
       appDescription: 'Find and compare parking prices and availability on one live map.',
     },
-    nav: { drivers: 'For drivers', business: 'For businesses', pricing: 'Pricing' },
+    nav: { drivers: 'For drivers', business: 'For businesses' },
     audience: { drivers: 'For drivers', business: 'For businesses', label: 'Choose audience' },
     themeToggle: 'Toggle color theme',
     langLabel: 'Language',
@@ -323,72 +269,14 @@ export const LOCALES = {
       featTitle: 'Everything in one control room.',
       featSub: 'Run pricing, capacity and performance across every location you operate.',
       features: [
-        {
-          t: 'Dynamic pricing',
-          d: 'Peak, off-peak and event rules that adjust rates automatically.',
-        },
-        {
-          t: 'Live capacity',
-          d: 'Update free spots in real time or sync straight from your gate system.',
-        },
-        {
-          t: 'Zones & hours',
-          d: 'Multiple sites, each with its own active areas and operating hours.',
-        },
-        {
-          t: 'Revenue analytics',
-          d: 'See views, conversion and earnings per location at a glance.',
-        },
+        { t: 'Dynamic pricing', d: 'Peak, off-peak and event rules that adjust rates automatically.' },
+        { t: 'Real-time occupancy', d: 'Update free spots in real time or sync straight from your gate system.' },
+        { t: 'Zones & hours', d: 'Multiple sites, each with its own active areas and operating hours.' },
+        { t: 'Revenue analytics', d: 'See views, conversion and earnings per location at a glance.' }
       ],
       ctaHead: 'Turn empty spots into revenue.',
       ctaSub: 'Book a 20-minute demo and see your lot live on the sPark map.',
       mailSubject: 'sPark demo request',
-    },
-    pricing: {
-      eyebrow: 'Pricing for businesses',
-      title: 'Start free. Scale when you grow.',
-      sub: 'List your first location at no cost. Only pay when you need dynamic pricing and multi-site control.',
-      badge: 'MOST POPULAR',
-      plans: [
-        {
-          id: 'starter',
-          name: 'Starter',
-          amount: 'Free',
-          per: '',
-          desc: 'For a single lot getting listed.',
-          feats: ['1 location, up to 25 spots', 'Standard map listing', 'Manual pricing & hours'],
-          cta: 'Get started',
-          mailSubject: 'sPark Starter — list my parking',
-          popular: false,
-        },
-        {
-          id: 'growth',
-          name: 'Growth',
-          amount: '€49',
-          per: '/ month',
-          desc: 'For operators running several sites.',
-          feats: [
-            'Up to 5 locations',
-            'Dynamic & event pricing',
-            'Live capacity & analytics',
-            'Priority map placement',
-          ],
-          cta: 'Book a demo',
-          mailSubject: 'sPark demo request',
-          popular: true,
-        },
-        {
-          id: 'enterprise',
-          name: 'Enterprise',
-          amount: 'Custom',
-          per: '',
-          desc: 'For chains and city-wide networks.',
-          feats: ['Unlimited locations', 'API & gate-system sync', 'Dedicated success manager'],
-          cta: 'Talk to sales',
-          mailSubject: 'sPark Enterprise — talk to sales',
-          popular: false,
-        },
-      ],
     },
     footer: {
       tag: 'Make Parking Smart.',
@@ -396,9 +284,9 @@ export const LOCALES = {
       driversTitle: 'Drivers',
       driversLinks: ['Join the waitlist', 'How it works', 'Features'],
       businessTitle: 'Businesses',
-      businessLinks: ['How it works', 'Pricing', 'Book a demo'],
+      businessLinks: ['How it works', 'Book a demo'],
       contactTitle: 'Contact',
-      contactNote: 'Drivers and operators alike — email us and a human replies.',
+      contactNote: 'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
       generalSubject: 'sPark — general enquiry',
       rights: '© 2026 sPark. All rights reserved.',
       place: 'Athens · Made for smarter cities',
@@ -410,7 +298,6 @@ export const LOCALES = {
       cheapest: 'Cheapest',
       total: 'total',
       available: 'Available',
-      full: 'Full',
       spotA: 'Aristotelous Square',
       spotASub: 'Πλατεία Αριστοτέλους',
       spotB: 'Surface parking',

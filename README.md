@@ -69,7 +69,7 @@ To refresh or add a weight, download from Google Fonts with a modern browser use
 
 ## Behaviour
 
-- **Audience toggle** — swaps hero copy, hero mockup (phone ↔ dashboard), steps, features, CTA band, and shows/hides the pricing section. Nav and footer links also switch audience.
+- **Audience toggle** — swaps hero copy, hero mockup (phone ↔ dashboard), steps, features, and CTA band. Nav and footer links also switch audience.
 - **Theme** — follows the OS by default; the toggle sets a `data-theme` override persisted in `localStorage` under `spark-theme`. An inline head script applies it before paint, so there is no flash.
 
 ## Contact — and the no-PII rule
@@ -82,7 +82,7 @@ One constant drives every CTA, in `src/content.mjs`:
 export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com'
 ```
 
-Each CTA passes its own subject line (waitlist, demo request, Starter, Enterprise, general enquiry) — localized per language, so a Greek visitor's email arrives with a Greek subject. The address is also printed as readable text in the footer, not hidden behind a link.
+Each CTA passes its own subject line (waitlist, demo request, general enquiry) — localized per language, so a Greek visitor's email arrives with a Greek subject. The address is also printed as readable text in the footer, not hidden behind a link.
 
 The only client-side storage is `localStorage['spark-theme']`, holding `"light"` or `"dark"`. That is a functional preference, not personal data, and needs no consent banner.
 
@@ -112,21 +112,13 @@ pnpm --filter @spark/landing test    # markup/copy smoke tests
 
 Canonical origin is `SITE` in `src/content.mjs`; canonical tags, `og:url`, `hreflang`, `robots.txt` and `sitemap.xml` all derive from it, so there is one place to change the domain.
 
-The drivers view of every section — hero, chips, steps, features — plus the full pricing table is **static HTML in both languages**. JS only swaps it when the audience toggle is used. Crawlers and no-JS visitors get the whole page; the JS render is idempotent, so nothing duplicates on load.
+The drivers view of every section — hero, chips, steps, features — is **static HTML in both languages**. JS only swaps it when the audience toggle is used. Crawlers and no-JS visitors get the whole page; the JS render is idempotent, so nothing duplicates on load.
 
 Structured data is a JSON-LD `@graph` (Organization + WebSite + MobileApplication). It contains no ratings, review counts, or install figures — those would be fabricated, and fabricated structured data is a manual-action risk.
 
 ## Fidelity to the mockup
 
 Computed styles were diffed against `mockups/landing.html` rendered side by side at 1280px. Every checked property — font sizes, weights, line heights, letter spacing, colors, radii, padding, shadows, gradients, element box sizes — matches on both locales. The English dashboard mock measures `534x418`, identical to the mockup.
-
-Long price amounts (over 8 characters, e.g. Greek «Προσαρμοσμένο») get an `is-long` class at build time, which scales them to `clamp(20px, 2.1vw, 28px)`. Three separate failures make this necessary — a long amount at the full 40px is a single unbreakable word roughly 328px wide, which:
-
-1. wraps to two lines, making that card taller than its siblings;
-2. raises the column's **min-content**, so `repeat(3, 1fr)` can no longer keep the columns equal — measured 347/347/390 at 1265px and a badly skewed 234/233/390 at 1009px;
-3. can spill past the card's padding at narrow 3-column widths.
-
-`.price-card { min-width: 0 }` stops a long word from inflating its column, and `overflow-wrap: break-word` is the last-resort fallback. Because the scaled-down amount would otherwise leave a shorter line box, `.price-amt` reserves `--amtLine` — 51px for Sora, 55px for Manrope, matching each display font's natural 40px line box. That keeps card heights aligned without shifting English off the mockup's exact `348/379/348`.
 
 Two intentional deviations:
 
@@ -139,5 +131,5 @@ Pre-existing behaviour worth knowing: below ~570px the dashboard mock keeps its 
 
 - **Social image is the square brand mark (329×435).** Cards are declared `twitter:card=summary` to match. A designed 1200×630 asset would allow `summary_large_image`, which has materially better click-through. Add it as `assets/og-cover.png`, then update the four image tags and the card type.
 - Below ~570px the dashboard mock is clipped rather than scaled (inherited from the mockup — see Fidelity above). Making it scale would mean a transform or a mobile-specific variant.
-- **Greek copy has not been reviewed by a native speaker.** It reads naturally and uses the informal second person throughout (matching the English tone), but marketing copy in your own market deserves a human pass before launch — particularly the hero headline and the pricing plan names, which were left in English (`Starter` / `Growth` / `Enterprise`) as product names rather than translated.
+- **Greek copy has not been reviewed by a native speaker.** It reads naturally and uses the informal second person throughout (matching the English tone), but marketing copy in your own market deserves a human pass before launch — particularly the hero headline.
 - The dashboard mockup shows `app.spark.gr/dashboard`, which does not exist yet.
