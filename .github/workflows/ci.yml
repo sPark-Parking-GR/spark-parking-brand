@@ -2,9 +2,6 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 # Cancel superseded runs on the same ref (e.g. new commits pushed to a PR).
 concurrency:
@@ -26,30 +23,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Format
-        run: pnpm run format
-
       - name: Format check
         run: pnpm run format:check
-
-      # smoke.test.mjs is the real gate here: it asserts the CSS invariants (mask
-      # support guard, price-card min-width, Greek font fallback), locale parity and
-      # that the expected assets land in dist/.
-      # - name: Test
-      #   run: pnpm run test
 
       - name: Build
         run: pnpm run build
 
-      - name: Upload built site
-        uses: actions/upload-artifact@v4
-        with:
-          name: landing-dist
-          path: dist/
-          retention-days: 7
+      # smoke.test.mjs is the real gate here: it asserts the CSS invariants (mask
+      # support guard, Greek font fallback), locale parity and that the expected assets
+      # land in dist/. It reads dist/, so it must run after the build.
+      - name: Test
+        run: pnpm run test
