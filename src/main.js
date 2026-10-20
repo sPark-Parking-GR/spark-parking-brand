@@ -1,7 +1,7 @@
 ;(function () {
   'use strict'
 
-  var DATA = window.__SPARK__
+  var DATA = window.__SPARK__ || {}
   var COPY = DATA.audiences
 
   function mailto(subject) {
@@ -24,97 +24,103 @@
     return node
   }
 
-  var audience = 'drivers'
+  if (COPY) initAudience()
 
-  function renderAudience() {
-    var sel = COPY[audience]
-    var isDrivers = audience === 'drivers'
+  function initAudience() {
+    var audience = 'drivers'
 
-    $('togDrivers').classList.toggle('active', isDrivers)
-    $('togBusiness').classList.toggle('active', !isDrivers)
-    $('togDrivers').setAttribute('aria-selected', String(isDrivers))
-    $('togBusiness').setAttribute('aria-selected', String(!isDrivers))
+    function renderAudience() {
+      var sel = COPY[audience]
+      var isDrivers = audience === 'drivers'
 
-    $('heroEyebrow').textContent = sel.eyebrow
-    $('heroHeadline').textContent = sel.headline
-    $('heroSub').textContent = sel.sub
-    $('heroCta1').textContent = sel.cta1
-    $('heroCta2').textContent = sel.cta2
+      $('togDrivers').classList.toggle('active', isDrivers)
+      $('togBusiness').classList.toggle('active', !isDrivers)
+      $('togDrivers').setAttribute('aria-selected', String(isDrivers))
+      $('togBusiness').setAttribute('aria-selected', String(!isDrivers))
 
-    var chipsEl = $('heroChips')
-    chipsEl.innerHTML = ''
-    sel.chips.forEach(function (label) {
-      var chip = el('div', 'chip')
-      var icon = el('span')
-      icon.innerHTML = CHECK
-      chip.appendChild(icon.firstChild)
-      chip.appendChild(el('span', null, label))
-      chipsEl.appendChild(chip)
+      $('heroEyebrow').textContent = sel.eyebrow
+      $('heroHeadline').textContent = sel.headline
+      $('heroSub').textContent = sel.sub
+      $('heroCta1').textContent = sel.cta1
+      $('heroCta2').textContent = sel.cta2
+
+      var chipsEl = $('heroChips')
+      chipsEl.innerHTML = ''
+      sel.chips.forEach(function (label) {
+        var chip = el('div', 'chip')
+        var icon = el('span')
+        icon.innerHTML = CHECK
+        chip.appendChild(icon.firstChild)
+        chip.appendChild(el('span', null, label))
+        chipsEl.appendChild(chip)
+      })
+
+      $('phoneMock').style.display = isDrivers ? '' : 'none'
+      $('dashMock').style.display = isDrivers ? 'none' : ''
+
+      $('stepsEyebrow').textContent = sel.stepsEyebrow
+      $('stepsTitle').textContent = sel.stepsTitle
+      var stepsGrid = $('stepsGrid')
+      stepsGrid.innerHTML = ''
+      sel.steps.forEach(function (st) {
+        var card = el('div', 'step-card')
+        card.appendChild(el('div', 'step-num', st.n))
+        card.appendChild(el('h3', null, st.t))
+        card.appendChild(el('p', null, st.d))
+        stepsGrid.appendChild(card)
+      })
+
+      $('featEyebrow').textContent = sel.featEyebrow
+      $('featTitle').textContent = sel.featTitle
+      $('featSub').textContent = sel.featSub
+      var featGrid = $('featuresGrid')
+      featGrid.innerHTML = ''
+      sel.features.forEach(function (ft) {
+        var card = el('div', 'feat-card')
+        var icon = el('div', 'feat-icon')
+        icon.innerHTML = FEAT_ICON
+        card.appendChild(icon)
+        card.appendChild(el('h3', null, ft.t))
+        card.appendChild(el('p', null, ft.d))
+        featGrid.appendChild(card)
+      })
+
+      $('ctaHead').textContent = sel.ctaHead
+      $('ctaSub').textContent = sel.ctaSub
+      $('ctaBtn').textContent = sel.cta1
+      $('navCta').textContent = sel.cta1
+
+      var primary = mailto(sel.mailSubject)
+      $('heroCta1').href = primary
+      $('ctaBtn').href = primary
+      $('navCta').href = primary
+    }
+
+    function setAudience(a) {
+      if (!COPY[a] || a === audience) return
+      audience = a
+      renderAudience()
+    }
+
+    $('togDrivers').addEventListener('click', function () {
+      setAudience('drivers')
+    })
+    $('togBusiness').addEventListener('click', function () {
+      setAudience('business')
     })
 
-    $('phoneMock').style.display = isDrivers ? '' : 'none'
-    $('dashMock').style.display = isDrivers ? 'none' : ''
-
-    $('stepsEyebrow').textContent = sel.stepsEyebrow
-    $('stepsTitle').textContent = sel.stepsTitle
-    var stepsGrid = $('stepsGrid')
-    stepsGrid.innerHTML = ''
-    sel.steps.forEach(function (st) {
-      var card = el('div', 'step-card')
-      card.appendChild(el('div', 'step-num', st.n))
-      card.appendChild(el('h3', null, st.t))
-      card.appendChild(el('p', null, st.d))
-      stepsGrid.appendChild(card)
+    document.querySelectorAll('[data-nav]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        setAudience(link.getAttribute('data-nav'))
+      })
     })
 
-    $('featEyebrow').textContent = sel.featEyebrow
-    $('featTitle').textContent = sel.featTitle
-    $('featSub').textContent = sel.featSub
-    var featGrid = $('featuresGrid')
-    featGrid.innerHTML = ''
-    sel.features.forEach(function (ft) {
-      var card = el('div', 'feat-card')
-      var icon = el('div', 'feat-icon')
-      icon.innerHTML = FEAT_ICON
-      card.appendChild(icon)
-      card.appendChild(el('h3', null, ft.t))
-      card.appendChild(el('p', null, ft.d))
-      featGrid.appendChild(card)
+    $('heroCta2').addEventListener('click', function () {
+      document.getElementById('how').scrollIntoView({ behavior: 'smooth' })
     })
 
-    $('ctaHead').textContent = sel.ctaHead
-    $('ctaSub').textContent = sel.ctaSub
-    $('ctaBtn').textContent = sel.cta1
-    $('navCta').textContent = sel.cta1
-
-    var primary = mailto(sel.mailSubject)
-    $('heroCta1').href = primary
-    $('ctaBtn').href = primary
-    $('navCta').href = primary
-  }
-
-  function setAudience(a) {
-    if (!COPY[a] || a === audience) return
-    audience = a
     renderAudience()
   }
-
-  $('togDrivers').addEventListener('click', function () {
-    setAudience('drivers')
-  })
-  $('togBusiness').addEventListener('click', function () {
-    setAudience('business')
-  })
-
-  document.querySelectorAll('[data-nav]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      setAudience(link.getAttribute('data-nav'))
-    })
-  })
-
-  $('heroCta2').addEventListener('click', function () {
-    document.getElementById('how').scrollIntoView({ behavior: 'smooth' })
-  })
 
   var SUN =
     '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
@@ -152,6 +158,4 @@
     if (mq.addEventListener) mq.addEventListener('change', onChange)
     else if (mq.addListener) mq.addListener(onChange)
   }
-
-  renderAudience()
 })()

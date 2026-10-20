@@ -34,6 +34,12 @@ Both are **real pre-rendered pages**, not a client-side string swap: correct `la
 
 Adding a language is one entry in `LOCALES` — build, sitemap, `hreflang`, and the switcher all derive from it. A test compares the key shape of every locale against the default and fails on any missing translation.
 
+## Legal pages
+
+`/privacy/`, `/terms/`, `/en/privacy/` and `/en/terms/` are real pre-rendered pages, built from `src/legal.mjs` (document text, per locale) and `renderLegalPage` in `template.mjs`. Both are linked from every footer and listed in the sitemap with reciprocal `hreflang`. They exist for Google / Apple / Meta sign-in verification and cover the mobile app and the web portal.
+
+Edit the text in `src/legal.mjs` only; the schema is documented at the top of `LEGAL`. Company identity, `PRIVACY_EMAIL` and the log/audit retention periods are declared in `src/content.mjs` and injected as `{{TOKENS}}` (see `tokensFor` in `legal.mjs`), so the text never hard-codes them. The retention numbers are promises made to users: change them only together with the infrastructure that enforces them. `reference/legal-content-prompt.md` is the brief for an LLM to write the full text.
+
 ## Images
 
 `spark-mark.png` (329×435, 103 KB) is now **only** the social card image — never served to visitors. Inline use is `logo-68.png` (51×68, 4.3 KB, covers 2× on every placement) and `icon-180.png` (136×180, 17 KB) for `apple-touch-icon`. Both were resized from the original with high-quality bicubic resampling, alpha preserved. A test fails if any `<img>` or icon link reaches for the full-size file again.
@@ -66,6 +72,10 @@ Each locale preloads only what it needs above the fold, declared in its `LOCALES
 Both families are SIL Open Font License 1.1; `OFL-Sora.txt` and `OFL-Manrope.txt` ship next to the font files as the license requires, and a test fails if they go missing.
 
 To refresh or add a weight, download from Google Fonts with a modern browser user agent (the CSS returns `woff2` only for those), then dedupe: the same variable file is served for every weight of a family.
+
+## Edge injection check
+
+The site is served through Cloudflare, which can inject its own scripts into the HTML after the build (Web Analytics beacon, JavaScript Detections, email address obfuscation) and set cookies. Any of these contradicts the "no analytics, no cookies, no third-party requests" statement in the privacy policy, and none of them exists in `dist/`, so the build tests cannot see them. After every deploy run `pnpm run check:live`; it fetches the live pages and fails if any of them shows up.
 
 ## Behaviour
 

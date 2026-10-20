@@ -1,4 +1,5 @@
-import { SITE, CONTACT_EMAIL, LOCALES, DEFAULT_LOCALE } from './content.mjs'
+import { SITE, CONTACT_EMAIL, PRIVACY_EMAIL, LOCALES, DEFAULT_LOCALE } from './content.mjs'
+import { LEGAL, LEGAL_KINDS, tokensFor, legalPath } from './legal.mjs'
 
 const esc = (s) =>
   String(s)
@@ -15,22 +16,28 @@ const CHECK =
 const FEAT_ICON =
   '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="19" height="19" rx="6" stroke="var(--blue)" stroke-width="1.6"/><circle cx="11" cy="9.5" r="3" fill="var(--blue)"/><path d="M11 13v4.5" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>'
 
-const asset = (locale, file) => (locale.dir ? `../${file}` : file)
+const assetAt = (depth, file) => '../'.repeat(depth) + file
+const asset = (locale, file) => assetAt(locale.dir ? 1 : 0, file)
 
-const preloads = (locale) =>
+const preloads = (locale, depth) =>
   locale.fonts
     .map(
       (file) =>
-        `<link rel="preload" href="${asset(locale, `assets/fonts/${file}`)}" as="font" type="font/woff2" crossorigin>`,
+        `<link rel="preload" href="${assetAt(depth, `assets/fonts/${file}`)}" as="font" type="font/woff2" crossorigin>`,
     )
     .join('\n')
 
-function head(locale) {
+function head(locale, page = {}) {
   const t = locale
-  const url = `${SITE}${t.path}`
+  const depth = page.depth ?? (t.dir ? 1 : 0)
+  const pathOf = (l) => (page.kind ? legalPath(l, page.kind) : l.path)
+  const url = `${SITE}${pathOf(t)}`
   const image = `${SITE}/assets/spark-mark.png`
+  const title = page.title ?? t.meta.title
+  const description = page.description ?? t.meta.description
+  const ogDescription = page.description ?? t.meta.ogDescription
   const alternates = Object.values(LOCALES)
-    .map((l) => `<link rel="alternate" hreflang="${l.code}" href="${SITE}${l.path}">`)
+    .map((l) => `<link rel="alternate" hreflang="${l.code}" href="${SITE}${pathOf(l)}">`)
     .join('\n')
 
   const jsonLd = {
@@ -67,37 +74,41 @@ function head(locale) {
     ],
   }
 
+  const structuredData = page.kind
+    ? ''
+    : `<script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2)}
+</script>
+`
+
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(t.meta.title)}</title>
-<meta name="description" content="${esc(t.meta.description)}">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${url}">
 ${alternates}
-<link rel="alternate" hreflang="x-default" href="${SITE}${LOCALES[DEFAULT_LOCALE].path}">
+<link rel="alternate" hreflang="x-default" href="${SITE}${pathOf(LOCALES[DEFAULT_LOCALE])}">
 <meta name="theme-color" content="#F4F0E8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#020C14" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="sPark">
 <meta property="og:locale" content="${t.code}">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${esc(t.meta.title)}">
-<meta property="og:description" content="${esc(t.meta.ogDescription)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(ogDescription)}">
 <meta property="og:image" content="${image}">
 <meta property="og:image:width" content="329">
 <meta property="og:image:height" content="435">
 <meta property="og:image:alt" content="${esc(t.meta.imageAlt)}">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="${esc(t.meta.title)}">
-<meta name="twitter:description" content="${esc(t.meta.ogDescription)}">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(ogDescription)}">
 <meta name="twitter:image" content="${image}">
-${preloads(t)}
-<link rel="stylesheet" href="${asset(t, 'styles.css')}">
-<link rel="icon" href="${asset(t, 'assets/spark-mark.ico')}">
-<link rel="apple-touch-icon" href="${asset(t, 'assets/spark-mark.ico')}">
-<script type="application/ld+json">
-${JSON.stringify(jsonLd, null, 2)}
-</script>
-<script>
+${preloads(t, depth)}
+<link rel="stylesheet" href="${assetAt(depth, 'styles.css')}">
+<link rel="icon" href="${assetAt(depth, 'assets/spark-mark.ico')}">
+<link rel="apple-touch-icon" href="${assetAt(depth, 'assets/spark-mark.ico')}">
+${structuredData}<script>
   try {
     var stored = localStorage.getItem('spark-theme');
     if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored;
@@ -105,15 +116,20 @@ ${JSON.stringify(jsonLd, null, 2)}
 </script>`
 }
 
-function langSwitch(locale) {
+function langSwitch(locale, pathOf = (l) => l.path) {
   return Object.values(LOCALES)
     .map((l) =>
       l.code === locale.code
         ? `<span class="lang-opt active" aria-current="true">${l.short}</span>`
-        : `<a class="lang-opt" href="${l.path}" hreflang="${l.code}" lang="${l.code}">${l.short}</a>`,
+        : `<a class="lang-opt" href="${pathOf(l)}" hreflang="${l.code}" lang="${l.code}">${l.short}</a>`,
     )
     .join('')
 }
+
+const legalLinks = (t) =>
+  `<nav class="footer-legal" aria-label="${esc(t.legal.footerLabel)}">${LEGAL_KINDS.map(
+    (kind) => `<a href="${legalPath(t, kind)}">${esc(t.legal[kind])}</a>`,
+  ).join('')}</nav>`
 
 const chips = (list) =>
   list.map((c) => `<div class="chip">${CHECK}<span>${esc(c)}</span></div>`).join('\n          ')
@@ -234,7 +250,7 @@ function dashMock(t) {
             </div>
           </div>
         </div>
-      </div>`;
+      </div>`
 }
 
 export function renderPage(code) {
@@ -247,9 +263,9 @@ export function renderPage(code) {
     generalSubject: t.footer.generalSubject,
     audiences: {
       drivers: { ...t.drivers },
-      business: { ...t.business }
-    }
-  };
+      business: { ...t.business },
+    },
+  }
 
   return `<!DOCTYPE html>
 <html lang="${t.code}">
@@ -366,6 +382,7 @@ ${head(t)}
     </div>
     <div class="footer-bottom">
       <span>${esc(t.footer.rights)}</span>
+      ${legalLinks(t)}
       <span>${esc(t.footer.place)}</span>
     </div>
   </footer>
@@ -373,6 +390,99 @@ ${head(t)}
 </div>
 <script>window.__SPARK__ = ${JSON.stringify(runtime)};</script>
 <script src="${asset(t, 'main.js')}"></script>
+</body>
+</html>
+`
+}
+
+const resolveTokens = (text, code) =>
+  Object.entries(tokensFor(code)).reduce(
+    (out, [token, value]) => out.split(token).join(value),
+    text,
+  )
+
+const linkify = (text, code) =>
+  [CONTACT_EMAIL, PRIVACY_EMAIL].reduce(
+    (out, email) => out.split(email).join(`<a href="mailto:${email}">${email}</a>`),
+    esc(resolveTokens(text, code)),
+  )
+
+const cell = (tag, text, code) => `<${tag}>${linkify(text, code)}</${tag}>`
+
+function legalBlock(block, code) {
+  if (typeof block === 'string') return `<p>${linkify(block, code)}</p>`
+  if (block.ul) return `<ul>${block.ul.map((i) => `<li>${linkify(i, code)}</li>`).join('')}</ul>`
+  if (block.ol) return `<ol>${block.ol.map((i) => `<li>${linkify(i, code)}</li>`).join('')}</ol>`
+  const { head: header, rows } = block.table
+  return `<div class="legal-table"><table><thead><tr>${header.map((h) => cell('th', h, code)).join('')}</tr></thead><tbody>${rows
+    .map((row) => `<tr>${row.map((c) => cell('td', c, code)).join('')}</tr>`)
+    .join('')}</tbody></table></div>`
+}
+
+export function renderLegalPage(code, kind) {
+  const t = LOCALES[code]
+  const doc = LEGAL[code][kind]
+  const depth = t.dir ? 2 : 1
+  const pathOf = (l) => legalPath(l, kind)
+  const updated = new Date(`${doc.updated}T00:00:00Z`).toLocaleDateString(code, {
+    dateStyle: 'long',
+    timeZone: 'UTC',
+  })
+  const navLink = (k) =>
+    `<a href="${legalPath(t, k)}"${k === kind ? ' aria-current="page"' : ''}>${esc(t.legal[k])}</a>`
+
+  return `<!DOCTYPE html>
+<html lang="${t.code}">
+<head>
+${head(t, { kind, depth, title: `${doc.title} — sPark`, description: doc.description })}
+</head>
+<body>
+<div class="shell">
+
+  <header class="nav">
+    <a class="nav-brand" href="${t.path}" aria-label="${esc(t.legal.home)}">
+      <img src="${assetAt(depth, 'assets/logo-68.png')}" alt="" width="24" height="32" decoding="async"/>
+      <span>sPark</span>
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="${esc(t.legal.footerLabel)}">
+        ${LEGAL_KINDS.map(navLink).join('\n        ')}
+      </nav>
+      <div class="lang-switch" role="group" aria-label="${esc(t.langLabel)}">${langSwitch(t, pathOf)}</div>
+      <button class="theme-toggle" id="themeToggle" aria-label="${esc(t.themeToggle)}" title="${esc(t.themeToggle)}"></button>
+    </div>
+  </header>
+
+  <main class="legal">
+    <article class="legal-doc">
+      <h1>${esc(doc.title)}</h1>
+      <p class="legal-updated">${esc(t.legal.updated)}: <time datetime="${doc.updated}">${esc(updated)}</time></p>
+      ${doc.intro.map((p) => `<p class="legal-intro">${linkify(p, code)}</p>`).join('\n      ')}
+      <nav class="legal-toc" aria-label="${esc(t.legal.toc)}">
+        <h2>${esc(t.legal.toc)}</h2>
+        <ol>${doc.sections.map((s) => `<li><a href="#${s.id}">${esc(s.h)}</a></li>`).join('')}</ol>
+      </nav>
+      ${doc.sections
+        .map(
+          (s) => `<section id="${s.id}">
+        <h2>${esc(s.h)}</h2>
+        ${s.body.map((b) => legalBlock(b, code)).join('\n        ')}
+      </section>`,
+        )
+        .join('\n      ')}
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>${esc(t.footer.rights)}</span>
+      ${legalLinks(t)}
+      <a class="footer-email" href="mailto:${PRIVACY_EMAIL}">${PRIVACY_EMAIL}</a>
+    </div>
+  </footer>
+
+</div>
+<script src="${assetAt(depth, 'main.js')}"></script>
 </body>
 </html>
 `
