@@ -1,5 +1,19 @@
-export const SITE = 'https://sparkparking.gr';
-export const CONTACT_EMAIL = 'sales@sparkparking.gr';
+export const SITE = 'https://sparkparking.gr'
+export const CONTACT_EMAIL = 'sales@sparkparking.gr'
+export const PRIVACY_EMAIL = 'privacy@sparkparking.gr'
+
+export const COMPANY = {
+  vatNumber: '176108920',
+  legalName: { el: 'Κωνσταντίνος Θωμασιάδης', en: 'Konstantinos Thomasiadis' },
+  taxOffice: { el: 'ΔΟΥ Βέροιας', en: 'Veria Tax Office' },
+  address: {
+    el: 'Χαλκιδικής 80 & Κατσάλη 10, 54248 Θεσσαλονίκη, Ελλάδα',
+    en: 'Chalkidikis 80 & Katsali 10, 54248 Thessaloniki, Greece',
+  },
+  courts: { el: 'Θεσσαλονίκης', en: 'Thessaloniki' },
+}
+
+export const RETENTION = { logDays: 30, auditMonths: 24 }
 
 export const LOCALES = {
   el: {
@@ -41,7 +55,7 @@ export const LOCALES = {
         {
           n: '02',
           t: 'Σύγκρινε τιμές',
-          d: 'Εγκαταστάσεις ταξινομημένες κατά τιμή ή απόσταση. Διάλεξε όχημα και διάρκεια για δεις το ακριβές σύνολο.'
+          d: 'Εγκαταστάσεις ταξινομημένες κατά τιμή ή απόσταση. Διάλεξε όχημα και διάρκεια για δεις το ακριβές σύνολο.',
         },
         {
           n: '03',
@@ -65,11 +79,14 @@ export const LOCALES = {
           t: 'Διαθεσιμότητα σε πραγματικό χρόνο',
           d: 'Δες τι είναι Ελεύθερο ή Πλήρες πριν ξεκινήσεις.',
         },
-        { t: 'Διαθεσιμότητα σε πραγματικό χρόνο', d: 'Δες τις εγκαταστάσεις με διαθεσιμότητα σε πραγματικό χρόνο.' },
+        {
+          t: 'Διαθεσιμότητα σε πραγματικό χρόνο',
+          d: 'Δες τις εγκαταστάσεις με διαθεσιμότητα σε πραγματικό χρόνο.',
+        },
         {
           t: 'Παροχές που μετρούν',
-          d: 'Φίλτραρε με βάση τις παροχές που σε ενδιαφέρουν, για να βρείς την ιδανική θέση.'
-        }
+          d: 'Φίλτραρε με βάση τις παροχές που σε ενδιαφέρουν, για να βρείς την ιδανική θέση.',
+        },
       ],
       ctaHead: 'Έτοιμος να σταματήσεις να πληρώνεις παραπάνω για πάρκινγκ;',
       ctaSub: 'Μπες στη λίστα αναμονής και θα σε ειδοποιήσουμε μόλις το sPark έρθει στην πόλη σου.',
@@ -107,11 +124,11 @@ export const LOCALES = {
       features: [
         {
           t: 'Δυναμική τιμολόγηση',
-          d: 'Προσαρμόστε τους κανόνες τιμολόγησης αυτόματα για την άμεση ανταπόκριση στη ζήτηση.'
+          d: 'Προσαρμόστε τους κανόνες τιμολόγησης αυτόματα για την άμεση ανταπόκριση στη ζήτηση.',
         },
         {
           t: 'Πληρότητα σε πραγματικό χρόνο',
-          d: 'Ενημέρωσε τις ελεύθερες θέσεις σε πραγματικό χρόνο και παρακολούθησε τις κρατήσεις σου σε πραγματικό χρόνο.'
+          d: 'Ενημέρωσε τις ελεύθερες θέσεις σε πραγματικό χρόνο και παρακολούθησε τις κρατήσεις σου σε πραγματικό χρόνο.',
         },
         {
           t: 'Ζώνες και ώρες',
@@ -120,8 +137,17 @@ export const LOCALES = {
         { t: 'Ανάλυση εσόδων', d: 'Δες προβολές, μετατροπές και έσοδα ανά σημείο με μια ματιά.' },
       ],
       ctaHead: 'Μετάτρεψε τις κενές θέσεις σε έσοδα.',
-      ctaSub: 'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
-      mailSubject: 'sPark — αίτημα παρουσίασης'
+      ctaSub:
+        'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
+      mailSubject: 'sPark — αίτημα παρουσίασης',
+    },
+    legal: {
+      privacy: 'Πολιτική απορρήτου',
+      terms: 'Όροι χρήσης',
+      updated: 'Τελευταία ενημέρωση',
+      toc: 'Περιεχόμενα',
+      home: 'Αρχική σελίδα sPark',
+      footerLabel: 'Νομικά',
     },
     footer: {
       tag: 'Κάνε το παρκάρισμα έξυπνο.',
@@ -134,7 +160,7 @@ export const LOCALES = {
       contactNote: 'Οδηγοί και επιχειρήσεις — στείλτε μας email και θα σου απαντήσουμε άμεσα.',
       generalSubject: 'sPark — γενική επικοινωνία',
       rights: '© 2026 sPark. Με επιφύλαξη παντός δικαιώματος.',
-      place: 'Θεσσαλονίκη · Για εξυπνότερες πόλεις'
+      place: 'Θεσσαλονίκη · Για εξυπνότερες πόλεις',
     },
     phone: {
       areas: '4 χώροι στάθμευσης',
@@ -269,14 +295,34 @@ export const LOCALES = {
       featTitle: 'Everything in one control room.',
       featSub: 'Run pricing, capacity and performance across every location you operate.',
       features: [
-        { t: 'Dynamic pricing', d: 'Peak, off-peak and event rules that adjust rates automatically.' },
-        { t: 'Real-time occupancy', d: 'Update free spots in real time or sync straight from your gate system.' },
-        { t: 'Zones & hours', d: 'Multiple sites, each with its own active areas and operating hours.' },
-        { t: 'Revenue analytics', d: 'See views, conversion and earnings per location at a glance.' }
+        {
+          t: 'Dynamic pricing',
+          d: 'Peak, off-peak and event rules that adjust rates automatically.',
+        },
+        {
+          t: 'Real-time occupancy',
+          d: 'Update free spots in real time or sync straight from your gate system.',
+        },
+        {
+          t: 'Zones & hours',
+          d: 'Multiple sites, each with its own active areas and operating hours.',
+        },
+        {
+          t: 'Revenue analytics',
+          d: 'See views, conversion and earnings per location at a glance.',
+        },
       ],
       ctaHead: 'Turn empty spots into revenue.',
       ctaSub: 'Book a 20-minute demo and see your lot live on the sPark map.',
       mailSubject: 'sPark demo request',
+    },
+    legal: {
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use',
+      updated: 'Last updated',
+      toc: 'Contents',
+      home: 'sPark home page',
+      footerLabel: 'Legal',
     },
     footer: {
       tag: 'Make Parking Smart.',
@@ -286,7 +332,8 @@ export const LOCALES = {
       businessTitle: 'Businesses',
       businessLinks: ['How it works', 'Book a demo'],
       contactTitle: 'Contact',
-      contactNote: 'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
+      contactNote:
+        'Whether you’re a driver or run a business, drop us an email — a real person will get back to you, not a bot.',
       generalSubject: 'sPark — general enquiry',
       rights: '© 2026 sPark. All rights reserved.',
       place: 'Thessaloniki · Made for smarter cities',

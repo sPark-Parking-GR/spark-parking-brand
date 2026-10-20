@@ -15,6 +15,7 @@ scripts/serve.mjs       — serves a built dist/
 scripts/smoke.test.mjs  — the test suite (node --test)
 src/template.mjs        — page shell
 src/content.mjs         — copy, per locale
+src/legal.mjs           — Privacy Policy and Terms of Use text, per locale
 src/main.js             — client-side script
 src/styles.css          — styles
 src/assets/             — fonts, icons, marks — COPIED WHOLESALE INTO dist/
@@ -27,13 +28,13 @@ in `reference/`, which the build ignores.
 
 ## Commands
 
-| Command                 | Does                                       |
-| ----------------------- | ------------------------------------------ |
-| `pnpm run dev`          | dev server with rebuild                    |
-| `pnpm run build`        | renders `dist/` (routes `/` and `/en/`)    |
-| `pnpm run start`        | serves an already-built `dist/`            |
-| `pnpm run test`         | `node --test` over `scripts/**/*.test.mjs` |
-| `pnpm run format:check` | Prettier check                             |
+| Command                 | Does                                        |
+| ----------------------- | ------------------------------------------- |
+| `pnpm run dev`          | dev server with rebuild                     |
+| `pnpm run build`        | renders `dist/` (`/`, `/en/` + legal pages) |
+| `pnpm run start`        | serves an already-built `dist/`             |
+| `pnpm run test`         | `node --test` over `scripts/**/*.test.mjs`  |
+| `pnpm run format:check` | Prettier check                              |
 
 ## Coding standards
 

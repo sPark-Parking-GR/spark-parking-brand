@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import { readFile, access } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { SITE, CONTACT_EMAIL, LOCALES, LOCALE_CODES, DEFAULT_LOCALE } from '../src/content.mjs'
+import { LEGAL, LEGAL_KINDS, legalPath } from '../src/legal.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const dist = `${root}dist`
@@ -472,4 +473,106 @@ test('every image declares intrinsic dimensions to prevent layout shift', () => 
       assert.match(tag, /\bheight="\d+"/, `${code}: missing height — ${tag.slice(0, 60)}`)
     }
   })
+})
+
+const legalPages = Object.fromEntries(
+  await Promise.all(
+    LOCALE_CODES.flatMap((code) =>
+      LEGAL_KINDS.map(async (kind) => [
+        `${code}/${kind}`,
+        await readFile(`${dist}${legalPath(LOCALES[code], kind)}index.html`, 'utf8'),
+      ]),
+    ),
+  ),
+)
+
+const forEachLegal = (fn) => {
+  for (const code of LOCALE_CODES)
+    for (const kind of LEGAL_KINDS)
+      fn(code, kind, legalPages[`${code}/${kind}`], LEGAL[code][kind], LOCALES[code])
+}
+
+test('legal documents match the schema the renderer expects', () => {
+  forEachLegal((code, kind, html, doc) => {
+    const label = `${code}/${kind}`
+    assert.ok(doc.title && doc.description, `${label}: title/description`)
+    assert.match(doc.updated, /^\d{4}-\d{2}-\d{2}$/, `${label}: updated must be YYYY-MM-DD`)
+    assert.ok(doc.intro.length > 0 && doc.sections.length > 0, `${label}: empty document`)
+    const ids = doc.sections.map((s) => s.id)
+    assert.equal(new Set(ids).size, ids.length, `${label}: duplicate section ids`)
+    for (const s of doc.sections) {
+      assert.match(s.id, /^[a-z][a-z0-9-]*$/, `${label}: bad section id ${s.id}`)
+      assert.ok(s.h && s.body.length > 0, `${label}: section ${s.id} is empty`)
+    }
+    assert.doesNotMatch(html, /\{\{/, `${label}: unresolved {{token}}`)
+    assert.doesNotMatch(JSON.stringify(doc), /<[a-z/]/i, `${label}: HTML in plain-text content`)
+  })
+})
+
+test('every locale has a document for every legal kind, with the same section ids', () => {
+  for (const kind of LEGAL_KINDS) {
+    const reference = LEGAL[DEFAULT_LOCALE][kind].sections.map((s) => s.id)
+    for (const code of LOCALE_CODES) {
+      assert.deepEqual(
+        LEGAL[code][kind].sections.map((s) => s.id),
+        reference,
+        `${code}/${kind}: sections differ from ${DEFAULT_LOCALE}`,
+      )
+    }
+  }
+})
+
+test('legal pages carry the right lang, canonical and a reciprocal hreflang set', () => {
+  forEachLegal((code, kind, html, doc, locale) => {
+    const label = `${code}/${kind}`
+    assert.match(html, new RegExp(`<html lang="${code}">`), `${label}: lang`)
+    assert.ok(
+      html.includes(`<link rel="canonical" href="${SITE}${legalPath(locale, kind)}">`),
+      `${label}: canonical`,
+    )
+    for (const other of LOCALE_CODES) {
+      assert.ok(
+        html.includes(`hreflang="${other}" href="${SITE}${legalPath(LOCALES[other], kind)}"`),
+        `${label}: hreflang ${other}`,
+      )
+      if (other !== code)
+        assert.ok(
+          html.includes(`href="${legalPath(LOCALES[other], kind)}" hreflang="${other}"`),
+          `${label}: switcher link to ${other}`,
+        )
+    }
+    assert.ok(
+      html.includes(
+        `hreflang="x-default" href="${SITE}${legalPath(LOCALES[DEFAULT_LOCALE], kind)}"`,
+      ),
+      `${label}: x-default`,
+    )
+  })
+})
+
+test('legal pages resolve assets from their own depth and stay free of PII collection', () => {
+  forEachLegal((code, kind, html, doc, locale) => {
+    const prefix = '../'.repeat(locale.dir ? 2 : 1)
+    assert.ok(html.includes(`href="${prefix}styles.css"`), `${code}/${kind}: stylesheet path`)
+    assert.ok(html.includes(`src="${prefix}main.js"`), `${code}/${kind}: script path`)
+    for (const src of html.match(/<img [^>]*src="([^"]+)"/g) ?? [])
+      assert.ok(src.includes(`${prefix}assets/`), `${code}/${kind}: ${src}`)
+    assert.doesNotMatch(html, /<(form|input|textarea)\b/i, `${code}/${kind}: collects input`)
+    assert.equal((html.match(/<script[^>]+src="https?:\/\//gi) ?? []).length, 0)
+    assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, `${code}/${kind}: h1 count`)
+    assert.ok(html.includes(doc.title), `${code}/${kind}: title missing`)
+  })
+})
+
+test('legal pages are linked from every home page footer and listed in the sitemap', () => {
+  forEachLocale((code, html, locale) => {
+    for (const kind of LEGAL_KINDS)
+      assert.ok(html.includes(`href="${legalPath(locale, kind)}"`), `${code}: footer link ${kind}`)
+  })
+  for (const kind of LEGAL_KINDS)
+    for (const code of LOCALE_CODES)
+      assert.ok(
+        sitemap.includes(`<loc>${SITE}${legalPath(LOCALES[code], kind)}</loc>`),
+        `sitemap missing ${code}/${kind}`,
+      )
 })

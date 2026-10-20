@@ -92,6 +92,33 @@ img { max-width: 100%; }
   }
 }
 
+a.nav-brand { text-decoration:none; }
+.nav-links a[aria-current="page"] { color:var(--ink); }
+.footer-legal { display:flex; gap:20px; flex-wrap:wrap; }
+.footer-legal a, .footer-bottom .footer-email { font-size:13px; color:var(--footerMuted); text-decoration:none; font-weight:600; }
+.footer-legal a:hover, .footer-bottom .footer-email:hover { color:var(--footerInk); }
+
+.legal { padding:64px var(--pad) 96px; background:var(--bg); color:var(--ink); }
+.legal-doc { max-width:760px; margin:0 auto; font-size:16px; line-height:1.7; }
+.legal-doc h1 { font-family:var(--fontDisplay); font-weight:800; font-size:clamp(30px,4.5vw,44px); line-height:1.1; letter-spacing:-0.02em; margin:0 0 12px; text-wrap:balance; }
+.legal-updated { font-size:14px; font-weight:600; color:var(--muted); margin:0 0 28px; }
+.legal-intro { color:var(--muted); font-size:17px; }
+.legal-doc h2 { font-family:var(--fontDisplay); font-weight:700; font-size:24px; line-height:1.25; margin:44px 0 12px; scroll-margin-top:24px; }
+.legal-doc p { margin:0 0 14px; }
+.legal-doc ul, .legal-doc ol { margin:0 0 14px; padding-left:24px; }
+.legal-doc li { margin-bottom:6px; }
+.legal-doc a { color:var(--blue); text-underline-offset:3px; }
+.legal-toc { margin:28px 0 8px; padding:20px 24px; border-radius:var(--radiusLg); background:var(--panel); border:1px solid var(--line); box-shadow:var(--cardShadow2); }
+.legal-toc h2 { font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin:0 0 10px; }
+.legal-toc ol { margin:0; padding-left:22px; columns:2; column-gap:32px; }
+.legal-toc a { text-decoration:none; color:var(--ink); font-size:15px; }
+.legal-toc a:hover { color:var(--blue); }
+.legal-table { overflow-x:auto; margin:0 0 18px; border:1px solid var(--line); border-radius:12px; }
+.legal-table table { border-collapse:collapse; width:100%; font-size:14px; line-height:1.5; }
+.legal-table th, .legal-table td { text-align:left; vertical-align:top; padding:10px 14px; border-bottom:1px solid var(--line); }
+.legal-table th { background:var(--panel2); font-weight:700; white-space:nowrap; }
+.legal-table tr:last-child td { border-bottom:none; }
+
 @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
 
 html { scroll-behavior:smooth; }
@@ -255,6 +282,7 @@ body { background:var(--bg); }
   .cta-row h2 { font-size:30px; }
 }
 @media (max-width:560px) {
+  .legal-toc ol { columns:1; }
   .features-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .sec-title { font-size:30px; }
