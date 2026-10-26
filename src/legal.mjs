@@ -2,6 +2,14 @@ import { SITE, CONTACT_EMAIL, PRIVACY_EMAIL, COMPANY, RETENTION } from './conten
 
 export const LEGAL_KINDS = ['privacy', 'terms']
 
+/*
+ * MAJOR.MINOR of each published document, the same value in every locale. Bump the MAJOR when
+ * a change needs people to accept again; bump the MINOR for edits nobody has to be asked
+ * about. The API reads these through LEGAL_TERMS_VERSION / LEGAL_PRIVACY_VERSION, so change
+ * them together (see dist/legal-versions.json, written at build time).
+ */
+export const LEGAL_VERSIONS = { terms: '1.0', privacy: '1.0' }
+
 export const legalPath = (locale, kind) => `${locale.path}${kind}/`
 
 export const tokensFor = (code) => ({

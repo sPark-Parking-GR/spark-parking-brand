@@ -2,7 +2,7 @@ import { cp, rm, mkdir, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { renderPage, renderLegalPage } from '../src/template.mjs'
 import { SITE, LOCALES, LOCALE_CODES, DEFAULT_LOCALE } from '../src/content.mjs'
-import { LEGAL_KINDS, legalPath } from '../src/legal.mjs'
+import { LEGAL_KINDS, LEGAL_VERSIONS, legalPath } from '../src/legal.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const dist = `${root}dist`
@@ -62,6 +62,8 @@ ${urls.join('\n')}
 `
 
 await writeFile(`${dist}/sitemap.xml`, sitemap, 'utf8')
+await writeFile(`${dist}/legal-versions.json`, `${JSON.stringify(LEGAL_VERSIONS)}
+`, 'utf8')
 await writeFile(
   `${dist}/robots.txt`,
   `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,

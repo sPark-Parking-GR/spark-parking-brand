@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFile, access } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { SITE, CONTACT_EMAIL, LOCALES, LOCALE_CODES, DEFAULT_LOCALE } from '../src/content.mjs'
-import { LEGAL, LEGAL_KINDS, legalPath } from '../src/legal.mjs'
+import { LEGAL, LEGAL_KINDS, LEGAL_VERSIONS, legalPath } from '../src/legal.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const dist = `${root}dist`
@@ -535,4 +535,10 @@ test('legal pages are linked from every home page footer and listed in the sitem
         sitemap.includes(`<loc>${SITE}${legalPath(LOCALES[code], kind)}</loc>`),
         `sitemap missing ${code}/${kind}`,
       )
+})
+
+test('publishes the legal versions the API must be configured with', async () => {
+  const published = JSON.parse(await readFile(`${dist}/legal-versions.json`, 'utf8'))
+  assert.deepEqual(published, LEGAL_VERSIONS)
+  for (const version of Object.values(published)) assert.match(version, /^\d+\.\d+$/)
 })
