@@ -62,8 +62,12 @@ ${urls.join('\n')}
 `
 
 await writeFile(`${dist}/sitemap.xml`, sitemap, 'utf8')
-await writeFile(`${dist}/legal-versions.json`, `${JSON.stringify(LEGAL_VERSIONS)}
-`, 'utf8')
+await writeFile(
+  `${dist}/legal-versions.json`,
+  `${JSON.stringify(LEGAL_VERSIONS)}
+`,
+  'utf8',
+)
 await writeFile(
   `${dist}/robots.txt`,
   `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,
