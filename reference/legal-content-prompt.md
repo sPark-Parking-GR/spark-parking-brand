@@ -289,7 +289,7 @@ facts require it, in both languages):
 - `sharing-and-processors` is a **table**: recipient, purpose, data involved.
 - `brand-site` states that `sparkparking.gr` sets no cookies, runs no analytics and loads
   nothing from third parties, and stores only the theme preference locally.
-- `contact` uses `{{CONTACT_EMAIL}}` and `{{COMPANY_NAME}}` / `{{COMPANY_ADDRESS}}`, and
+- `contact` uses `{{CONTACT_EMAIL}}` and `{{COMPANY_NAME}}`, and
   names the Hellenic DPA as the authority to complain to.
 
 Terms of Use sections (ids, in this order):

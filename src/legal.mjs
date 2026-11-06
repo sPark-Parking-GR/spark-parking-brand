@@ -20,7 +20,6 @@ export const tokensFor = (code) => ({
   '{{LEGAL_NAME}}': COMPANY.legalName[code],
   '{{VAT_NUMBER}}': COMPANY.vatNumber,
   '{{TAX_OFFICE}}': COMPANY.taxOffice[code],
-  '{{COMPANY_ADDRESS}}': COMPANY.address[code],
   '{{COURTS}}': COMPANY.courts[code],
   '{{LOG_DAYS}}': String(RETENTION.logDays),
   '{{AUDIT_MONTHS}}': String(RETENTION.auditMonths),
@@ -54,7 +53,7 @@ export const LEGAL = {
           id: 'who-we-are',
           h: 'Ποιος είναι υπεύθυνος για τα δεδομένα σου',
           body: [
-            'Υπεύθυνος επεξεργασίας είναι: {{LEGAL_NAME}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}), με έδρα {{COMPANY_ADDRESS}}, ο οποίος λειτουργεί την πλατφόρμα sPark.',
+            'Υπεύθυνος επεξεργασίας είναι: {{LEGAL_NAME}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}), ο οποίος λειτουργεί την πλατφόρμα sPark.',
             'Για κάθε θέμα προσωπικών δεδομένων γράψε μας στο {{PRIVACY_EMAIL}}.',
           ],
         },
@@ -392,9 +391,7 @@ export const LEGAL = {
         {
           id: 'contact',
           h: 'Επικοινωνία',
-          body: [
-            'Προσωπικά δεδομένα: {{PRIVACY_EMAIL}}. Ταχυδρομική διεύθυνση: {{LEGAL_NAME}}, {{COMPANY_ADDRESS}}.',
-          ],
+          body: ['Προσωπικά δεδομένα: {{PRIVACY_EMAIL}}.'],
         },
       ],
     },
@@ -412,7 +409,7 @@ export const LEGAL = {
           id: 'acceptance',
           h: 'Ποιοι είμαστε και πότε ισχύουν οι Όροι',
           body: [
-            'Η πλατφόρμα λειτουργεί από: {{LEGAL_NAME}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}), {{COMPANY_ADDRESS}}. Email: {{CONTACT_EMAIL}}.',
+            'Η πλατφόρμα λειτουργεί από: {{LEGAL_NAME}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}.',
             'Οι Όροι ισχύουν από τη στιγμή που δημιουργείς λογαριασμό ή αρχίζεις να χρησιμοποιείς την εφαρμογή, την πύλη ή τον ιστότοπο. Η Πολιτική Απορρήτου αποτελεί μέρος τους.',
           ],
         },
@@ -545,7 +542,7 @@ export const LEGAL = {
           id: 'contact',
           h: 'Επικοινωνία',
           body: [
-            '{{LEGAL_NAME}}, {{COMPANY_ADDRESS}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}. Για θέματα προσωπικών δεδομένων: {{PRIVACY_EMAIL}}.',
+            '{{LEGAL_NAME}}, ΑΦΜ {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}. Για θέματα προσωπικών δεδομένων: {{PRIVACY_EMAIL}}.',
           ],
         },
       ],
@@ -566,7 +563,7 @@ export const LEGAL = {
           id: 'who-we-are',
           h: 'Who is responsible for your data',
           body: [
-            'The data controller is {{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}), located at {{COMPANY_ADDRESS}}, who operates the sPark platform.',
+            'The data controller is {{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}), who operates the sPark platform.',
             'For any personal-data question write to {{PRIVACY_EMAIL}}.',
           ],
         },
@@ -896,9 +893,7 @@ export const LEGAL = {
         {
           id: 'contact',
           h: 'Contact',
-          body: [
-            'Personal data: {{PRIVACY_EMAIL}}. Postal address: {{LEGAL_NAME}}, {{COMPANY_ADDRESS}}.',
-          ],
+          body: ['Personal data: {{PRIVACY_EMAIL}}.'],
         },
       ],
     },
@@ -916,7 +911,7 @@ export const LEGAL = {
           id: 'acceptance',
           h: 'Who we are and when the Terms apply',
           body: [
-            'The platform is operated by {{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}), {{COMPANY_ADDRESS}}. Email: {{CONTACT_EMAIL}}.',
+            'The platform is operated by {{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}.',
             'The Terms apply from the moment you create an account or start using the app, the portal or the website. The Privacy Policy is part of them.',
           ],
         },
@@ -1049,7 +1044,7 @@ export const LEGAL = {
           id: 'contact',
           h: 'Contact',
           body: [
-            '{{LEGAL_NAME}}, {{COMPANY_ADDRESS}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}. For personal-data matters: {{PRIVACY_EMAIL}}.',
+            '{{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}. For personal-data matters: {{PRIVACY_EMAIL}}.',
           ],
         },
       ],

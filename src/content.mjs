@@ -6,10 +6,6 @@ export const COMPANY = {
   vatNumber: '176108920',
   legalName: { el: 'Κωνσταντίνος Θωμασιάδης', en: 'Konstantinos Thomasiadis' },
   taxOffice: { el: 'ΔΟΥ Βέροιας', en: 'Veria Tax Office' },
-  address: {
-    el: 'Χαλκιδικής 80 & Κατσάλη 10, 54248 Θεσσαλονίκη, Ελλάδα',
-    en: 'Chalkidikis 80 & Katsali 10, 54248 Thessaloniki, Greece',
-  },
   courts: { el: 'Θεσσαλονίκης', en: 'Thessaloniki' },
 }
 
