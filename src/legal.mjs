@@ -43,7 +43,7 @@ export const LEGAL = {
       title: 'Πολιτική Απορρήτου',
       description:
         'Πώς το sPark συλλέγει, χρησιμοποιεί και προστατεύει τα προσωπικά σου δεδομένα όταν χρησιμοποιείς την εφαρμογή και την πύλη διαχειριστών.',
-      updated: '2026-10-19',
+      updated: '2026-11-07',
       intro: [
         'Η Πολιτική αυτή εξηγεί ποια προσωπικά δεδομένα επεξεργάζεται το sPark, για ποιον σκοπό, με ποια νομική βάση, για πόσο διάστημα και ποια δικαιώματα έχεις. Καλύπτει την εφαρμογή για κινητά (οδηγοί), την πύλη διαχειριστών (web) και τον δημόσιο ιστότοπο {{SITE_HOST}}.',
         'Ισχύει για τις λειτουργίες που προσφέρονται σήμερα. Αν προσθέσουμε νέες λειτουργίες που αλλάζουν τα δεδομένα που συλλέγουμε (π.χ. κρατήσεις ή πληρωμές), θα ενημερώσουμε πρώτα την Πολιτική και θα σε ειδοποιήσουμε.',
@@ -153,7 +153,7 @@ export const LEGAL = {
                 ],
               },
             },
-            'Δεν χρησιμοποιούμε εργαλεία ανάλυσης χρήσης (analytics), διαφημιστικά εργαλεία ή εργαλεία αναφοράς σφαλμάτων τρίτων στην εφαρμογή, στην πύλη ή στον ιστότοπο.',
+            'Στον δημόσιο ιστότοπο χρησιμοποιούμε το Umami Cloud για ανώνυμα στατιστικά επισκεψιμότητας (π.χ. προβολές σελίδων, χώρα, τύπος συσκευής). Δεν χρησιμοποιούμε διαφημιστικά εργαλεία ή εργαλεία αναφοράς σφαλμάτων τρίτων, ούτε εργαλεία ανάλυσης χρήσης στην εφαρμογή ή στην πύλη.',
           ],
         },
         {
@@ -244,7 +244,7 @@ export const LEGAL = {
               },
             },
             'Στην πύλη χρησιμοποιούνται οι χάρτες και η αυτόματη συμπλήρωση διευθύνσεων της Google· όταν τα χρησιμοποιείς, ο περιηγητής σου επικοινωνεί με την Google.',
-            'Δημόσιος ιστότοπος: δεν ορίζει cookies, δεν έχει εργαλεία ανάλυσης, δεν φορτώνει τίποτα από τρίτους (οι γραμματοσειρές φιλοξενούνται τοπικά) και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου.',
+            'Δημόσιος ιστότοπος: δεν ορίζει cookies και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου. Φορτώνει μόνο το script ανώνυμων στατιστικών του Umami Cloud (cloud.umami.is), που δεν χρησιμοποιεί cookies ούτε αποθηκεύει πλήρη διεύθυνση IP· οι γραμματοσειρές φιλοξενούνται τοπικά.',
           ],
         },
         {
@@ -553,7 +553,7 @@ export const LEGAL = {
       title: 'Privacy Policy',
       description:
         'How sPark collects, uses and protects your personal data when you use the app and the operator portal.',
-      updated: '2026-10-19',
+      updated: '2026-11-07',
       intro: [
         'This Policy explains which personal data sPark processes, why, on what legal basis, for how long, and what rights you have. It covers the mobile app (drivers), the operator web portal and the public website {{SITE_HOST}}.',
         'It applies to the features offered today. If we add features that change the data we collect (for example bookings or payments), we will update this Policy first and let you know.',
@@ -659,7 +659,7 @@ export const LEGAL = {
                 ],
               },
             },
-            'We use no usage analytics, advertising or third-party crash-reporting tools in the app, the portal or the website.',
+            'On the public website we use Umami Cloud for anonymous traffic statistics (for example page views, country and device type). We use no advertising or third-party crash-reporting tools, and no usage analytics in the app or the portal.',
           ],
         },
         {
@@ -750,7 +750,7 @@ export const LEGAL = {
               },
             },
             'The portal uses Google Maps and Google address autocomplete; when you use them, your browser contacts Google.',
-            'Public website: it sets no cookies, has no analytics, loads nothing from third parties (fonts are self-hosted) and stores only your theme preference (spark-theme) in your browser.',
+            'Public website: it sets no cookies and stores only your theme preference (spark-theme) in your browser. It loads only the anonymous analytics script of Umami Cloud (cloud.umami.is), which uses no cookies and does not store your full IP address; fonts are self-hosted.',
           ],
         },
         {
