@@ -16,6 +16,11 @@ const CHECK =
 const FEAT_ICON =
   '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="19" height="19" rx="6" stroke="var(--blue)" stroke-width="1.6"/><circle cx="11" cy="9.5" r="3" fill="var(--blue)"/><path d="M11 13v4.5" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>'
 
+const UMAMI = {
+  src: 'https://cloud.umami.is/script.js',
+  websiteId: '71d7d560-2dc5-4afe-a257-6d1bed30c04a',
+}
+
 const assetAt = (depth, file) => '../'.repeat(depth) + file
 const asset = (locale, file) => assetAt(locale.dir ? 1 : 0, file)
 
@@ -113,7 +118,8 @@ ${structuredData}<script>
     var stored = localStorage.getItem('spark-theme');
     if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored;
   } catch (e) {}
-</script>`
+</script>
+<script defer src="${UMAMI.src}" data-website-id="${UMAMI.websiteId}"></script>`
 }
 
 function langSwitch(locale, pathOf = (l) => l.path) {

@@ -75,16 +75,22 @@ To refresh or add a weight, download from Google Fonts with a modern browser use
 
 ## Edge injection check
 
-The site is served through Cloudflare, which can inject its own scripts into the HTML after the build (Web Analytics beacon, JavaScript Detections, email address obfuscation) and set cookies. Any of these contradicts the "no analytics, no cookies, no third-party requests" statement in the privacy policy, and none of them exists in `dist/`, so the build tests cannot see them. After every deploy run `pnpm run check:live`; it fetches the live pages and fails if any of them shows up.
+The site is served through Cloudflare, which can inject its own scripts into the HTML after the build (Web Analytics beacon, JavaScript Detections, email address obfuscation) and set cookies. Any of these contradicts the privacy policy (which declares Umami Cloud as the only analytics and no cookies), and none of them exists in `dist/`, so the build tests cannot see them. After every deploy run `pnpm run check:live`; it fetches the live pages and fails if any of them shows up.
 
 ## Behaviour
 
 - **Audience toggle** — swaps hero copy, hero mockup (phone ↔ dashboard), steps, features, and CTA band. Nav and footer links also switch audience.
 - **Theme** — follows the OS by default; the toggle sets a `data-theme` override persisted in `localStorage` under `spark-theme`. An inline head script applies it before paint, so there is no flash.
 
+## Analytics
+
+Traffic statistics come from [Umami Cloud](https://umami.is), loaded by a single deferred script in the shared `head()` in `src/template.mjs` (so every page and locale carries it). The script URL and public website ID live in the `UMAMI` constant at the top of that file. The website ID is public by design, not a secret.
+
+Umami sets no cookies, so no consent banner is needed. The privacy policies (`src/legal.mjs`, both locales) disclose it, and the smoke tests allow exactly this one external script (`https://cloud.umami.is/script.js`) and nothing else. If you change provider or add another script, update the tests and the privacy policy together. If the host sends a Content-Security-Policy, it must allow `cloud.umami.is` in `script-src` and `connect-src`.
+
 ## Contact — and the no-PII rule
 
-**This page collects no personal information of any kind.** There are no forms, no input fields, no analytics, no cookies, no third-party scripts, and nothing is ever transmitted to a server — the built pages make **zero requests to any external origin**, fonts included. Every contact and lead path is a `mailto:` to the company address, so enquiries arrive in a normal inbox and the site itself never touches personal data.
+**This page collects no personal information of any kind.** There are no forms, no input fields, no cookies, and the site's own code transmits nothing to a server. The only third-party request is the cookieless [Umami Cloud](#analytics) script; fonts are self-hosted. Every contact and lead path is a `mailto:` to the company address, so enquiries arrive in a normal inbox and the site itself never touches personal data.
 
 One constant drives every CTA, in `src/content.mjs`:
 
@@ -96,15 +102,17 @@ Each CTA passes its own subject line (waitlist, demo request, general enquiry) �
 
 The only client-side storage is `localStorage['spark-theme']`, holding `"light"` or `"dark"`. That is a functional preference, not personal data, and needs no consent banner.
 
-`scripts/smoke.test.mjs` enforces all of the above — adding a form, an input, an analytics snippet, a cookie, or a `fetch()` call fails the build. **Do not relax those tests without an explicit decision to change the policy**, since dropping them silently turns a no-PII page into a data-collecting one.
+`scripts/smoke.test.mjs` enforces all of the above — adding a form, an input, a cookie, a `fetch()` call, or any external script other than the Umami one fails the build. **Do not relax those tests without an explicit decision to change the policy**, since dropping them silently turns a no-PII page into a data-collecting one.
 
 ## Commands
 
 ```bash
-pnpm --filter @spark/landing dev     # http://localhost:3002
-pnpm --filter @spark/landing build   # emits dist/
-pnpm --filter @spark/landing start   # serves dist/
-pnpm --filter @spark/landing test    # markup/copy smoke tests
+pnpm run dev           # build, then serve locally
+pnpm run build         # emits dist/
+pnpm run start         # serves dist/
+pnpm run test          # markup/copy smoke tests (run after build)
+pnpm run format:check  # Prettier
+pnpm run check:live    # inspect the deployed pages (run after every deploy)
 ```
 
 `PORT` env var overrides the port.
@@ -113,10 +121,12 @@ pnpm --filter @spark/landing test    # markup/copy smoke tests
 
 `dist/` is a plain static directory — drop it on any static host. `/en/` is a real directory with its own `index.html`, so no rewrite rules are needed.
 
-| Host                                | Setting                                                                |
-| ----------------------------------- | ---------------------------------------------------------------------- |
-| Vercel / Netlify / Cloudflare Pages | build `pnpm --filter @spark/landing build`, output `apps/landing/dist` |
-| S3 / nginx / GitHub Pages           | upload `apps/landing/dist`                                             |
+| Host                                | Setting                               |
+| ----------------------------------- | ------------------------------------- |
+| Vercel / Netlify / Cloudflare Pages | build `pnpm run build`, output `dist` |
+| S3 / nginx / GitHub Pages           | upload `dist`                         |
+
+CI (`.github/workflows/ci.yml`) runs format check, build and tests on every pull request; it does not deploy.
 
 ## SEO
 

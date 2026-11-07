@@ -28,6 +28,10 @@ const pages = Object.fromEntries(
 const meta = (html, name) =>
   (html.match(new RegExp(`<meta (?:name|property)="${name}"[^>]*content="([^"]*)"`)) ?? [])[1]
 
+const UMAMI_SRC = 'https://cloud.umami.is/script.js'
+const externalScriptSrcs = (html) =>
+  [...html.matchAll(/<script[^>]+src="(https?:\/\/[^"]+)"/gi)].map((m) => m[1])
+
 const forEachLocale = (fn) => {
   for (const code of LOCALE_CODES) fn(code, pages[code], LOCALES[code])
 }
@@ -173,8 +177,7 @@ test('pages collect no personal information', () => {
     assert.doesNotMatch(html, /<form\b/i, `${code}: form present`)
     assert.doesNotMatch(html, /<input\b/i, `${code}: input present`)
     assert.doesNotMatch(html, /<textarea\b/i, `${code}: textarea present`)
-    const externalScripts = html.match(/<script[^>]+src="https?:\/\//gi) ?? []
-    assert.equal(externalScripts.length, 0, `${code}: third-party script`)
+    assert.deepEqual(externalScriptSrcs(html), [UMAMI_SRC], `${code}: third-party script`)
   })
 })
 
@@ -518,7 +521,7 @@ test('legal pages resolve assets from their own depth and stay free of PII colle
     for (const src of html.match(/<img [^>]*src="([^"]+)"/g) ?? [])
       assert.ok(src.includes(`${prefix}assets/`), `${code}/${kind}: ${src}`)
     assert.doesNotMatch(html, /<(form|input|textarea)\b/i, `${code}/${kind}: collects input`)
-    assert.equal((html.match(/<script[^>]+src="https?:\/\//gi) ?? []).length, 0)
+    assert.deepEqual(externalScriptSrcs(html), [UMAMI_SRC], `${code}/${kind}: third-party script`)
     assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, `${code}/${kind}: h1 count`)
     assert.ok(html.includes(doc.title), `${code}/${kind}: title missing`)
   })
