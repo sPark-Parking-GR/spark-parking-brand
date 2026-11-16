@@ -23,6 +23,7 @@ export const tokensFor = (code) => ({
   '{{COURTS}}': COMPANY.courts[code],
   '{{LOG_DAYS}}': String(RETENTION.logDays),
   '{{AUDIT_MONTHS}}': String(RETENTION.auditMonths),
+  '{{FINANCIAL_YEARS}}': String(RETENTION.financialYears),
 })
 
 /*
@@ -584,7 +585,7 @@ export const LEGAL = {
                 'ο λογαριασμός σου, οι τρόποι σύνδεσης και ο κωδικός πρόσβασής σου, καθώς και η ταυτότητα σύνδεσης που τηρείται στον πάροχο ταυτοποίησης,',
                 'το προφίλ σου (όνομα και φωτογραφία) και η διεύθυνση email σου,',
                 'τα οχήματα και οι αγαπημένοι σου χώροι στάθμευσης,',
-                'το πορτοφόλι σου και οι συνδρομές σου (οι ενεργές συνδρομές ακυρώνονται πρώτα στον πάροχο χρεώσεων),',
+                'ο σύνδεσμος με τον πάροχο χρεώσεων (οι ενεργές συνδρομές σου ακυρώνονται πρώτα),',
                 'το token ειδοποιήσεων push της συσκευής σου,',
                 'οι ψήφοι σου για χώρους στάθμευσης και το ελεύθερο κείμενο που τυχόν έχεις γράψει σε αναφορές,',
                 'ο σύνδεσμος που συνδέει τις αξιολογήσεις σου με εσένα: η βαθμολογία παραμένει στον μέσο όρο του χώρου, χωρίς να συνδέεται με κανέναν.',
@@ -602,8 +603,8 @@ export const LEGAL = {
                 head: ['Δεδομένα', 'Γιατί και σε ποια μορφή διατηρούνται'],
                 rows: [
                   [
-                    'Κρατήσεις, πληρωμές και επιστροφές χρημάτων (αν έχεις κάνει)',
-                    'Είναι οικονομικά στοιχεία που ο φορέας εκμετάλλευσης οφείλει να τηρεί βάσει νόμου. Διατηρούνται χωρίς το όνομα, το email ή άλλο στοιχείο που σε προσδιορίζει, συνδεδεμένα με ανώνυμη εγγραφή, για 5 έτη, όπως απαιτεί η ελληνική φορολογική και λογιστική νομοθεσία.',
+                    'Κρατήσεις, πληρωμές και επιστροφές χρημάτων, κινήσεις πορτοφολιού και συνδρομές (αν έχεις)',
+                    'Είναι οικονομικά στοιχεία που ο φορέας εκμετάλλευσης οφείλει να τηρεί βάσει νόμου. Διατηρούνται χωρίς το όνομα, το email, την πινακίδα ή άλλο στοιχείο που σε προσδιορίζει, συνδεδεμένα με ανώνυμη εγγραφή, για {{FINANCIAL_YEARS}} έτη, ώστε να καλύπτονται με περιθώριο οι υποχρεώσεις τήρησης αρχείων της ελληνικής φορολογικής και λογιστικής νομοθεσίας. Μετά τη λήξη τους διαγράφονται.',
                   ],
                   [
                     'Αναφορές για χώρους στάθμευσης (χώρος, λόγος, κατάσταση)',
@@ -1192,7 +1193,7 @@ export const LEGAL = {
                 'your account, sign-in methods and password, and the sign-in identity held at our identity provider,',
                 'your profile (name and photo) and your email address,',
                 'your vehicles and saved facilities,',
-                'your wallet and subscriptions (active subscriptions are cancelled with the billing provider first),',
+                'the link to our billing provider (your active subscriptions are cancelled first),',
                 'your device push-notification token,',
                 'your facility votes and any free-text note you wrote on a report,',
                 'the link between you and your reviews: the rating stays in the facility average, attached to nobody.',
@@ -1210,8 +1211,8 @@ export const LEGAL = {
                 head: ['Data', 'Why it is kept, and in what form'],
                 rows: [
                   [
-                    'Bookings, payments and refunds (if you made any)',
-                    'These are financial records the operator must keep by law. They are kept without your name, email or any other detail that identifies you, attached to an anonymous placeholder record, for 5 years, as Greek tax and accounting law requires.',
+                    'Bookings, payments and refunds, wallet transactions and subscriptions (if you have any)',
+                    'These are financial records the operator must keep by law. They are kept without your name, email, licence plate or any other detail that identifies you, attached to an anonymous placeholder record, for {{FINANCIAL_YEARS}} years, a period chosen to cover Greek tax and accounting record-keeping obligations with a margin. They are deleted afterwards.',
                   ],
                   [
                     'Reports about facilities (facility, reason, status)',
