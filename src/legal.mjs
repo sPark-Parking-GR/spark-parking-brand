@@ -1,6 +1,6 @@
 import { SITE, CONTACT_EMAIL, PRIVACY_EMAIL, COMPANY, RETENTION } from './content.mjs'
 
-export const LEGAL_KINDS = ['privacy', 'terms']
+export const LEGAL_KINDS = ['privacy', 'terms', 'delete-account']
 
 /*
  * MAJOR.MINOR of each published document, the same value in every locale. Bump the MAJOR when
@@ -547,6 +547,112 @@ export const LEGAL = {
         },
       ],
     },
+    'delete-account': {
+      title: 'Διαγραφή λογαριασμού sPark',
+      description:
+        'Πώς να διαγράψεις τον λογαριασμό σου στην εφαρμογή sPark Parking και τα προσωπικά σου δεδομένα, τι διαγράφεται και τι διατηρείται.',
+      updated: '2026-11-16',
+      intro: [
+        'Η σελίδα αυτή εξηγεί πώς μπορείς να διαγράψεις τον λογαριασμό σου στην εφαρμογή sPark Parking για οδηγούς, την οποία λειτουργεί η {{LEGAL_NAME}}, και τα προσωπικά δεδομένα που είναι συνδεδεμένα με αυτόν.',
+        'Δεν χρειάζεται να συνδεθείς σε κάποια σελίδα για να τη διαβάσεις. Για να αιτηθείς τη διαγραφή μπορείς να χρησιμοποιήσεις την εφαρμογή ή να μας γράψεις.',
+      ],
+      sections: [
+        {
+          id: 'how-to-request',
+          h: 'Πώς να ζητήσεις διαγραφή',
+          body: [
+            'Μέσα από την εφαρμογή (άμεση διαγραφή):',
+            {
+              ol: [
+                'Άνοιξε την εφαρμογή sPark και συνδέσου.',
+                'Πήγαινε στο Προφίλ και πάτησε «Διαγραφή λογαριασμού».',
+                'Διάβασε τη σύνοψη και επιβεβαίωσε ότι την κατανοείς.',
+                'Πληκτρολόγησε τη λέξη ΔΙΑΓΡΑΦΗ και επιβεβαίωσε ότι είσαι εσύ συνδεόμενος ξανά.',
+                'Πάτησε «Οριστική διαγραφή του λογαριασμού μου».',
+              ],
+            },
+            'Χωρίς την εφαρμογή (π.χ. αν την έχεις απεγκαταστήσει ή δεν μπορείς να συνδεθείς): στείλε email στο {{PRIVACY_EMAIL}} από τη διεύθυνση με την οποία έχεις εγγραφεί, με θέμα «Διαγραφή λογαριασμού». Ενδέχεται να σου ζητήσουμε στοιχεία για να επιβεβαιώσουμε ότι ο λογαριασμός είναι δικός σου.',
+          ],
+        },
+        {
+          id: 'what-is-deleted',
+          h: 'Τι διαγράφεται',
+          body: [
+            'Όταν ολοκληρωθεί η διαγραφή, αφαιρούνται οριστικά:',
+            {
+              ul: [
+                'ο λογαριασμός σου, οι τρόποι σύνδεσης και ο κωδικός πρόσβασής σου, καθώς και η ταυτότητα σύνδεσης που τηρείται στον πάροχο ταυτοποίησης,',
+                'το προφίλ σου (όνομα και φωτογραφία) και η διεύθυνση email σου,',
+                'τα οχήματα και οι αγαπημένοι σου χώροι στάθμευσης,',
+                'το πορτοφόλι σου και οι συνδρομές σου (οι ενεργές συνδρομές ακυρώνονται πρώτα στον πάροχο χρεώσεων),',
+                'το token ειδοποιήσεων push της συσκευής σου,',
+                'οι ψήφοι σου για χώρους στάθμευσης και το ελεύθερο κείμενο που τυχόν έχεις γράψει σε αναφορές,',
+                'ο σύνδεσμος που συνδέει τις αξιολογήσεις σου με εσένα: η βαθμολογία παραμένει στον μέσο όρο του χώρου, χωρίς να συνδέεται με κανέναν.',
+              ],
+            },
+            'Όλες οι ενεργές συνδέσεις σου στην εφαρμογή τερματίζονται.',
+          ],
+        },
+        {
+          id: 'what-we-keep',
+          h: 'Τι διατηρούμε και για πόσο',
+          body: [
+            {
+              table: {
+                head: ['Δεδομένα', 'Γιατί και σε ποια μορφή διατηρούνται'],
+                rows: [
+                  [
+                    'Κρατήσεις, πληρωμές και επιστροφές χρημάτων (αν έχεις κάνει)',
+                    'Είναι οικονομικά στοιχεία που ο φορέας εκμετάλλευσης οφείλει να τηρεί βάσει νόμου. Διατηρούνται χωρίς το όνομα, το email ή άλλο στοιχείο που σε προσδιορίζει, συνδεδεμένα με ανώνυμη εγγραφή, για 5 έτη, όπως απαιτεί η ελληνική φορολογική και λογιστική νομοθεσία.',
+                  ],
+                  [
+                    'Αναφορές για χώρους στάθμευσης (χώρος, λόγος, κατάσταση)',
+                    'Διατηρούνται ως ιστορικό διαχείρισης περιεχομένου, χωρίς το κείμενο που είχες γράψει και χωρίς σύνδεση με εσένα.',
+                  ],
+                  [
+                    'Εγγραφή στο αρχείο διοικητικών ενεργειών ότι ο λογαριασμός διαγράφηκε (εσωτερικό αναγνωριστικό και ώρα, χωρίς email)',
+                    '{{AUDIT_MONTHS}} μήνες, για λόγους ασφάλειας και λογοδοσίας.',
+                  ],
+                  [
+                    'Τεχνικά αρχεία καταγραφής διακομιστή (IP, ώρα, διαδρομή αιτήματος)',
+                    '{{LOG_DAYS}} ημέρες.',
+                  ],
+                ],
+              },
+            },
+            'Η διαγραφή του λογαριασμού sPark δεν διαγράφει τον λογαριασμό σου στη Google ή στην Apple· μπορείς να ανακαλέσεις την πρόσβαση της εφαρμογής από τις ρυθμίσεις του λογαριασμού σου εκεί. Οι πάροχοι πληρωμών τηρούν τα δικά τους αρχεία σύμφωνα με τις νομικές τους υποχρεώσεις.',
+          ],
+        },
+        {
+          id: 'before-you-delete',
+          h: 'Πριν διαγράψεις',
+          body: [
+            {
+              ul: [
+                'Αν έχεις κράτηση σε εξέλιξη, πρέπει πρώτα να την ακυρώσεις ή να ολοκληρωθεί· η εφαρμογή θα σε ενημερώσει.',
+                'Αν η ενεργή συνδρομή σου δεν μπορεί να ακυρωθεί στον πάροχο χρεώσεων, δεν διαγράφεται τίποτα και μπορείς να ξαναδοκιμάσεις λίγο αργότερα, ώστε να μη χρεώνεσαι για συνδρομή που δεν υπάρχει πια.',
+                'Η διαγραφή δεν αναιρείται και ο λογαριασμός δεν ανακτάται. Μπορείς να δημιουργήσεις νέο λογαριασμό όποτε θέλεις, αλλά θα ξεκινά κενός.',
+              ],
+            },
+          ],
+        },
+        {
+          id: 'timing',
+          h: 'Πότε ολοκληρώνεται',
+          body: [
+            'Η διαγραφή μέσα από την εφαρμογή γίνεται αμέσως. Για αιτήματα μέσω email απαντάμε εντός ενός μηνός (παρατείνεται έως δύο επιπλέον μήνες για σύνθετα αιτήματα, και θα σε ενημερώσουμε). Η διαδικασία είναι δωρεάν.',
+            'Περισσότερα για τα δικαιώματά σου και για την Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα θα βρεις στην Πολιτική Απορρήτου.',
+          ],
+        },
+        {
+          id: 'contact',
+          h: 'Επικοινωνία',
+          body: [
+            'Για αιτήματα διαγραφής και κάθε θέμα προσωπικών δεδομένων: {{PRIVACY_EMAIL}}. Γενική επικοινωνία: {{CONTACT_EMAIL}}.',
+          ],
+        },
+      ],
+    },
   },
   en: {
     privacy: {
@@ -1045,6 +1151,109 @@ export const LEGAL = {
           h: 'Contact',
           body: [
             '{{LEGAL_NAME}}, VAT no. {{VAT_NUMBER}} ({{TAX_OFFICE}}). Email: {{CONTACT_EMAIL}}. For personal-data matters: {{PRIVACY_EMAIL}}.',
+          ],
+        },
+      ],
+    },
+    'delete-account': {
+      title: 'Delete your sPark account',
+      description:
+        'How to delete your sPark Parking account and personal data, what is erased and what is kept.',
+      updated: '2026-11-16',
+      intro: [
+        'This page explains how to delete your account in the sPark Parking driver app, operated by {{LEGAL_NAME}}, and the personal data attached to it.',
+        'You do not need to sign in to read it. To request deletion you can use the app or write to us.',
+      ],
+      sections: [
+        {
+          id: 'how-to-request',
+          h: 'How to request deletion',
+          body: [
+            'In the app (deleted immediately):',
+            {
+              ol: [
+                'Open the sPark app and sign in.',
+                'Go to Profile and tap "Delete account".',
+                'Read the summary and confirm that you understand it.',
+                'Type the word DELETE and confirm it is you by signing in again.',
+                'Tap "Permanently delete my account".',
+              ],
+            },
+            'Without the app (for example if you uninstalled it or cannot sign in): email {{PRIVACY_EMAIL}} from the address you registered with, with the subject "Delete my account". We may ask for information to confirm the account is yours.',
+          ],
+        },
+        {
+          id: 'what-is-deleted',
+          h: 'What is deleted',
+          body: [
+            'When deletion completes, the following is permanently removed:',
+            {
+              ul: [
+                'your account, sign-in methods and password, and the sign-in identity held at our identity provider,',
+                'your profile (name and photo) and your email address,',
+                'your vehicles and saved facilities,',
+                'your wallet and subscriptions (active subscriptions are cancelled with the billing provider first),',
+                'your device push-notification token,',
+                'your facility votes and any free-text note you wrote on a report,',
+                'the link between you and your reviews: the rating stays in the facility average, attached to nobody.',
+              ],
+            },
+            'All your signed-in sessions in the app are ended.',
+          ],
+        },
+        {
+          id: 'what-we-keep',
+          h: 'What we keep, and for how long',
+          body: [
+            {
+              table: {
+                head: ['Data', 'Why it is kept, and in what form'],
+                rows: [
+                  [
+                    'Bookings, payments and refunds (if you made any)',
+                    'These are financial records the operator must keep by law. They are kept without your name, email or any other detail that identifies you, attached to an anonymous placeholder record, for 5 years, as Greek tax and accounting law requires.',
+                  ],
+                  [
+                    'Reports about facilities (facility, reason, status)',
+                    'Kept as moderation history, without the note you wrote and without any link to you.',
+                  ],
+                  [
+                    'A record in our administrative log that the account was deleted (internal ID and time, no email)',
+                    '{{AUDIT_MONTHS}} months, for security and accountability.',
+                  ],
+                  ['Server technical logs (IP, time, request path)', '{{LOG_DAYS}} days.'],
+                ],
+              },
+            },
+            'Deleting your sPark account does not delete your Google or Apple account; you can revoke the app’s access in that account’s settings. Payment providers keep their own records under their own legal obligations.',
+          ],
+        },
+        {
+          id: 'before-you-delete',
+          h: 'Before you delete',
+          body: [
+            {
+              ul: [
+                'If you have a booking in progress, cancel it or let it finish first; the app will tell you.',
+                'If an active subscription cannot be cancelled with the billing provider, nothing is deleted and you can try again shortly, so you are never charged for a subscription that no longer exists.',
+                'Deletion cannot be undone and the account cannot be recovered. You can create a new account at any time, but it starts empty.',
+              ],
+            },
+          ],
+        },
+        {
+          id: 'timing',
+          h: 'When it is completed',
+          body: [
+            'Deletion in the app happens immediately. For requests by email we reply within one month (extendable by up to two more months for complex requests, and we will tell you). It is free of charge.',
+            'More about your rights, and about the Hellenic Data Protection Authority, is in the Privacy Policy.',
+          ],
+        },
+        {
+          id: 'contact',
+          h: 'Contact',
+          body: [
+            'For deletion requests and any personal-data matter: {{PRIVACY_EMAIL}}. General contact: {{CONTACT_EMAIL}}.',
           ],
         },
       ],
