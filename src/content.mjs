@@ -136,6 +136,7 @@ export const LOCALES = {
     legal: {
       privacy: 'Πολιτική απορρήτου',
       terms: 'Όροι χρήσης',
+      'delete-account': 'Διαγραφή λογαριασμού',
       updated: 'Τελευταία ενημέρωση',
       toc: 'Περιεχόμενα',
       home: 'Αρχική σελίδα sPark',
@@ -311,6 +312,7 @@ export const LOCALES = {
     legal: {
       privacy: 'Privacy Policy',
       terms: 'Terms of Use',
+      'delete-account': 'Delete account',
       updated: 'Last updated',
       toc: 'Contents',
       home: 'sPark home page',
