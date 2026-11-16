@@ -9,7 +9,7 @@ export const COMPANY = {
   courts: { el: 'Θεσσαλονίκης', en: 'Thessaloniki' },
 }
 
-export const RETENTION = { logDays: 30, auditMonths: 24 }
+export const RETENTION = { logDays: 30, auditMonths: 24, financialYears: 10 }
 
 export const LOCALES = {
   el: {
