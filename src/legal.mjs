@@ -154,7 +154,7 @@ export const LEGAL = {
                 ],
               },
             },
-            'Στον δημόσιο ιστότοπο χρησιμοποιούμε το Umami Cloud για ανώνυμα στατιστικά επισκεψιμότητας (π.χ. προβολές σελίδων, χώρα, τύπος συσκευής). Δεν χρησιμοποιούμε διαφημιστικά εργαλεία ή εργαλεία αναφοράς σφαλμάτων τρίτων, ούτε εργαλεία ανάλυσης χρήσης στην εφαρμογή ή στην πύλη.',
+            'Στον δημόσιο ιστότοπο χρησιμοποιούμε το Umami Cloud για ανώνυμα στατιστικά επισκεψιμότητας (π.χ. προβολές σελίδων, χώρα, τύπος συσκευής) και το Cloudflare Web Analytics για ανώνυμα στατιστικά επισκεψιμότητας και απόδοσης (π.χ. προβολές σελίδων, σελίδα προέλευσης, χώρα, τύπος συσκευής και περιηγητή, χρόνος φόρτωσης της σελίδας). Δεν χρησιμοποιούμε διαφημιστικά εργαλεία ή εργαλεία αναφοράς σφαλμάτων τρίτων, ούτε εργαλεία ανάλυσης χρήσης στην εφαρμογή ή στην πύλη.',
             'Αν συμπληρώσεις τη φόρμα εκδήλωσης ενδιαφέροντος του ιστότοπου, τα δεδομένα της και όσα κάνουμε με αυτά περιγράφονται στην ενότητα «Φόρμα εκδήλωσης ενδιαφέροντος στον ιστότοπο».',
           ],
         },
@@ -183,7 +183,7 @@ export const LEGAL = {
             {
               ul: [
                 'Εκτέλεση σύμβασης (άρθρο 6 παρ. 1 β): λογαριασμός, σύνδεση, αγαπημένα, μηνύματα υπηρεσίας.',
-                'Έννομο συμφέρον (άρθρο 6 παρ. 1 στ): ασφάλεια, αρχεία καταγραφής εξυπηρετητή, αρχείο διαχειριστικών ενεργειών, αποτροπή κατάχρησης, αντίγραφα ασφαλείας της βάσης δεδομένων, προστασία της φόρμας του ιστότοπου από spam (Turnstile και περιορισμός αιτημάτων ανά διεύθυνση IP). Το συμφέρον μας είναι η ασφαλής και αξιόπιστη λειτουργία της πλατφόρμας· τα δικαιώματά σου δεν επηρεάζονται δυσανάλογα, επειδή τα δεδομένα περιορίζονται στα απολύτως αναγκαία και διατηρούνται για περιορισμένο χρόνο.',
+                'Έννομο συμφέρον (άρθρο 6 παρ. 1 στ): ασφάλεια, αρχεία καταγραφής εξυπηρετητή, αρχείο διαχειριστικών ενεργειών, αποτροπή κατάχρησης, αντίγραφα ασφαλείας της βάσης δεδομένων, προστασία της φόρμας του ιστότοπου από spam (Turnstile και περιορισμός αιτημάτων ανά διεύθυνση IP), ανώνυμα στατιστικά επισκεψιμότητας και απόδοσης του ιστότοπου (Umami Cloud και Cloudflare Web Analytics). Το συμφέρον μας είναι η ασφαλής και αξιόπιστη λειτουργία της πλατφόρμας· τα δικαιώματά σου δεν επηρεάζονται δυσανάλογα, επειδή τα δεδομένα περιορίζονται στα απολύτως αναγκαία και διατηρούνται για περιορισμένο χρόνο.',
                 'Συγκατάθεση (άρθρο 6 παρ. 1 α): πρόσβαση στην τοποθεσία της συσκευής και, αν την ενεργοποιήσεις, αποθήκευση του διακριτικού ειδοποιήσεων push. Τις δίνεις μέσω των αδειών του λειτουργικού συστήματος και μπορείς να τις ανακαλέσεις οποτεδήποτε από τις ρυθμίσεις της συσκευής σου, χωρίς επίπτωση στη χρήση της εφαρμογής.',
                 'Συγκατάθεση (άρθρο 6 παρ. 1 α) και για τη φόρμα εκδήλωσης ενδιαφέροντος του ιστότοπου: τη δίνεις επιλέγοντας το σχετικό πεδίο πριν από την αποστολή και μπορείς να την ανακαλέσεις οποτεδήποτε στο {{PRIVACY_EMAIL}}.',
                 'Έννομη υποχρέωση (άρθρο 6 παρ. 1 γ): όταν ο νόμος ή αρμόδια αρχή το απαιτεί.',
@@ -281,7 +281,7 @@ export const LEGAL = {
               },
             },
             'Στην πύλη χρησιμοποιούνται οι χάρτες και η αυτόματη συμπλήρωση διευθύνσεων της Google· όταν τα χρησιμοποιείς, ο περιηγητής σου επικοινωνεί με την Google.',
-            'Δημόσιος ιστότοπος: ο ίδιος δεν ορίζει cookies και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου. Φορτώνει το script ανώνυμων στατιστικών του Umami Cloud (cloud.umami.is), που δεν χρησιμοποιεί cookies ούτε αποθηκεύει πλήρη διεύθυνση IP, και, μόνο όταν αρχίσεις να συμπληρώνεις τη φόρμα εκδήλωσης ενδιαφέροντος, το Cloudflare Turnstile (challenges.cloudflare.com) για προστασία από spam· οι γραμματοσειρές φιλοξενούνται τοπικά.',
+            'Δημόσιος ιστότοπος: ο ίδιος δεν ορίζει cookies και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου. Φορτώνει το script ανώνυμων στατιστικών του Umami Cloud (cloud.umami.is), που δεν χρησιμοποιεί cookies ούτε αποθηκεύει πλήρη διεύθυνση IP, το script στατιστικών του Cloudflare Web Analytics (static.cloudflareinsights.com), που σύμφωνα με την Cloudflare δεν χρησιμοποιεί cookies ή τοπική αποθήκευση και δεν δημιουργεί προφίλ επισκεπτών, και, μόνο όταν αρχίσεις να συμπληρώνεις τη φόρμα εκδήλωσης ενδιαφέροντος, το Cloudflare Turnstile (challenges.cloudflare.com) για προστασία από spam· οι γραμματοσειρές φιλοξενούνται τοπικά.',
           ],
         },
         {
@@ -321,8 +321,8 @@ export const LEGAL = {
                   ],
                   [
                     'Cloudflare',
-                    'Διαχείριση DNS του domain, προστασία και διανομή της κίνησης προς τον ιστότοπο {{SITE_HOST}} και τη φόρμα του, και προστασία της φόρμας από spam (Turnstile)',
-                    'Διεύθυνση IP και στοιχεία των αιτημάτων που περνούν από το δίκτυό τους· στο Turnstile, τεχνικά χαρακτηριστικά του περιηγητή',
+                    'Διαχείριση DNS του domain, προστασία και διανομή της κίνησης προς τον ιστότοπο {{SITE_HOST}} και τη φόρμα του, προστασία της φόρμας από spam (Turnstile) και ανώνυμα στατιστικά επισκεψιμότητας και απόδοσης του ιστότοπου (Web Analytics)',
+                    'Διεύθυνση IP και στοιχεία των αιτημάτων που περνούν από το δίκτυό τους· στο Turnstile, τεχνικά χαρακτηριστικά του περιηγητή· στο Web Analytics, η σελίδα που επισκέπτεσαι, η σελίδα προέλευσης, ο τύπος συσκευής και περιηγητή και ο χρόνος φόρτωσης',
                   ],
                 ],
               },
@@ -824,7 +824,7 @@ export const LEGAL = {
                 ],
               },
             },
-            'On the public website we use Umami Cloud for anonymous traffic statistics (for example page views, country and device type). We use no advertising or third-party crash-reporting tools, and no usage analytics in the app or the portal.',
+            'On the public website we use Umami Cloud for anonymous traffic statistics (for example page views, country and device type) and Cloudflare Web Analytics for anonymous traffic and performance statistics (for example page views, referring page, country, device and browser type, and page load time). We use no advertising or third-party crash-reporting tools, and no usage analytics in the app or the portal.',
             'If you fill in the interest form on the website, its data and everything we do with it are described in “The interest form on the website”.',
           ],
         },
@@ -853,7 +853,7 @@ export const LEGAL = {
             {
               ul: [
                 'Performance of a contract (Art. 6(1)(b)): account, sign-in, favourites, service messages.',
-                'Legitimate interests (Art. 6(1)(f)): security, server logs, the log of administrative actions, abuse prevention, database backups, protecting the website form from spam (Turnstile and request limits per IP address). Our interest is the secure and reliable operation of the platform; your rights are not disproportionately affected because the data is limited to what is necessary and kept for a limited time.',
+                'Legitimate interests (Art. 6(1)(f)): security, server logs, the log of administrative actions, abuse prevention, database backups, protecting the website form from spam (Turnstile and request limits per IP address), anonymous traffic and performance statistics for the website (Umami Cloud and Cloudflare Web Analytics). Our interest is the secure and reliable operation of the platform; your rights are not disproportionately affected because the data is limited to what is necessary and kept for a limited time.',
                 'Consent (Art. 6(1)(a)): access to your device location and, if you enable it, storing your push notification token. You give it through your operating system’s permissions and can withdraw it at any time in your device settings, without affecting your use of the app.',
                 'Consent (Art. 6(1)(a)) also for the website interest form: you give it by ticking the box before you submit, and you can withdraw it at any time at {{PRIVACY_EMAIL}}.',
                 'Legal obligation (Art. 6(1)(c)): where the law or a competent authority requires it.',
@@ -951,7 +951,7 @@ export const LEGAL = {
               },
             },
             'The portal uses Google Maps and Google address autocomplete; when you use them, your browser contacts Google.',
-            'Public website: it sets no cookies of its own and stores only your theme preference (spark-theme) in your browser. It loads the anonymous analytics script of Umami Cloud (cloud.umami.is), which uses no cookies and does not store your full IP address, and, only once you start filling in the interest form, Cloudflare Turnstile (challenges.cloudflare.com) for spam protection; fonts are self-hosted.',
+            'Public website: it sets no cookies of its own and stores only your theme preference (spark-theme) in your browser. It loads the anonymous analytics script of Umami Cloud (cloud.umami.is), which uses no cookies and does not store your full IP address, the analytics script of Cloudflare Web Analytics (static.cloudflareinsights.com), which according to Cloudflare uses no cookies or local storage and builds no visitor profiles, and, only once you start filling in the interest form, Cloudflare Turnstile (challenges.cloudflare.com) for spam protection; fonts are self-hosted.',
           ],
         },
         {
@@ -987,8 +987,8 @@ export const LEGAL = {
                   ],
                   [
                     'Cloudflare',
-                    'DNS management of the domain, protection and delivery of traffic to the website {{SITE_HOST}} and its form, and spam protection of the form (Turnstile)',
-                    'IP address and details of the requests that pass through their network; for Turnstile, technical characteristics of the browser',
+                    'DNS management of the domain, protection and delivery of traffic to the website {{SITE_HOST}} and its form, spam protection of the form (Turnstile), and anonymous traffic and performance statistics for the website (Web Analytics)',
+                    'IP address and details of the requests that pass through their network; for Turnstile, technical characteristics of the browser; for Web Analytics, the page you visit, the referring page, device and browser type, and load time',
                   ],
                 ],
               },
