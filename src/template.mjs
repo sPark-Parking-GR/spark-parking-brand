@@ -1,5 +1,12 @@
-import { SITE, CONTACT_EMAIL, PRIVACY_EMAIL, LOCALES, DEFAULT_LOCALE } from './content.mjs'
-import { LEGAL, LEGAL_KINDS, tokensFor, legalPath } from './legal.mjs'
+import {
+  SITE,
+  CONTACT_EMAIL,
+  PRIVACY_EMAIL,
+  LOCALES,
+  DEFAULT_LOCALE,
+  INTEREST,
+} from './content.mjs'
+import { LEGAL, LEGAL_KINDS, LEGAL_VERSIONS, tokensFor, legalPath } from './legal.mjs'
 
 const esc = (s) =>
   String(s)
@@ -259,6 +266,61 @@ function dashMock(t) {
       </div>`
 }
 
+const optionalTag = (f) => ` <span class="if-opt">(${esc(f.optional)})</span>`
+
+function inputField(f, { id, name, label, type = 'text', required = false, mode, attrs = '' }) {
+  const hidden = mode === 'business' ? ' hidden' : ''
+  const disabled = mode === 'business' ? ' disabled' : ''
+  const modeAttr = mode ? ` data-mode="${mode}"` : ''
+  return `<div class="if-field"${modeAttr}${hidden}><label for="if-${id}">${esc(label)}${required ? '' : optionalTag(f)}</label><input id="if-${id}" name="${name}" type="${type}"${required ? ' required' : ''}${disabled} ${attrs}></div>`
+}
+
+function textField(f, { id, name, label, mode }) {
+  const hidden = mode === 'business' ? ' hidden' : ''
+  const disabled = mode === 'business' ? ' disabled' : ''
+  const modeAttr = mode ? ` data-mode="${mode}"` : ''
+  return `<div class="if-field if-full"${modeAttr}${hidden}><label for="if-${id}">${esc(label)}${optionalTag(f)}</label><textarea id="if-${id}" name="${name}" rows="3" maxlength="2000"${disabled}></textarea></div>`
+}
+
+function interestSection(t) {
+  const f = t.interest
+  const l = f.fields
+  return `<section class="section section--alt" id="interest">
+    <div class="container">
+      <div class="sec-intro">
+        <div class="sec-eyebrow">${esc(f.eyebrow)}</div>
+        <h2 class="sec-title" id="interestTitle" style="margin-bottom:12px">${esc(f.drivers.title)}</h2>
+        <p class="sec-sub" id="interestSub">${esc(f.drivers.sub)}</p>
+      </div>
+      <form class="interest-form" id="interestForm" method="post" novalidate>
+        <div class="aud-toggle if-mode" role="radiogroup" aria-label="${esc(t.audience.label)}">
+          <button type="button" class="active" role="radio" aria-checked="true" data-mode="drivers">${esc(t.audience.drivers)}</button>
+          <button type="button" role="radio" aria-checked="false" data-mode="business">${esc(t.audience.business)}</button>
+        </div>
+        <div class="if-grid">
+          ${inputField(f, { id: 'email', name: 'email', label: l.email, type: 'email', required: true, attrs: 'autocomplete="email" inputmode="email" maxlength="254"' })}
+          ${inputField(f, { id: 'business-name', name: 'business_name', label: l.businessName, required: true, mode: 'business', attrs: 'autocomplete="organization" maxlength="200"' })}
+          ${inputField(f, { id: 'name', name: 'full_name', label: l.fullName, attrs: 'autocomplete="name" maxlength="200"' })}
+          ${inputField(f, { id: 'phone', name: 'phone', label: l.phone, type: 'tel', required: true, mode: 'business', attrs: 'autocomplete="tel" maxlength="40" pattern="[0-9+ \\(\\)\\.\\-]{5,40}"' })}
+          ${inputField(f, { id: 'city', name: 'city', label: l.city, attrs: 'autocomplete="address-level2" maxlength="120"' })}
+          <div class="if-field" data-mode="drivers"><label for="if-os">${esc(l.os)}${optionalTag(f)}</label><select id="if-os" name="os"><option value="">${esc(l.osNone)}</option><option value="android">${esc(l.osAndroid)}</option><option value="ios">${esc(l.osIos)}</option><option value="both">${esc(l.osBoth)}</option></select></div>
+          ${inputField(f, { id: 'address', name: 'address', label: l.address, mode: 'business', attrs: 'autocomplete="street-address" maxlength="300"' })}
+          ${inputField(f, { id: 'spaces', name: 'spaces', label: l.spaces, type: 'number', mode: 'business', attrs: 'inputmode="numeric" min="0" max="100000" step="1"' })}
+          ${textField(f, { id: 'setup', name: 'current_setup', label: l.currentSetup, mode: 'business' })}
+          ${textField(f, { id: 'notes', name: 'notes', label: l.notes })}
+        </div>
+        <label class="if-consent"><input type="checkbox" id="if-consent" name="consent" required><span>${esc(f.consentBefore)}<a href="${legalPath(t, 'privacy')}" target="_blank" rel="noopener">${esc(f.consentLink)}</a>${esc(f.consentAfter)}</span></label>
+        <div class="if-turnstile" id="interestTurnstile"></div>
+        <div class="if-actions">
+          <button type="submit" class="hero-cta1 if-submit" id="interestSubmit" disabled>${esc(f.drivers.submit)}</button>
+          <p class="if-status" id="interestStatus" role="status" aria-live="polite"></p>
+        </div>
+        <noscript><p class="if-noscript">${esc(f.noscript)} <a href="${mailto(t.footer.generalSubject)}">${CONTACT_EMAIL}</a></p></noscript>
+      </form>
+    </div>
+  </section>`
+}
+
 export function renderPage(code) {
   const t = LOCALES[code]
   const d = t.drivers
@@ -266,10 +328,16 @@ export function renderPage(code) {
   const runtime = {
     locale: t.code,
     email: CONTACT_EMAIL,
-    generalSubject: t.footer.generalSubject,
     audiences: {
       drivers: { ...t.drivers },
       business: { ...t.business },
+    },
+    interest: {
+      endpoint: INTEREST.endpoint,
+      siteKey: INTEREST.turnstileSiteKey,
+      script: INTEREST.turnstileScript,
+      privacyVersion: LEGAL_VERSIONS.privacy,
+      copy: t.interest,
     },
   }
 
@@ -293,7 +361,7 @@ ${head(t)}
       </nav>
       <div class="lang-switch" role="group" aria-label="${esc(t.langLabel)}">${langSwitch(t)}</div>
       <button class="theme-toggle" id="themeToggle" aria-label="${esc(t.themeToggle)}" title="${esc(t.themeToggle)}"></button>
-      <a class="btn-primary" id="navCta" href="${mailto(d.mailSubject)}">${esc(d.cta1)}</a>
+      <a class="btn-primary" id="navCta" href="#interest" data-cta>${esc(d.cta1)}</a>
     </div>
   </header>
 
@@ -309,7 +377,7 @@ ${head(t)}
         <h1 id="heroHeadline">${esc(d.headline)}</h1>
         <p class="hero-sub" id="heroSub">${esc(d.sub)}</p>
         <div class="hero-ctas">
-          <a class="hero-cta1" id="heroCta1" href="${mailto(d.mailSubject)}">${esc(d.cta1)}</a>
+          <a class="hero-cta1" id="heroCta1" href="#interest" data-cta>${esc(d.cta1)}</a>
           <button class="hero-cta2" id="heroCta2">${esc(d.cta2)}</button>
         </div>
         <div class="hero-chips" id="heroChips">
@@ -350,6 +418,8 @@ ${head(t)}
     </div>
   </section>
 
+  ${interestSection(t)}
+
   <section class="cta-section">
     <div class="cta-band">
       <div class="cta-band-bg"></div>
@@ -358,7 +428,7 @@ ${head(t)}
           <h2 id="ctaHead">${esc(d.ctaHead)}</h2>
           <p id="ctaSub">${esc(d.ctaSub)}</p>
         </div>
-        <a class="cta-btn" id="ctaBtn" href="${mailto(d.mailSubject)}">${esc(d.cta1)}</a>
+        <a class="cta-btn" id="ctaBtn" href="#interest" data-cta>${esc(d.cta1)}</a>
       </div>
     </div>
   </section>
@@ -372,11 +442,11 @@ ${head(t)}
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.driversTitle)}</div>
-        <div class="footer-links"><a href="${mailto(t.drivers.mailSubject)}" data-nav="drivers">${esc(t.footer.driversLinks[0])}</a><a href="#how" data-nav="drivers">${esc(t.footer.driversLinks[1])}</a><a href="#features" data-nav="drivers">${esc(t.footer.driversLinks[2])}</a></div>
+        <div class="footer-links"><a href="#interest" data-nav="drivers" data-cta>${esc(t.footer.driversLinks[0])}</a><a href="#how" data-nav="drivers">${esc(t.footer.driversLinks[1])}</a><a href="#features" data-nav="drivers">${esc(t.footer.driversLinks[2])}</a></div>
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.businessTitle)}</div>
-        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="${mailto(t.business.mailSubject)}" data-nav="business">${esc(t.footer.businessLinks[1])}</a></div>
+        <div class="footer-links"><a href="#how" data-nav="business">${esc(t.footer.businessLinks[0])}</a><a href="#interest" data-nav="business" data-cta>${esc(t.footer.businessLinks[1])}</a></div>
       </div>
       <div>
         <div class="footer-col-title">${esc(t.footer.contactTitle)}</div>

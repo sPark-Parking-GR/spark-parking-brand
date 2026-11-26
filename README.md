@@ -75,34 +75,35 @@ To refresh or add a weight, download from Google Fonts with a modern browser use
 
 ## Edge injection check
 
-The site is served through Cloudflare, which can inject its own scripts into the HTML after the build (Web Analytics beacon, JavaScript Detections, email address obfuscation) and set cookies. Any of these contradicts the privacy policy (which declares Umami Cloud as the only analytics and no cookies), and none of them exists in `dist/`, so the build tests cannot see them. After every deploy run `pnpm run check:live`; it fetches the live pages and fails if any of them shows up.
+The site is served through Cloudflare, which can inject its own scripts into the HTML after the build (Web Analytics beacon, JavaScript Detections, email address obfuscation) and set cookies. Any of these contradicts the privacy policy (which declares Umami Cloud as the only analytics and no cookies), and none of them exists in `dist/`, so the build tests cannot see them. After every deploy run `pnpm run check:live`; it fetches the live pages and fails if any of them shows up. Turnstile is not one of these: it is loaded by `main.js` on demand from `challenges.cloudflare.com` and disclosed in the privacy policy, whereas JavaScript Detections (`cdn-cgi/challenge-platform`) is injected into every page by Cloudflare's Bot Fight Mode and is not.
 
 ## Behaviour
 
-- **Audience toggle** — swaps hero copy, hero mockup (phone ↔ dashboard), steps, features, and CTA band. Nav and footer links also switch audience.
+- **Audience toggle** — swaps hero copy, hero mockup (phone ↔ dashboard), steps, features, CTA band and the interest form's mode. Nav and footer links also switch audience, and the form's own drivers/businesses switch drives the whole page.
+- **Interest form** — see [Interest form](#interest-form--the-one-place-the-site-collects-personal-data). Every CTA links to `#interest`.
 - **Theme** — follows the OS by default; the toggle sets a `data-theme` override persisted in `localStorage` under `spark-theme`. An inline head script applies it before paint, so there is no flash.
 
 ## Analytics
 
 Traffic statistics come from [Umami Cloud](https://umami.is), loaded by a single deferred script in the shared `head()` in `src/template.mjs` (so every page and locale carries it). The script URL and public website ID live in the `UMAMI` constant at the top of that file. The website ID is public by design, not a secret.
 
-Umami sets no cookies, so no consent banner is needed. The privacy policies (`src/legal.mjs`, both locales) disclose it, and the smoke tests allow exactly this one external script (`https://cloud.umami.is/script.js`) and nothing else. If you change provider or add another script, update the tests and the privacy policy together. If the host sends a Content-Security-Policy, it must allow `cloud.umami.is` in `script-src` and `connect-src`.
+Umami sets no cookies, so no consent banner is needed. The privacy policies (`src/legal.mjs`, both locales) disclose it, and the smoke tests allow exactly this one external script (`https://cloud.umami.is/script.js`) and nothing else. If you change provider or add another script, update the tests and the privacy policy together. If the host ever sends a Content-Security-Policy, it must allow `cloud.umami.is` in `script-src` and `connect-src`, `challenges.cloudflare.com` in `script-src` and `frame-src` (Turnstile), and `n8n.sparkparking.gr` in `connect-src` (the form endpoint).
 
-## Contact — and the no-PII rule
+## Interest form — the one place the site collects personal data
 
-**This page collects no personal information of any kind.** There are no forms, no input fields, no cookies, and the site's own code transmits nothing to a server. The only third-party request is the cookieless [Umami Cloud](#analytics) script; fonts are self-hosted. Every contact and lead path is a `mailto:` to the company address, so enquiries arrive in a normal inbox and the site itself never touches personal data.
+Until November 2026 this site collected no personal data at all. That rule was changed on purpose: the home page now has **one** interest form (drivers join the waitlist, businesses request a demo), and nothing else on the site may collect data. The privacy policy (`src/legal.mjs`, section `interest-form`, privacy version `1.1`) describes it, and must change together with it.
 
-One constant drives every CTA, in `src/content.mjs`:
+How it works:
 
-```js
-export const CONTACT_EMAIL = 'smart.parking.gr@gmail.com'
-```
+- The form is server-rendered in `template.mjs`; its copy lives under `interest` in `src/content.mjs` for every locale. The endpoint, the public Turnstile site key and the Turnstile script URL are the `INTEREST` constant in `content.mjs`. They are public by design; the Turnstile **secret** lives only on the n8n server.
+- `main.js` posts the form as JSON, once, with `credentials: 'omit'`, to the n8n webhook (`https://n8n.sparkparking.gr/webhook/spark-interest`). The workflow that receives it is `docs/n8n/spark-interest.workflow.json` in the umbrella repo, specified in `docs/interest-forms.md`.
+- **Cloudflare Turnstile** loads only when a visitor focuses a form field, never with the page. That is what the privacy policy promises, so keep it that way.
+- The submit button is rendered `disabled` and enabled by `main.js`. Without JavaScript the form cannot submit, so field values can never end up in a URL; a `<noscript>` note offers the company email instead.
+- Consent is a required checkbox linking to the privacy policy of the same locale. Each submission also sends the current privacy version, which the workflow stores with the lead.
 
-Each CTA passes its own subject line (waitlist, demo request, general enquiry) — localized per language, so a Greek visitor's email arrives with a Greek subject. The address is also printed as readable text in the footer, not hidden behind a link.
+The only client-side storage is still `localStorage['spark-theme']`. The site sets no cookies of its own.
 
-The only client-side storage is `localStorage['spark-theme']`, holding `"light"` or `"dark"`. That is a functional preference, not personal data, and needs no consent banner.
-
-`scripts/smoke.test.mjs` enforces all of the above — adding a form, an input, a cookie, a `fetch()` call, or any external script other than the Umami one fails the build. **Do not relax those tests without an explicit decision to change the policy**, since dropping them silently turns a no-PII page into a data-collecting one.
+`scripts/smoke.test.mjs` enforces the boundaries: exactly one form with a fixed list of fields and no `action`/`formaction`; consent required; submit disabled in the static HTML; exactly one `fetch()`, aimed at the configured endpoint; no hard-coded URL in `main.js`; no `XMLHttpRequest`, `sendBeacon`, `WebSocket`, cookies or other storage; Turnstile never in the page markup; legal pages still free of any input; and the policy section present in every locale. **Do not relax those tests without an explicit decision to change the policy.**
 
 ## Commands
 

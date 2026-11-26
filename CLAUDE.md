@@ -51,6 +51,9 @@ in `reference/`, which the build ignores.
   into `src/` — it is served verbatim.
 - No analytics or third-party script without checking it against the site's own CSP and
   the privacy posture of the rest of the platform.
+- The interest form is the site's only personal-data path (see README, "Interest form").
+  Any change to its fields, endpoint or Turnstile loading must update the privacy policy
+  in `src/legal.mjs` for every locale in the same change.
 
 ## Definition of done
 

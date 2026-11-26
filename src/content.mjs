@@ -11,6 +11,12 @@ export const COMPANY = {
 
 export const RETENTION = { logDays: 30, auditMonths: 24, financialYears: 10 }
 
+export const INTEREST = {
+  endpoint: 'https://n8n.sparkparking.gr/webhook/spark-interest',
+  turnstileSiteKey: '0x4AAAAAAGUcn6jg09ZvMwQv',
+  turnstileScript: 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit',
+}
+
 export const LOCALES = {
   el: {
     code: 'el',
@@ -82,7 +88,6 @@ export const LOCALES = {
       ],
       ctaHead: 'Έτοιμος να σταματήσεις να πληρώνεις παραπάνω για πάρκινγκ;',
       ctaSub: 'Μπες στη λίστα αναμονής και θα σε ειδοποιήσουμε μόλις το sPark έρθει στην πόλη σου.',
-      mailSubject: 'sPark — λίστα αναμονής',
     },
     business: {
       eyebrow: 'Για επιχειρήσεις · πίνακας ελέγχου',
@@ -131,7 +136,53 @@ export const LOCALES = {
       ctaHead: 'Μετάτρεψε τις κενές θέσεις σε έσοδα.',
       ctaSub:
         'Κλείσε μια παρουσίαση 20 λεπτών και δες την επιχείρησή σου ζωντανά στον χάρτη του sPark.',
-      mailSubject: 'sPark — αίτημα παρουσίασης',
+    },
+    interest: {
+      eyebrow: 'Εκδήλωση ενδιαφέροντος',
+      drivers: {
+        title: 'Μπες στη λίστα αναμονής',
+        sub: 'Άφησε το email σου και θα σε ειδοποιήσουμε μόλις το sPark έρθει στην πόλη σου.',
+        submit: 'Μπες στη λίστα αναμονής',
+        success: 'Είσαι στη λίστα! Σου στείλαμε email επιβεβαίωσης.',
+      },
+      business: {
+        title: 'Κλείσε παρουσίαση',
+        sub: 'Πες μας λίγα λόγια για τον χώρο σου και θα επικοινωνήσουμε μαζί σου για μια παρουσίαση 20 λεπτών.',
+        submit: 'Στείλε το αίτημα',
+        success:
+          'Λάβαμε το αίτημά σου! Θα επικοινωνήσουμε σύντομα. Σου στείλαμε και email επιβεβαίωσης.',
+      },
+      fields: {
+        email: 'Email',
+        fullName: 'Ονοματεπώνυμο',
+        city: 'Πόλη',
+        os: 'Κινητό',
+        osNone: 'Επίλεξε',
+        osAndroid: 'Android',
+        osIos: 'iPhone (iOS)',
+        osBoth: 'Και τα δύο',
+        businessName: 'Όνομα επιχείρησης',
+        phone: 'Τηλέφωνο',
+        address: 'Διεύθυνση χώρου',
+        spaces: 'Αριθμός θέσεων',
+        currentSetup: 'Πώς διαχειρίζεσαι σήμερα τον χώρο;',
+        notes: 'Σχόλια',
+      },
+      optional: 'προαιρετικό',
+      consentBefore:
+        'Συμφωνώ να επεξεργαστεί το sPark τα στοιχεία μου για να με ενημερώσει και να επικοινωνήσει μαζί μου, όπως περιγράφεται στην ',
+      consentLink: 'Πολιτική απορρήτου',
+      consentAfter: '.',
+      sending: 'Αποστολή…',
+      checking: 'Ολοκληρώνεται ο έλεγχος ασφαλείας…',
+      errors: {
+        invalid: 'Έλεγξε τα στοιχεία της φόρμας και δοκίμασε ξανά.',
+        verify: 'Ο έλεγχος ασφαλείας δεν ολοκληρώθηκε. Δοκίμασε ξανά.',
+        rate: 'Πολλές προσπάθειες σε λίγο χρόνο. Περίμενε λίγα δευτερόλεπτα και δοκίμασε ξανά.',
+        server: 'Κάτι πήγε στραβά από τη μεριά μας. Δοκίμασε ξανά σε λίγο ή γράψε μας στο',
+        network: 'Δεν ήταν δυνατή η σύνδεση. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.',
+      },
+      noscript: 'Η φόρμα χρειάζεται JavaScript. Μπορείς επίσης να μας γράψεις στο',
     },
     legal: {
       privacy: 'Πολιτική απορρήτου',
@@ -256,7 +307,6 @@ export const LOCALES = {
       ],
       ctaHead: 'Ready to stop overpaying for parking?',
       ctaSub: 'Join the waitlist and we’ll tell you the moment sPark lands in your city.',
-      mailSubject: 'sPark waitlist — notify me at launch',
     },
     business: {
       eyebrow: 'For businesses · web dashboard',
@@ -307,7 +357,53 @@ export const LOCALES = {
       ],
       ctaHead: 'Turn empty spots into revenue.',
       ctaSub: 'Book a 20-minute demo and see your lot live on the sPark map.',
-      mailSubject: 'sPark demo request',
+    },
+    interest: {
+      eyebrow: 'Register your interest',
+      drivers: {
+        title: 'Join the waitlist',
+        sub: 'Leave your email and we’ll tell you the moment sPark lands in your city.',
+        submit: 'Join the waitlist',
+        success: 'You’re on the list! We’ve sent you a confirmation email.',
+      },
+      business: {
+        title: 'Book a demo',
+        sub: 'Tell us a little about your parking and we’ll get in touch to set up a 20-minute demo.',
+        submit: 'Send request',
+        success:
+          'We’ve received your request and will be in touch soon. We’ve also sent you a confirmation email.',
+      },
+      fields: {
+        email: 'Email',
+        fullName: 'Full name',
+        city: 'City',
+        os: 'Phone',
+        osNone: 'Choose',
+        osAndroid: 'Android',
+        osIos: 'iPhone (iOS)',
+        osBoth: 'Both',
+        businessName: 'Business name',
+        phone: 'Phone number',
+        address: 'Facility address',
+        spaces: 'Number of spaces',
+        currentSetup: 'How do you manage the facility today?',
+        notes: 'Comments',
+      },
+      optional: 'optional',
+      consentBefore:
+        'I agree that sPark may process my details to keep me informed and contact me, as described in the ',
+      consentLink: 'Privacy Policy',
+      consentAfter: '.',
+      sending: 'Sending…',
+      checking: 'Finishing the security check…',
+      errors: {
+        invalid: 'Please check the form and try again.',
+        verify: 'The security check did not complete. Please try again.',
+        rate: 'Too many attempts in a short time. Wait a few seconds and try again.',
+        server: 'Something went wrong on our side. Please try again shortly or email us at',
+        network: 'Could not connect. Check your connection and try again.',
+      },
+      noscript: 'The form needs JavaScript. You can also email us at',
     },
     legal: {
       privacy: 'Privacy Policy',

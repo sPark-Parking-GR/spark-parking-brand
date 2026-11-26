@@ -8,7 +8,7 @@ export const LEGAL_KINDS = ['privacy', 'terms', 'delete-account']
  * about. The API reads these through LEGAL_TERMS_VERSION / LEGAL_PRIVACY_VERSION, so change
  * them together (see dist/legal-versions.json, written at build time).
  */
-export const LEGAL_VERSIONS = { terms: '1.0', privacy: '1.0' }
+export const LEGAL_VERSIONS = { terms: '1.0', privacy: '1.1' }
 
 export const legalPath = (locale, kind) => `${locale.path}${kind}/`
 
@@ -44,7 +44,7 @@ export const LEGAL = {
       title: 'Πολιτική Απορρήτου',
       description:
         'Πώς το sPark συλλέγει, χρησιμοποιεί και προστατεύει τα προσωπικά σου δεδομένα όταν χρησιμοποιείς την εφαρμογή και την πύλη διαχειριστών.',
-      updated: '2026-11-07',
+      updated: '2026-11-26',
       intro: [
         'Η Πολιτική αυτή εξηγεί ποια προσωπικά δεδομένα επεξεργάζεται το sPark, για ποιον σκοπό, με ποια νομική βάση, για πόσο διάστημα και ποια δικαιώματα έχεις. Καλύπτει την εφαρμογή για κινητά (οδηγοί), την πύλη διαχειριστών (web) και τον δημόσιο ιστότοπο {{SITE_HOST}}.',
         'Ισχύει για τις λειτουργίες που προσφέρονται σήμερα. Αν προσθέσουμε νέες λειτουργίες που αλλάζουν τα δεδομένα που συλλέγουμε (π.χ. κρατήσεις ή πληρωμές), θα ενημερώσουμε πρώτα την Πολιτική και θα σε ειδοποιήσουμε.',
@@ -67,7 +67,7 @@ export const LEGAL = {
               ul: [
                 'Εφαρμογή για κινητά (iOS και Android) για οδηγούς: χάρτης, αναζήτηση και σύγκριση χώρων στάθμευσης, αποθήκευση αγαπημένων, λογαριασμός.',
                 'Πύλη διαχειριστών (web) για διαχειριστές χώρων στάθμευσης και προσωπικό της πλατφόρμας. Η πρόσβαση γίνεται μόνο με πρόσκληση.',
-                'Δημόσιος ιστότοπος {{SITE_HOST}} με πληροφορίες και τα νομικά κείμενα.',
+                'Δημόσιος ιστότοπος {{SITE_HOST}} με πληροφορίες, τα νομικά κείμενα και μια φόρμα εκδήλωσης ενδιαφέροντος για οδηγούς και επιχειρήσεις.',
               ],
             },
             'Οι λογαριασμοί οδηγών και οι λογαριασμοί διαχειριστών είναι ξεχωριστά συστήματα: μια συνεδρία οδηγού δεν μπορεί να ενεργήσει ως διαχειριστής και αντίστροφα.',
@@ -155,6 +155,7 @@ export const LEGAL = {
               },
             },
             'Στον δημόσιο ιστότοπο χρησιμοποιούμε το Umami Cloud για ανώνυμα στατιστικά επισκεψιμότητας (π.χ. προβολές σελίδων, χώρα, τύπος συσκευής). Δεν χρησιμοποιούμε διαφημιστικά εργαλεία ή εργαλεία αναφοράς σφαλμάτων τρίτων, ούτε εργαλεία ανάλυσης χρήσης στην εφαρμογή ή στην πύλη.',
+            'Αν συμπληρώσεις τη φόρμα εκδήλωσης ενδιαφέροντος του ιστότοπου, τα δεδομένα της και όσα κάνουμε με αυτά περιγράφονται στην ενότητα «Φόρμα εκδήλωσης ενδιαφέροντος στον ιστότοπο».',
           ],
         },
         {
@@ -166,6 +167,7 @@ export const LEGAL = {
                 'Για να δημιουργήσουμε και να διατηρήσουμε τον λογαριασμό σου και να σε συνδέουμε με ασφάλεια.',
                 'Για να σου δείχνουμε χώρους στάθμευσης, τιμές και διαθεσιμότητα κοντά σου και να αποθηκεύουμε τους αγαπημένους σου.',
                 'Για να σου στέλνουμε μηνύματα υπηρεσίας, όπως επαναφορά κωδικού ή πρόσκληση.',
+                'Για να σε ενημερώσουμε όταν η εφαρμογή ή η πύλη γίνει διαθέσιμη για σένα και να απαντήσουμε σε αιτήματα που μας στέλνεις από τη φόρμα του ιστότοπου.',
                 'Για την ασφάλεια της πλατφόρμας: αποτροπή κατάχρησης και απάτης, διερεύνηση σφαλμάτων, τήρηση αρχείου διαχειριστικών ενεργειών.',
                 'Για να συμμορφωνόμαστε με υποχρεώσεις που επιβάλλει ο νόμος και να ανταποκρινόμαστε σε αρμόδιες αρχές.',
               ],
@@ -181,8 +183,9 @@ export const LEGAL = {
             {
               ul: [
                 'Εκτέλεση σύμβασης (άρθρο 6 παρ. 1 β): λογαριασμός, σύνδεση, αγαπημένα, μηνύματα υπηρεσίας.',
-                'Έννομο συμφέρον (άρθρο 6 παρ. 1 στ): ασφάλεια, αρχεία καταγραφής εξυπηρετητή, αρχείο διαχειριστικών ενεργειών, αποτροπή κατάχρησης. Το συμφέρον μας είναι η ασφαλής και αξιόπιστη λειτουργία της πλατφόρμας· τα δικαιώματά σου δεν επηρεάζονται δυσανάλογα, επειδή τα δεδομένα περιορίζονται στα απολύτως αναγκαία και διατηρούνται για περιορισμένο χρόνο.',
+                'Έννομο συμφέρον (άρθρο 6 παρ. 1 στ): ασφάλεια, αρχεία καταγραφής εξυπηρετητή, αρχείο διαχειριστικών ενεργειών, αποτροπή κατάχρησης, αντίγραφα ασφαλείας της βάσης δεδομένων, προστασία της φόρμας του ιστότοπου από spam (Turnstile και περιορισμός αιτημάτων ανά διεύθυνση IP). Το συμφέρον μας είναι η ασφαλής και αξιόπιστη λειτουργία της πλατφόρμας· τα δικαιώματά σου δεν επηρεάζονται δυσανάλογα, επειδή τα δεδομένα περιορίζονται στα απολύτως αναγκαία και διατηρούνται για περιορισμένο χρόνο.',
                 'Συγκατάθεση (άρθρο 6 παρ. 1 α): πρόσβαση στην τοποθεσία της συσκευής και, αν την ενεργοποιήσεις, αποθήκευση του διακριτικού ειδοποιήσεων push. Τις δίνεις μέσω των αδειών του λειτουργικού συστήματος και μπορείς να τις ανακαλέσεις οποτεδήποτε από τις ρυθμίσεις της συσκευής σου, χωρίς επίπτωση στη χρήση της εφαρμογής.',
+                'Συγκατάθεση (άρθρο 6 παρ. 1 α) και για τη φόρμα εκδήλωσης ενδιαφέροντος του ιστότοπου: τη δίνεις επιλέγοντας το σχετικό πεδίο πριν από την αποστολή και μπορείς να την ανακαλέσεις οποτεδήποτε στο {{PRIVACY_EMAIL}}.',
                 'Έννομη υποχρέωση (άρθρο 6 παρ. 1 γ): όταν ο νόμος ή αρμόδια αρχή το απαιτεί.',
               ],
             },
@@ -216,6 +219,39 @@ export const LEGAL = {
           ],
         },
         {
+          id: 'interest-form',
+          h: 'Φόρμα εκδήλωσης ενδιαφέροντος στον ιστότοπο',
+          body: [
+            'Στον ιστότοπο {{SITE_HOST}} μπορείς να μπεις στη λίστα αναμονής της εφαρμογής (οδηγοί) ή να ζητήσεις επικοινωνία για την πύλη διαχειριστών (επιχειρήσεις). Η φόρμα είναι προαιρετική και δεν δημιουργεί λογαριασμό.',
+            'Ποια δεδομένα συλλέγουμε:',
+            {
+              ul: [
+                'Οδηγοί: διεύθυνση email και, αν θέλεις, ονοματεπώνυμο, πόλη, λειτουργικό σύστημα του κινητού σου και σχόλια.',
+                'Επιχειρήσεις: διεύθυνση email, όνομα επιχείρησης και τηλέφωνο και, αν θέλεις, ονοματεπώνυμο, πόλη, διεύθυνση του χώρου, αριθμό θέσεων, πώς διαχειρίζεσαι σήμερα τον χώρο και σχόλια.',
+                'Σε κάθε περίπτωση: τη γλώσσα της σελίδας, την ημερομηνία και ώρα που έδωσες τη συγκατάθεσή σου και την έκδοση αυτής της Πολιτικής που ίσχυε τότε.',
+                'Τεχνικά δεδομένα: τη διεύθυνση IP σου και τεχνικά χαρακτηριστικά του περιηγητή σου, μόνο για την προστασία της φόρμας από κατάχρηση, όπως περιγράφεται παρακάτω.',
+              ],
+            },
+            'Τι γίνεται με τα δεδομένα σου, βήμα προς βήμα:',
+            {
+              ol: [
+                'Μόλις αρχίσεις να συμπληρώνεις κάποιο πεδίο, ο περιηγητής σου φορτώνει το Cloudflare Turnstile από το challenges.cloudflare.com. Το Turnstile επεξεργάζεται τη διεύθυνση IP και τεχνικά χαρακτηριστικά του περιηγητή σου για να ξεχωρίσει έναν άνθρωπο από ένα αυτοματοποιημένο πρόγραμμα. Δεν έχουμε ενεργοποιήσει τη λειτουργία του που ορίζει cookie. Πριν αγγίξεις τη φόρμα, το Turnstile δεν φορτώνεται.',
+                'Όταν πατήσεις αποστολή, τα στοιχεία στέλνονται κρυπτογραφημένα (HTTPS) μέσω του δικτύου της Cloudflare στον εξυπηρετητή μας στη Γερμανία. Η Cloudflare και ο εξυπηρετητής μας περιορίζουν τον αριθμό αιτημάτων ανά διεύθυνση IP, για να αποτρέψουν μαζικές αποστολές.',
+                'Ο εξυπηρετητής μας ελέγχει ότι τα στοιχεία είναι έγκυρα και επιβεβαιώνει τον έλεγχο του Turnstile, στέλνοντας στην Cloudflare το διακριτικό του ελέγχου και τη διεύθυνση IP σου. Αν ο έλεγχος ή τα στοιχεία δεν είναι έγκυρα, η αποστολή απορρίπτεται και τίποτα δεν αποθηκεύεται.',
+                'Τα στοιχεία αποθηκεύονται στη βάση δεδομένων μας. Την επεξεργασία κάνει λογισμικό αυτοματοποίησης (n8n) που λειτουργεί στον δικό μας εξυπηρετητή, όχι υπηρεσία τρίτου. Αν στείλεις ξανά τη φόρμα με το ίδιο email, προστίθεται νέο αίτημα και συμπληρώνονται μόνο στοιχεία που έλειπαν· στοιχεία που έχουμε ήδη δεν αντικαθίστανται.',
+                'Σου στέλνουμε email επιβεβαίωσης μέσω της Resend, από την περιοχή δεδομένων της στην Ιρλανδία (ΕΕ). Το email αυτό δεν επαναλαμβάνει όσα έγραψες στη φόρμα.',
+                'Για αιτήματα επιχειρήσεων, στέλνουμε επίσης μέσω της Resend ειδοποίηση με όλα τα στοιχεία της φόρμας στη γραμματοθυρίδα μας (Gmail), για να σου απαντήσουμε.',
+                'Επικοινωνούμε μαζί σου μόνο για ό,τι ζήτησες: τους οδηγούς, με email όταν η εφαρμογή γίνει διαθέσιμη στην πόλη τους· τις επιχειρήσεις, με email ή τηλέφωνο για το αίτημά τους.',
+              ],
+            },
+            'Όπως σε κάθε αίτημα προς τους εξυπηρετητές μας, τα τεχνικά αρχεία καταγράφουν τη διεύθυνση IP, την ώρα και τη διαδρομή του αιτήματος, όχι τα στοιχεία της φόρμας. Αν η επεξεργασία μιας αποστολής αποτύχει για τεχνικό λόγο, τα στοιχεία της κρατούνται στο αρχείο σφαλμάτων του λογισμικού αυτοματοποίησης για να διορθωθεί το πρόβλημα· οι επιτυχημένες αποστολές δεν καταγράφονται εκεί. Για πόσο κρατάμε το καθένα, δες την ενότητα «Πόσο διατηρούμε τα δεδομένα».',
+            'Πρόσβαση στα στοιχεία έχει μόνο ο υπεύθυνος επεξεργασίας. Δεν τα πουλάμε, δεν τα χρησιμοποιούμε για διαφήμιση ή δημιουργία προφίλ, δεν τα συνδέουμε με λογαριασμό της εφαρμογής και δεν τα μοιραζόμαστε με κανέναν πέρα από τους παρόχους που αναφέρονται εδώ.',
+            'Νομικές βάσεις: για τη συλλογή και χρήση των στοιχείων της φόρμας, η συγκατάθεσή σου (άρθρο 6 παρ. 1 α ΓΚΠΔ), που δίνεις επιλέγοντας το σχετικό πεδίο πριν από την αποστολή· για την προστασία της φόρμας από κατάχρηση (Turnstile, περιορισμός αιτημάτων, τεχνικά αρχεία), το έννομο συμφέρον μας στην ασφαλή λειτουργία του ιστότοπου (άρθρο 6 παρ. 1 στ).',
+            'Μπορείς να ανακαλέσεις τη συγκατάθεσή σου ή να ζητήσεις πρόσβαση, διόρθωση ή διαγραφή οποτεδήποτε στο {{PRIVACY_EMAIL}}. Όταν διαγράφουμε τα στοιχεία σου, τα αφαιρούμε από τη βάση δεδομένων μας και διαγράφουμε και τις σχετικές ειδοποιήσεις από τη γραμματοθυρίδα μας.',
+            'Αν ο έλεγχος ασφαλείας δεν ολοκληρώνεται για σένα, μπορείς να μας γράψεις απευθείας στο {{CONTACT_EMAIL}} αντί για τη φόρμα.',
+          ],
+        },
+        {
           id: 'cookies-and-storage',
           h: 'Cookies και τοπική αποθήκευση',
           body: [
@@ -245,7 +281,7 @@ export const LEGAL = {
               },
             },
             'Στην πύλη χρησιμοποιούνται οι χάρτες και η αυτόματη συμπλήρωση διευθύνσεων της Google· όταν τα χρησιμοποιείς, ο περιηγητής σου επικοινωνεί με την Google.',
-            'Δημόσιος ιστότοπος: δεν ορίζει cookies και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου. Φορτώνει μόνο το script ανώνυμων στατιστικών του Umami Cloud (cloud.umami.is), που δεν χρησιμοποιεί cookies ούτε αποθηκεύει πλήρη διεύθυνση IP· οι γραμματοσειρές φιλοξενούνται τοπικά.',
+            'Δημόσιος ιστότοπος: ο ίδιος δεν ορίζει cookies και αποθηκεύει μόνο την προτίμηση θέματος (spark-theme) στον περιηγητή σου. Φορτώνει το script ανώνυμων στατιστικών του Umami Cloud (cloud.umami.is), που δεν χρησιμοποιεί cookies ούτε αποθηκεύει πλήρη διεύθυνση IP, και, μόνο όταν αρχίσεις να συμπληρώνεις τη φόρμα εκδήλωσης ενδιαφέροντος, το Cloudflare Turnstile (challenges.cloudflare.com) για προστασία από spam· οι γραμματοσειρές φιλοξενούνται τοπικά.',
           ],
         },
         {
@@ -259,7 +295,7 @@ export const LEGAL = {
                 rows: [
                   [
                     'Hetzner (φιλοξενία, Γερμανία)',
-                    'Φιλοξενία των εξυπηρετητών και της βάσης δεδομένων σε κέντρο δεδομένων στη Γερμανία (ΕΕ)',
+                    'Φιλοξενία των εξυπηρετητών, της βάσης δεδομένων και των αντιγράφων ασφαλείας της σε κέντρα δεδομένων εντός ΕΕ (Γερμανία)',
                     'Όλα τα δεδομένα που αναφέρονται παραπάνω, αποθηκευμένα στους εξυπηρετητές μας',
                   ],
                   [
@@ -274,19 +310,19 @@ export const LEGAL = {
                     'Στοιχεία προφίλ κατά τη σύνδεση',
                   ],
                   [
-                    'Resend (αποστολή email)',
-                    'Αποστολή μηνυμάτων υπηρεσίας (επαναφορά κωδικού, προσκλήσεις)',
+                    'Resend (αποστολή email, περιοχή δεδομένων Ιρλανδία, ΕΕ)',
+                    'Αποστολή μηνυμάτων υπηρεσίας (επαναφορά κωδικού, προσκλήσεις) και των email επιβεβαίωσης της φόρμας του ιστότοπου',
                     'Διεύθυνση email και περιεχόμενο του μηνύματος',
                   ],
                   [
                     'Papaki και Google (Gmail)',
-                    'Φιλοξενία των γραμματοθυρίδων μας (π.χ. privacy, sales, support) και διαχείριση της αλληλογραφίας μέσω Gmail',
-                    'Τα μηνύματα που μας στέλνεις και τα στοιχεία τους (διεύθυνση email, περιεχόμενο)',
+                    'Φιλοξενία των γραμματοθυρίδων μας (π.χ. privacy, sales, support), διαχείριση της αλληλογραφίας μέσω Gmail και λήψη των ειδοποιήσεων για αιτήματα επιχειρήσεων από τη φόρμα του ιστότοπου',
+                    'Τα μηνύματα που μας στέλνεις και τα στοιχεία τους (διεύθυνση email, περιεχόμενο)· τα στοιχεία των αιτημάτων επιχειρήσεων',
                   ],
                   [
                     'Cloudflare',
-                    'Διαχείριση DNS του domain και προστασία και διανομή της κίνησης προς τον ιστότοπο {{SITE_HOST}}',
-                    'Διεύθυνση IP και στοιχεία των αιτημάτων που περνούν από το δίκτυό τους',
+                    'Διαχείριση DNS του domain, προστασία και διανομή της κίνησης προς τον ιστότοπο {{SITE_HOST}} και τη φόρμα του, και προστασία της φόρμας από spam (Turnstile)',
+                    'Διεύθυνση IP και στοιχεία των αιτημάτων που περνούν από το δίκτυό τους· στο Turnstile, τεχνικά χαρακτηριστικά του περιηγητή',
                   ],
                 ],
               },
@@ -333,6 +369,26 @@ export const LEGAL = {
                     'Αρχείο διαχειριστικών ενεργειών (ποιος, τι, πότε, IP)',
                     '{{AUDIT_MONTHS}} μήνες, για λόγους ασφάλειας και λογοδοσίας. Δεν περιέχει email.',
                   ],
+                  [
+                    'Στοιχεία της φόρμας εκδήλωσης ενδιαφέροντος',
+                    'Μέχρι να γίνει διαθέσιμη η εφαρμογή στην πόλη σου (οδηγοί) ή η πύλη για την επιχείρησή σου (επιχειρήσεις), και για 6 ακόμη μήνες· στη συνέχεια διαγράφονται. Τα διαγράφουμε νωρίτερα αν ανακαλέσεις τη συγκατάθεσή σου.',
+                  ],
+                  [
+                    'Στοιχεία μιας αποστολής της φόρμας που απέτυχε για τεχνικό λόγο (αρχείο σφαλμάτων του λογισμικού αυτοματοποίησης)',
+                    'Έως 7 ημέρες. Οι επιτυχημένες αποστολές δεν καταγράφονται εκεί.',
+                  ],
+                  [
+                    'Ειδοποιήσεις αιτημάτων επιχειρήσεων στη γραμματοθυρίδα μας',
+                    'Όσο και το αίτημα στη βάση δεδομένων· τις διαγράφουμε μαζί του.',
+                  ],
+                  [
+                    'Αντίγραφα των email που στέλνουμε, στη Resend',
+                    'Για περιορισμένο διάστημα σύμφωνα με τους όρους επεξεργασίας της Resend· στη συνέχεια διαγράφονται αυτόματα.',
+                  ],
+                  [
+                    'Αντίγραφα ασφαλείας της βάσης δεδομένων (όλα τα δεδομένα που αναφέρονται παραπάνω)',
+                    'Έως 6 μήνες, σε εξυπηρετητές εντός ΕΕ, μόνο για την αποκατάσταση μετά από βλάβη. Δεδομένα που διαγράφουμε παραμένουν στα αντίγραφα μόνο μέχρι να λήξουν και δεν επαναφέρονται.',
+                  ],
                 ],
               },
             },
@@ -370,6 +426,8 @@ export const LEGAL = {
                 'Στην εφαρμογή, τα διακριτικά σύνδεσης φυλάσσονται στον ασφαλή χώρο αποθήκευσης του λειτουργικού συστήματος.',
                 'Έλεγχος και επικύρωση των δεδομένων εισόδου, έλεγχος δικαιωμάτων ανά ρόλο και περιορισμός ρυθμού αιτημάτων σε κρίσιμα σημεία (όπως η σύνδεση).',
                 'Οι διαχειριστικές ενέργειες στην πύλη καταγράφονται.',
+                'Τα στοιχεία της φόρμας του ιστότοπου αποθηκεύονται με λογαριασμό βάσης δεδομένων που έχει πρόσβαση μόνο στους πίνακες της φόρμας. Το λογισμικό αυτοματοποίησης που τα επεξεργάζεται δεν είναι προσβάσιμο από το διαδίκτυο, πέρα από το σημείο όπου υποβάλλεται η φόρμα.',
+                'Η φόρμα προστατεύεται από αυτοματοποιημένη κατάχρηση με το Cloudflare Turnstile και με περιορισμό αιτημάτων ανά διεύθυνση IP.',
               ],
             },
             'Σε περίπτωση παραβίασης δεδομένων που εγκυμονεί κίνδυνο για τα δικαιώματά σου, θα ενημερώσουμε την Αρχή και, όπου απαιτείται, εσένα, όπως προβλέπουν τα άρθρα 33 και 34 του ΓΚΠΔ.',
@@ -660,7 +718,7 @@ export const LEGAL = {
       title: 'Privacy Policy',
       description:
         'How sPark collects, uses and protects your personal data when you use the app and the operator portal.',
-      updated: '2026-11-07',
+      updated: '2026-11-26',
       intro: [
         'This Policy explains which personal data sPark processes, why, on what legal basis, for how long, and what rights you have. It covers the mobile app (drivers), the operator web portal and the public website {{SITE_HOST}}.',
         'It applies to the features offered today. If we add features that change the data we collect (for example bookings or payments), we will update this Policy first and let you know.',
@@ -683,7 +741,7 @@ export const LEGAL = {
               ul: [
                 'A mobile app (iOS and Android) for drivers: map, search and comparison of parking facilities, saved favourites, account.',
                 'A web portal for parking operators and platform staff. Access is by invitation only.',
-                'The public website {{SITE_HOST}} with information and these legal texts.',
+                'The public website {{SITE_HOST}} with information, these legal texts and an interest form for drivers and businesses.',
               ],
             },
             'Driver accounts and operator accounts are separate systems: a driver session can never act as an operator, and the reverse.',
@@ -767,6 +825,7 @@ export const LEGAL = {
               },
             },
             'On the public website we use Umami Cloud for anonymous traffic statistics (for example page views, country and device type). We use no advertising or third-party crash-reporting tools, and no usage analytics in the app or the portal.',
+            'If you fill in the interest form on the website, its data and everything we do with it are described in “The interest form on the website”.',
           ],
         },
         {
@@ -778,6 +837,7 @@ export const LEGAL = {
                 'To create and maintain your account and sign you in securely.',
                 'To show you parking facilities, prices and availability near you, and to store your favourites.',
                 'To send you service messages, such as a password reset or an invitation.',
+                'To let you know when the app or the portal becomes available to you, and to answer requests you send us through the website form.',
                 'To keep the platform secure: prevent abuse and fraud, investigate errors, keep a log of administrative actions.',
                 'To comply with legal obligations and respond to competent authorities.',
               ],
@@ -793,8 +853,9 @@ export const LEGAL = {
             {
               ul: [
                 'Performance of a contract (Art. 6(1)(b)): account, sign-in, favourites, service messages.',
-                'Legitimate interests (Art. 6(1)(f)): security, server logs, the log of administrative actions, abuse prevention. Our interest is the secure and reliable operation of the platform; your rights are not disproportionately affected because the data is limited to what is necessary and kept for a limited time.',
+                'Legitimate interests (Art. 6(1)(f)): security, server logs, the log of administrative actions, abuse prevention, database backups, protecting the website form from spam (Turnstile and request limits per IP address). Our interest is the secure and reliable operation of the platform; your rights are not disproportionately affected because the data is limited to what is necessary and kept for a limited time.',
                 'Consent (Art. 6(1)(a)): access to your device location and, if you enable it, storing your push notification token. You give it through your operating system’s permissions and can withdraw it at any time in your device settings, without affecting your use of the app.',
+                'Consent (Art. 6(1)(a)) also for the website interest form: you give it by ticking the box before you submit, and you can withdraw it at any time at {{PRIVACY_EMAIL}}.',
                 'Legal obligation (Art. 6(1)(c)): where the law or a competent authority requires it.',
               ],
             },
@@ -828,6 +889,39 @@ export const LEGAL = {
           ],
         },
         {
+          id: 'interest-form',
+          h: 'The interest form on the website',
+          body: [
+            'On the website {{SITE_HOST}} you can join the waitlist for the app (drivers) or ask us to contact you about the operator portal (businesses). The form is optional and does not create an account.',
+            'What we collect:',
+            {
+              ul: [
+                'Drivers: your email address and, if you choose, your name, city, phone operating system and comments.',
+                'Businesses: your email address, business name and phone number and, if you choose, your name, city, the address of the facility, the number of spaces, how you manage the facility today and comments.',
+                'In both cases: the language of the page, the date and time you gave your consent, and the version of this Policy in force at the time.',
+                'Technical data: your IP address and technical characteristics of your browser, used only to protect the form from abuse, as described below.',
+              ],
+            },
+            'What happens to your data, step by step:',
+            {
+              ol: [
+                'As soon as you start filling in a field, your browser loads Cloudflare Turnstile from challenges.cloudflare.com. Turnstile processes your IP address and technical characteristics of your browser to tell a person from an automated program. We have not enabled its option that sets a cookie. Before you touch the form, Turnstile is not loaded.',
+                'When you press send, your details travel encrypted (HTTPS) through Cloudflare’s network to our server in Germany. Cloudflare and our server limit the number of requests per IP address to prevent mass submissions.',
+                'Our server checks that the details are valid and confirms the Turnstile check by sending Cloudflare the check’s token and your IP address. If the check or the details are not valid, the submission is rejected and nothing is stored.',
+                'Your details are stored in our database. They are processed by workflow-automation software (n8n) running on our own server, not by a third-party service. If you send the form again with the same email, a new request is added and only details that were missing are filled in; details we already hold are not overwritten.',
+                'We send you a confirmation email through Resend, from its data region in Ireland (EU). That email does not repeat what you wrote in the form.',
+                'For business requests, we also send a notification with all the form details to our mailbox (Gmail) through Resend, so that we can reply to you.',
+                'We contact you only about what you asked for: drivers by email when the app becomes available in their city; businesses by email or phone about their request.',
+              ],
+            },
+            'As with every request to our servers, the technical logs record the IP address, the time and the request path, not the form details. If processing a submission fails for a technical reason, its details are kept in the automation software’s error log so the problem can be fixed; successful submissions are not logged there. For how long each is kept, see “How long we keep data”.',
+            'Only the data controller has access to these details. We do not sell them, use them for advertising or profiling, link them to an app account, or share them with anyone beyond the providers named here.',
+            'Legal bases: for collecting and using the form details, your consent (Art. 6(1)(a) GDPR), which you give by ticking the box before you submit; for protecting the form from abuse (Turnstile, request limits, technical logs), our legitimate interest in running the website securely (Art. 6(1)(f)).',
+            'You can withdraw your consent, or ask for access, correction or deletion, at any time at {{PRIVACY_EMAIL}}. When we delete your details, we remove them from our database and also delete the related notifications from our mailbox.',
+            'If the security check does not complete for you, you can email us directly at {{CONTACT_EMAIL}} instead of using the form.',
+          ],
+        },
+        {
           id: 'cookies-and-storage',
           h: 'Cookies and local storage',
           body: [
@@ -857,7 +951,7 @@ export const LEGAL = {
               },
             },
             'The portal uses Google Maps and Google address autocomplete; when you use them, your browser contacts Google.',
-            'Public website: it sets no cookies and stores only your theme preference (spark-theme) in your browser. It loads only the anonymous analytics script of Umami Cloud (cloud.umami.is), which uses no cookies and does not store your full IP address; fonts are self-hosted.',
+            'Public website: it sets no cookies of its own and stores only your theme preference (spark-theme) in your browser. It loads the anonymous analytics script of Umami Cloud (cloud.umami.is), which uses no cookies and does not store your full IP address, and, only once you start filling in the interest form, Cloudflare Turnstile (challenges.cloudflare.com) for spam protection; fonts are self-hosted.',
           ],
         },
         {
@@ -871,7 +965,7 @@ export const LEGAL = {
                 rows: [
                   [
                     'Hetzner (hosting, Germany)',
-                    'Hosting of our servers and database in a data centre in Germany (EU)',
+                    'Hosting of our servers, the database and its backups in data centres in the EU (Germany)',
                     'All the data described above, stored on our servers',
                   ],
                   [
@@ -882,19 +976,19 @@ export const LEGAL = {
                   ['Apple', 'Sign in with Apple', 'Identity data at sign-in'],
                   ['Meta (Facebook)', 'Sign-in with Facebook (iOS)', 'Profile data at sign-in'],
                   [
-                    'Resend (email delivery)',
-                    'Sending service messages (password reset, invitations)',
+                    'Resend (email delivery, data region Ireland, EU)',
+                    'Sending service messages (password reset, invitations) and the confirmation emails of the website form',
                     'Email address and the content of the message',
                   ],
                   [
                     'Papaki and Google (Gmail)',
-                    'Hosting of our mailboxes (for example privacy, sales, support) and handling correspondence through Gmail',
-                    'The messages you send us and their details (email address, content)',
+                    'Hosting of our mailboxes (for example privacy, sales, support), handling correspondence through Gmail, and receiving notifications of business requests from the website form',
+                    'The messages you send us and their details (email address, content); the details of business requests',
                   ],
                   [
                     'Cloudflare',
-                    'DNS management of the domain and protection and delivery of traffic to the website {{SITE_HOST}}',
-                    'IP address and details of the requests that pass through their network',
+                    'DNS management of the domain, protection and delivery of traffic to the website {{SITE_HOST}} and its form, and spam protection of the form (Turnstile)',
+                    'IP address and details of the requests that pass through their network; for Turnstile, technical characteristics of the browser',
                   ],
                 ],
               },
@@ -941,6 +1035,26 @@ export const LEGAL = {
                     'Log of administrative actions (who, what, when, IP)',
                     '{{AUDIT_MONTHS}} months, for security and accountability. It does not contain email addresses.',
                   ],
+                  [
+                    'Interest form details',
+                    'Until the app is available in your city (drivers) or the portal is available for your business (businesses), plus another 6 months; then they are deleted. We delete them sooner if you withdraw your consent.',
+                  ],
+                  [
+                    'Details of a form submission that failed for a technical reason (the automation software’s error log)',
+                    'Up to 7 days. Successful submissions are not logged there.',
+                  ],
+                  [
+                    'Notifications of business requests in our mailbox',
+                    'As long as the request is in our database; we delete them together.',
+                  ],
+                  [
+                    'Copies of the emails we send, at Resend',
+                    'For a limited period under Resend’s data processing terms, after which they are deleted automatically.',
+                  ],
+                  [
+                    'Database backups (all the data described above)',
+                    'Up to 6 months, on servers in the EU, only to restore service after a failure. Data we delete remains in backups only until they expire, and is never restored.',
+                  ],
                 ],
               },
             },
@@ -978,6 +1092,8 @@ export const LEGAL = {
                 'In the app, sign-in tokens are kept in the operating system’s secure storage.',
                 'Input validation, role-based permission checks, and rate limiting on sensitive endpoints such as sign-in.',
                 'Administrative actions in the portal are logged.',
+                'Website form details are stored through a database account that can reach only the form’s tables. The automation software that processes them is not reachable from the internet, apart from the address the form submits to.',
+                'The form is protected from automated abuse by Cloudflare Turnstile and by request limits per IP address.',
               ],
             },
             'If a data breach is likely to put your rights at risk, we will notify the Authority and, where required, you, as Articles 33 and 34 GDPR provide.',

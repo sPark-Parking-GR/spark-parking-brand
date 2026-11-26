@@ -4,10 +4,6 @@
   var DATA = window.__SPARK__ || {}
   var COPY = DATA.audiences
 
-  function mailto(subject) {
-    return 'mailto:' + DATA.email + '?subject=' + encodeURIComponent(subject)
-  }
-
   var CHECK =
     '<svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="8.5" fill="var(--blue)"/><path d="M4.8 8.7l2.3 2.3 5-5.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   var FEAT_ICON =
@@ -24,7 +20,11 @@
     return node
   }
 
-  if (COPY) initAudience()
+  var audienceListeners = []
+  var setAudience = function () {}
+
+  if (COPY) setAudience = initAudience()
+  if (DATA.interest && $('interestForm')) initInterest(DATA.interest)
 
   function initAudience() {
     var audience = 'drivers'
@@ -90,28 +90,27 @@
       $('ctaBtn').textContent = sel.cta1
       $('navCta').textContent = sel.cta1
 
-      var primary = mailto(sel.mailSubject)
-      $('heroCta1').href = primary
-      $('ctaBtn').href = primary
-      $('navCta').href = primary
+      audienceListeners.forEach(function (fn) {
+        fn(audience)
+      })
     }
 
-    function setAudience(a) {
+    function set(a) {
       if (!COPY[a] || a === audience) return
       audience = a
       renderAudience()
     }
 
     $('togDrivers').addEventListener('click', function () {
-      setAudience('drivers')
+      set('drivers')
     })
     $('togBusiness').addEventListener('click', function () {
-      setAudience('business')
+      set('business')
     })
 
     document.querySelectorAll('[data-nav]').forEach(function (link) {
       link.addEventListener('click', function () {
-        setAudience(link.getAttribute('data-nav'))
+        set(link.getAttribute('data-nav'))
       })
     })
 
@@ -120,6 +119,232 @@
     })
 
     renderAudience()
+    return set
+  }
+
+  function initInterest(cfg) {
+    var copy = cfg.copy
+    var form = $('interestForm')
+    var submit = $('interestSubmit')
+    var status = $('interestStatus')
+    var modeButtons = form.querySelectorAll('.if-mode button')
+    var FIELDS = [
+      'email',
+      'full_name',
+      'city',
+      'os',
+      'business_name',
+      'phone',
+      'address',
+      'spaces',
+      'current_setup',
+      'notes',
+    ]
+
+    var mode = 'drivers'
+    var token = null
+    var widgetId = null
+    var widgetStale = false
+    var scriptState = 'idle'
+    var pending = null
+    var pendingTimer = null
+    var busy = false
+
+    function setStatus(text, kind) {
+      status.textContent = text
+      status.className = 'if-status' + (kind ? ' is-' + kind : '')
+    }
+
+    function setMode(m) {
+      mode = m
+      var sel = copy[m]
+      $('interestTitle').textContent = sel.title
+      $('interestSub').textContent = sel.sub
+      submit.textContent = sel.submit
+      modeButtons.forEach(function (b) {
+        var on = b.getAttribute('data-mode') === m
+        b.classList.toggle('active', on)
+        b.setAttribute('aria-checked', String(on))
+      })
+      form.querySelectorAll('.if-field[data-mode]').forEach(function (field) {
+        var on = field.getAttribute('data-mode') === m
+        field.hidden = !on
+        field.querySelectorAll('input, select, textarea').forEach(function (control) {
+          control.disabled = !on
+        })
+      })
+      if (!busy) setStatus('', '')
+    }
+
+    function onToken(value) {
+      token = value
+      widgetStale = false
+      if (pending) {
+        var run = pending
+        pending = null
+        clearTimeout(pendingTimer)
+        run()
+      }
+    }
+
+    function failVerification() {
+      token = null
+      widgetStale = true
+      if (pending) {
+        pending = null
+        clearTimeout(pendingTimer)
+        finish()
+        setStatus(copy.errors.verify, 'error')
+      }
+    }
+
+    window.sparkTurnstileReady = function () {
+      scriptState = 'ready'
+      widgetId = window.turnstile.render('#interestTurnstile', {
+        sitekey: cfg.siteKey,
+        action: 'interest',
+        language: DATA.locale,
+        theme: effectiveTheme(),
+        appearance: 'interaction-only',
+        callback: onToken,
+        'expired-callback': function () {
+          token = null
+          widgetStale = true
+        },
+        'timeout-callback': failVerification,
+        'error-callback': failVerification,
+      })
+    }
+
+    function loadTurnstile() {
+      if (scriptState !== 'idle') return
+      scriptState = 'loading'
+      var script = document.createElement('script')
+      script.src = cfg.script + '&onload=sparkTurnstileReady'
+      script.async = true
+      script.onerror = function () {
+        scriptState = 'idle'
+        if (pending) {
+          pending = null
+          clearTimeout(pendingTimer)
+          finish()
+          setStatus(copy.errors.network, 'error')
+        }
+      }
+      document.head.appendChild(script)
+    }
+
+    function resetWidget() {
+      token = null
+      widgetStale = false
+      if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId)
+    }
+
+    function finish() {
+      busy = false
+      submit.disabled = false
+    }
+
+    function collect() {
+      var payload = {
+        lead_type: mode === 'business' ? 'portal_business' : 'mobile_user',
+        consent: true,
+        locale: DATA.locale,
+        privacy_version: cfg.privacyVersion,
+      }
+      FIELDS.forEach(function (name) {
+        var control = form.elements.namedItem(name)
+        if (!control || control.disabled) return
+        var value = control.value.trim()
+        if (value === '') return
+        if (name === 'spaces') payload[name] = Number(value)
+        else if (name === 'email') payload[name] = value.toLowerCase()
+        else payload[name] = value
+      })
+      return payload
+    }
+
+    function failure(code) {
+      if (code === 400) return copy.errors.invalid
+      if (code === 403) return copy.errors.verify
+      if (code === 429) return copy.errors.rate
+      if (code === 0) return copy.errors.network
+      return copy.errors.server + ' ' + DATA.email + '.'
+    }
+
+    function send() {
+      setStatus(copy.sending, '')
+      var payload = collect()
+      payload.turnstile_token = token
+      token = null
+      var controller = window.AbortController ? new AbortController() : null
+      var timer = controller
+        ? setTimeout(function () {
+            controller.abort()
+          }, 45000)
+        : null
+
+      fetch(cfg.endpoint, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined,
+      })
+        .then(function (response) {
+          clearTimeout(timer)
+          finish()
+          resetWidget()
+          if (response.ok) {
+            form.reset()
+            setMode(mode)
+            setStatus(copy[mode].success, 'ok')
+          } else {
+            setStatus(failure(response.status), 'error')
+          }
+        })
+        .catch(function () {
+          clearTimeout(timer)
+          finish()
+          resetWidget()
+          setStatus(failure(0), 'error')
+        })
+    }
+
+    form.addEventListener('focusin', function (event) {
+      if (/^(INPUT|SELECT|TEXTAREA)$/.test(event.target.tagName)) loadTurnstile()
+    })
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      if (busy) return
+      setStatus('', '')
+      if (!form.checkValidity()) {
+        form.reportValidity()
+        return
+      }
+      busy = true
+      submit.disabled = true
+      if (token) {
+        send()
+        return
+      }
+      setStatus(copy.checking, '')
+      pending = send
+      pendingTimer = setTimeout(failVerification, 30000)
+      if (widgetStale) resetWidget()
+      loadTurnstile()
+    })
+
+    modeButtons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        setAudience(b.getAttribute('data-mode'))
+      })
+    })
+
+    audienceListeners.push(setMode)
+    submit.disabled = false
   }
 
   var SUN =
