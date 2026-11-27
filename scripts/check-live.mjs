@@ -1,8 +1,9 @@
 import { SITE, LOCALE_CODES, LOCALES } from '../src/content.mjs'
 import { LEGAL_KINDS, legalPath } from '../src/legal.mjs'
 
+// Cloudflare Web Analytics (static.cloudflareinsights.com) is allowed: the privacy policy
+// discloses it. Anything else Cloudflare injects is not.
 const FORBIDDEN = [
-  ['cloudflareinsights.com', 'Cloudflare Web Analytics beacon'],
   ['cdn-cgi/challenge-platform', 'Cloudflare JavaScript Detections'],
   ['cdn-cgi/l/email-protection', 'Cloudflare email address obfuscation'],
   ['cdn-cgi/scripts', 'Cloudflare injected script'],

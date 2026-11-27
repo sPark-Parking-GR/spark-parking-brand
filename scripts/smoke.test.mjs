@@ -2,7 +2,14 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile, access } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import { SITE, CONTACT_EMAIL, LOCALES, LOCALE_CODES, DEFAULT_LOCALE } from '../src/content.mjs'
+import {
+  SITE,
+  CONTACT_EMAIL,
+  LOCALES,
+  LOCALE_CODES,
+  DEFAULT_LOCALE,
+  INTEREST,
+} from '../src/content.mjs'
 import { LEGAL, LEGAL_KINDS, LEGAL_VERSIONS, legalPath } from '../src/legal.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
@@ -172,23 +179,110 @@ test('every contact path uses the one company address', () => {
   })
 })
 
-test('pages collect no personal information', () => {
+const INTEREST_FIELDS = [
+  'email',
+  'business_name',
+  'full_name',
+  'phone',
+  'city',
+  'os',
+  'address',
+  'spaces',
+  'current_setup',
+  'notes',
+  'consent',
+]
+
+test('the only personal data the home page collects is the interest form', () => {
   forEachLocale((code, html) => {
-    assert.doesNotMatch(html, /<form\b/i, `${code}: form present`)
-    assert.doesNotMatch(html, /<input\b/i, `${code}: input present`)
-    assert.doesNotMatch(html, /<textarea\b/i, `${code}: textarea present`)
+    assert.equal((html.match(/<form\b/gi) ?? []).length, 1, `${code}: exactly one form`)
+    assert.match(html, /<form class="interest-form" id="interestForm" method="post" novalidate>/)
+    assert.doesNotMatch(
+      html,
+      /<(?:form|button|input)[^>]*\b(?:form)?action=/i,
+      `${code}: the form must not post anywhere itself`,
+    )
+    const names = [...html.matchAll(/<(?:input|select|textarea)\b[^>]*\bname="([^"]+)"/gi)].map(
+      (m) => m[1],
+    )
+    assert.deepEqual(names, INTEREST_FIELDS, `${code}: unexpected form fields`)
+    assert.doesNotMatch(html, /type="(?:password|file|hidden)"/i, `${code}: unexpected input type`)
     assert.deepEqual(externalScriptSrcs(html), [UMAMI_SRC], `${code}: third-party script`)
   })
 })
 
-test('client code transmits nothing and stores only the theme', () => {
-  for (const api of ['fetch(', 'XMLHttpRequest', 'navigator.sendBeacon', 'WebSocket']) {
-    assert.ok(!js.includes(api), `${api} in main.js — this page must not transmit data`)
+test('the form needs JavaScript and explicit consent before it can send anything', () => {
+  forEachLocale((code, html, locale) => {
+    assert.match(
+      html,
+      /<button type="submit"[^>]*id="interestSubmit" disabled>/,
+      `${code}: submit must start disabled so a no-JS submit cannot leak fields into a URL`,
+    )
+    assert.match(
+      html,
+      /<input type="checkbox" id="if-consent" name="consent" required>/,
+      `${code}: consent box missing or optional`,
+    )
+    assert.ok(
+      html.includes(`<a href="${legalPath(locale, 'privacy')}" target="_blank" rel="noopener">`),
+      `${code}: consent must link to this locale's privacy policy`,
+    )
+    assert.match(html, /<noscript><p class="if-noscript">/, `${code}: no-JS fallback missing`)
+  })
+})
+
+test('the form posts only to the configured endpoint, and Turnstile loads only on demand', () => {
+  assert.equal(new URL(INTEREST.endpoint).origin, 'https://n8n.sparkparking.gr')
+  assert.equal(new URL(INTEREST.turnstileScript).origin, 'https://challenges.cloudflare.com')
+  forEachLocale((code, html) => {
+    const runtime = JSON.parse(html.match(/window\.__SPARK__ = (\{.*?\});<\/script>/s)[1])
+    assert.equal(runtime.interest.endpoint, INTEREST.endpoint, `${code}: endpoint`)
+    assert.equal(runtime.interest.siteKey, INTEREST.turnstileSiteKey, `${code}: site key`)
+    assert.equal(runtime.interest.privacyVersion, LEGAL_VERSIONS.privacy, `${code}: version`)
+    assert.doesNotMatch(
+      html,
+      /<(?:script|iframe|link)\b[^>]*challenges\.cloudflare\.com/i,
+      `${code}: Turnstile must not load with the page`,
+    )
+  })
+  assert.doesNotMatch(js, /addEventListener\('pointerdown'/, 'Turnstile must wait for a field')
+  assert.match(
+    js,
+    /\(INPUT\|SELECT\|TEXTAREA\)[^\n]*loadTurnstile\(\)/,
+    'Turnstile loads when a form field gets focus',
+  )
+  assert.doesNotMatch(js, /https?:\/\//, 'main.js must not hard-code any URL')
+  assert.equal(js.split('fetch(').length - 1, 1, 'exactly one fetch() call')
+  assert.ok(js.includes('fetch(cfg.endpoint'), 'the one fetch() targets the configured endpoint')
+  assert.ok(js.includes("credentials: 'omit'"), 'the form request carries no cookies')
+})
+
+test('client code has no other way to transmit or store data', () => {
+  for (const api of ['XMLHttpRequest', 'navigator.sendBeacon', 'WebSocket', 'EventSource']) {
+    assert.ok(!js.includes(api), `${api} in main.js`)
   }
   const keys = [...js.matchAll(/localStorage\.\w+\('([^']+)'/g)].map((m) => m[1])
   assert.deepEqual([...new Set(keys)], ['spark-theme'])
   assert.ok(!js.includes('document.cookie'), 'no cookies')
   assert.ok(!js.includes('sessionStorage'), 'no sessionStorage')
+})
+
+test('every call to action leads to the interest form', () => {
+  forEachLocale((code, html) => {
+    for (const id of ['navCta', 'heroCta1', 'ctaBtn'])
+      assert.match(html, new RegExp(`id="${id}" href="#interest" data-cta>`), `${code}: ${id}`)
+    assert.match(html, /<section class="section section--alt" id="interest">/)
+  })
+})
+
+test('the privacy policy describes the interest form in every locale', () => {
+  for (const code of LOCALE_CODES) {
+    const section = LEGAL[code].privacy.sections.find((s) => s.id === 'interest-form')
+    assert.ok(section, `${code}: privacy policy has no interest-form section`)
+    const text = JSON.stringify(section.body)
+    assert.match(text, /Turnstile/, `${code}: Turnstile not disclosed`)
+    assert.match(text, /Resend/, `${code}: Resend not disclosed`)
+  }
 })
 
 test('the company address is shown as readable text', () => {
