@@ -65,7 +65,7 @@ export const LEGAL = {
             'Το sPark αποτελείται από τρεις επιφάνειες:',
             {
               ul: [
-                'Εφαρμογή για κινητά (iOS και Android) για οδηγούς: χάρτης, αναζήτηση και σύγκριση χώρων στάθμευσης, αποθήκευση αγαπημένων, λογαριασμός.',
+                'Εφαρμογή για κινητά (iOS και Android) για οδηγούς: χάρτης, αναζήτηση και σύγκριση χώρων στάθμευσης, αποθήκευση αγαπημένων, αναφορές για δωρεάν χώρους, πλοήγηση μέσα στην εφαρμογή, λογαριασμός.',
                 'Πύλη διαχειριστών (web) για διαχειριστές χώρων στάθμευσης και προσωπικό της πλατφόρμας. Η πρόσβαση γίνεται μόνο με πρόσκληση.',
                 'Δημόσιος ιστότοπος {{SITE_HOST}} με πληροφορίες, τα νομικά κείμενα και μια φόρμα εκδήλωσης ενδιαφέροντος για οδηγούς και επιχειρήσεις.',
               ],
@@ -119,6 +119,11 @@ export const LEGAL = {
                     'Εμφάνιση κοντινών χώρων και αποστάσεων',
                   ],
                   [
+                    'Αναφορές για δωρεάν χώρους (αν στείλεις): χώρος, αποτέλεσμα, ώρα, βαθμός αξιοπιστίας και στρογγυλοποιημένη απόσταση από τον χώρο, συνδεδεμένα με τον λογαριασμό σου. Ποτέ οι συντεταγμένες σου: δες την ενότητα «Αναφορές για δωρεάν χώρους»',
+                    'Εσύ και η συσκευή σου',
+                    'Εμφάνιση δραστηριότητας δωρεάν χώρων στους οδηγούς, περιορισμός κατάχρησης',
+                  ],
+                  [
                     'Τεχνικά δεδομένα εξυπηρετητή: διεύθυνση IP, ώρα και διαδρομή του αιτήματος (χωρίς τις παραμέτρους του)',
                     'Αυτόματα, σε κάθε αίτημα',
                     'Ασφάλεια, αντιμετώπιση σφαλμάτων, αποτροπή κατάχρησης',
@@ -166,6 +171,7 @@ export const LEGAL = {
               ul: [
                 'Για να δημιουργήσουμε και να διατηρήσουμε τον λογαριασμό σου και να σε συνδέουμε με ασφάλεια.',
                 'Για να σου δείχνουμε χώρους στάθμευσης, τιμές και διαθεσιμότητα κοντά σου και να αποθηκεύουμε τους αγαπημένους σου.',
+                'Για να δείχνουμε σε όλους πόσο πιεσμένοι είναι συνήθως οι δωρεάν δημόσιοι χώροι, από ανώνυμα συγκεντρωτικά στοιχεία των αναφορών των οδηγών, και για να σε καθοδηγούμε στη διαδρομή σου όταν χρησιμοποιείς την πλοήγηση μέσα στην εφαρμογή.',
                 'Για να σου στέλνουμε μηνύματα υπηρεσίας, όπως επαναφορά κωδικού ή πρόσκληση.',
                 'Για να σε ενημερώσουμε όταν η εφαρμογή ή η πύλη γίνει διαθέσιμη για σένα και να απαντήσουμε σε αιτήματα που μας στέλνεις από τη φόρμα του ιστότοπου.',
                 'Για την ασφάλεια της πλατφόρμας: αποτροπή κατάχρησης και απάτης, διερεύνηση σφαλμάτων, τήρηση αρχείου διαχειριστικών ενεργειών.',
@@ -205,10 +211,32 @@ export const LEGAL = {
           id: 'location',
           h: 'Τοποθεσία',
           body: [
-            'Η εφαρμογή ζητά άδεια για την τοποθεσία της συσκευής μόνο όταν η εφαρμογή είναι ανοιχτή (όχι στο παρασκήνιο). Δεν παρακολουθούμε τη θέση σου συνεχώς.',
+            'Η εφαρμογή ζητά άδεια για την τοποθεσία της συσκευής μόνο όταν τη χρησιμοποιείς και δεν ζητά άδεια τοποθεσίας στο παρασκήνιο (στην εφαρμογή Android η άδεια αυτή είναι αποκλεισμένη). Δεν παρακολουθούμε τη θέση σου συνεχώς. Εξαίρεση αποτελεί η πλοήγηση μέσα στην εφαρμογή, που περιγράφεται παρακάτω και χρησιμοποιεί τη θέση σου όσο μια διαδρομή είναι ενεργή.',
             'Χρησιμοποιείται για να κεντράρει τον χάρτη στη θέση σου, να σου δείξει πού βρίσκεσαι και να υπολογιστεί η απόσταση από κάθε χώρο στάθμευσης. Οι αποστάσεις υπολογίζονται στη συσκευή σου.',
             'Για να βρούμε κοντινούς χώρους, η εφαρμογή στέλνει στους εξυπηρετητές μας τις συντεταγμένες της περιοχής αναζήτησης. Στην πρώτη αναζήτηση αυτές είναι η θέση σου, και στη συνέχεια το κέντρο του χάρτη που βλέπεις. Πριν σταλούν, η ακρίβειά τους περιορίζεται σε περίπου 110 μέτρα. Το αίτημα δεν απαιτεί λογαριασμό, δεν συνδέεται με τον λογαριασμό σου και οι συντεταγμένες δεν αποθηκεύονται στη βάση δεδομένων μας ούτε καταγράφονται στα τεχνικά αρχεία του εξυπηρετητή, τα οποία κρατούν μόνο τη διαδρομή του αιτήματος, την ώρα και τη διεύθυνση IP για το διάστημα που αναφέρεται στην ενότητα «Πόσο διατηρούμε τα δεδομένα».',
             'Αν δεν δώσεις άδεια, η εφαρμογή λειτουργεί κανονικά με τον χάρτη κεντραρισμένο στην Αθήνα και μπορείς να αναζητήσεις χειροκίνητα. Μπορείς να αλλάξεις την άδεια οποτεδήποτε από τις ρυθμίσεις της συσκευής.',
+          ],
+        },
+        {
+          id: 'free-spot-checkins',
+          h: 'Αναφορές για δωρεάν χώρους (check-in)',
+          body: [
+            'Σε δωρεάν δημόσιους χώρους στάθμευσης η εφαρμογή σου επιτρέπει να αναφέρεις πώς πήγε: ότι παρκάρισες, ότι ο χώρος ήταν γεμάτος ή ότι τα παράτησες. Μια αναφορά στέλνεται μόνο όταν επιλέξεις απάντηση και απαιτεί συνδεδεμένο λογαριασμό με επαληθευμένο email. Μπορείς να στείλεις έως 10 αναφορές σε 24 ώρες.',
+            'Όταν στέλνεις αναφορά, η εφαρμογή στέλνει μία φορά τη θέση της συσκευής σου, μαζί με την ακρίβειά της, την ταχύτητά σου, το αν η συσκευή τη σημαίνει ως προσομοιωμένη και, αν είχες καθοδηγηθεί ή σταλεί σε αυτόν τον χώρο την τελευταία ώρα, την ώρα που ξεκίνησε αυτό. Ο εξυπηρετητής τα χρησιμοποιεί μόνο για να συγκρίνει τη θέση σου με τον χώρο και να κρίνει πόσο αξιόπιστη είναι η αναφορά, και στη συνέχεια τα απορρίπτει. Δεν αποθηκεύουμε τις συντεταγμένες σου, την ακρίβεια, την ταχύτητα ή την ώρα πλοήγησης, και δεν καταγράφονται στα τεχνικά αρχεία μας. Αν η θέση σου δεν είναι διαθέσιμη, μπορείς και πάλι να στείλεις αναφορά· τότε χαρακτηρίζεται ως αυτοδηλωμένη.',
+            'Για κάθε αναφορά αποθηκεύουμε: το αναγνωριστικό του λογαριασμού σου, τον χώρο, το αποτέλεσμα, την ώρα (και την ώρα που δήλωσες ότι έφυγες, αν υπάρχει), πόσο αξιόπιστη φαίνεται (επαληθευμένη, πιθανή, αυτοδηλωμένη ή απορριφθείσα), την απόσταση σε μέτρα ανάμεσα στη θέση σου και τον χώρο, στρογγυλοποιημένη, και αν η εφαρμογή σου το πρότεινε ή το ξεκίνησες εσύ. Όπως λέει και η εφαρμογή, αποθηκεύεται μόνο η απόσταση, ποτέ η τοποθεσία σου. Σημείωση: μια απόσταση από έναν γνωστό χώρο δείχνει ότι εκείνη την ώρα βρισκόσουν μέσα σε αυτή την απόσταση από αυτόν.',
+            'Οι αναφορές συνδέονται με τον λογαριασμό σου ώστε να εφαρμόζεται το όριο, να κλείνει η προηγούμενη αναφορά «παρκάρισα» όταν παρκάρεις ξανά, να βλέπεις τη δική σου ενεργή αναφορά και να διαγράφονται όταν διαγράψεις τον λογαριασμό σου. Δεν εμφανίζονται σε άλλους οδηγούς ούτε σε διαχειριστές χώρων.',
+            'Δραστηριότητα δωρεάν χώρων: κάθε βράδυ ξαναδημιουργούμε, από τις αξιόπιστες (επαληθευμένες ή πιθανές) αναφορές των τελευταίων 8 εβδομάδων, συγκεντρωτικά στοιχεία ανά χώρο: πόσο πιεσμένος είναι συνήθως ανά ώρα και ημέρα, πόσοι οδηγοί βρήκαν θέση τις τελευταίες 30 ημέρες και η τυπική διάρκεια παραμονής, καθώς και, σε πραγματικό χρόνο, το αποτέλεσμα και η ηλικία της τελευταίας αναφοράς (π.χ. «Κάποιος παρκάρισε πριν από 20 λεπτά»). Τα στοιχεία αυτά εμφανίζονται σε όλους τους χρήστες της εφαρμογής και δεν περιέχουν αναγνωριστικά λογαριασμών, αποστάσεις ή συντεταγμένες. Ένας οδηγός μετράει το πολύ μία φορά ανά χώρο και ώρα, και τα περισσότερα στοιχεία εμφανίζονται μόνο όταν υπάρχουν αρκετές αναφορές.',
+          ],
+        },
+        {
+          id: 'in-app-navigation',
+          h: 'Πλοήγηση μέσα στην εφαρμογή',
+          body: [
+            'Στο Android η εφαρμογή μπορεί να σε καθοδηγεί βήμα προς βήμα σε έναν χώρο στάθμευσης μέσα στην ίδια την εφαρμογή. Στο Προφίλ, στη ρύθμιση «Πλοήγηση», επιλέγεις «Στο sPark» ή «Άλλη εφαρμογή». Η καθοδήγηση παρέχεται από το Google Navigation SDK, υπηρεσία της Google. Όταν την ξεκινήσεις, η Google μπορεί να σου ζητήσει να αποδεχτείς τους όρους της. Όσο η καθοδήγηση είναι ενεργή, η Google λαμβάνει την ακριβή τοποθεσία σου, τον προορισμό σου και στοιχεία της συσκευής για να υπολογίσει τη διαδρομή και την κίνηση και να σου δώσει οδηγίες· τα δεδομένα αυτά τα διαχειρίζεται σύμφωνα με τους δικούς της όρους και την πολιτική απορρήτου της (policies.google.com/privacy). Εμείς δεν τα λαμβάνουμε και δεν τα αποθηκεύουμε.',
+            'Η πλοήγηση λειτουργεί μόνο όσο πλοηγείσαι. Στο Android χρησιμοποιεί υπηρεσία προσκηνίου (foreground service) με μόνιμη ειδοποίηση, ώστε η καθοδήγηση να συνεχίζεται όταν η οθόνη είναι σβηστή ή όταν αλλάζεις εφαρμογή. Σταματά όταν πατήσεις «Τέλος» ή όταν φτάσεις. Η εφαρμογή δεν ζητά ούτε χρησιμοποιεί άδεια τοποθεσίας στο παρασκήνιο.',
+            'Η προεπισκόπηση διαδρομής και οι χρόνοι διαδρομής πριν ξεκινήσεις προέρχονται από τη δική μας υπηρεσία δρομολόγησης στους εξυπηρετητές μας (λογισμικό Valhalla), όχι από την Google. Γι’ αυτά η εφαρμογή στέλνει τη θέση σου στρογγυλοποιημένη σε περίπου 110 μέτρα και τον χώρο. Το API δεν καταγράφει αυτές τις συντεταγμένες στα αρχεία του ούτε στη βάση δεδομένων· χρησιμοποιούνται για τον υπολογισμό και διατηρούνται στη μνήμη του εξυπηρετητή για λίγο (έως πέντε λεπτά), ώστε τα επαναλαμβανόμενα αιτήματα να είναι γρήγορα.',
+            'Αν επιλέξεις «Άλλη εφαρμογή» στο Προφίλ, Πλοήγηση, ή αν η πλοήγηση μέσα στην εφαρμογή δεν είναι διαθέσιμη στη συσκευή σου, η εφαρμογή ανοίγει τη διαδρομή στο Google Maps ή στο Waze, που διαχειρίζονται την τοποθεσία σου σύμφωνα με τις δικές τους πολιτικές. Τους στέλνουμε μόνο τον προορισμό.',
+            'Στη συσκευή σου η εφαρμογή θυμάται, για έως μία ώρα, τον χώρο προς τον οποίο ξεκίνησες, ώστε να σε ρωτήσει όταν φτάσεις αν βρήκες θέση. Αυτό μένει στη συσκευή σου, εκτός από την ώρα εκκίνησης που μπορεί να συμπεριληφθεί σε μια αναφορά, όπως περιγράφεται παραπάνω.',
           ],
         },
         {
@@ -255,7 +283,7 @@ export const LEGAL = {
           id: 'cookies-and-storage',
           h: 'Cookies και τοπική αποθήκευση',
           body: [
-            'Εφαρμογή για κινητά: το διακριτικό σύνδεσής σου αποθηκεύεται στον ασφαλή χώρο αποθήκευσης του λειτουργικού συστήματος. Στη συσκευή αποθηκεύονται επίσης οι προτιμήσεις γλώσσας και θέματος, η ένδειξη ότι ολοκλήρωσες την εισαγωγή και η λίστα αγαπημένων.',
+            'Εφαρμογή για κινητά: το διακριτικό σύνδεσής σου αποθηκεύεται στον ασφαλή χώρο αποθήκευσης του λειτουργικού συστήματος. Στη συσκευή αποθηκεύονται επίσης οι προτιμήσεις γλώσσας και θέματος, η ένδειξη ότι ολοκλήρωσες την εισαγωγή, η λίστα αγαπημένων και, για έως μία ώρα, ο τελευταίος χώρος προς τον οποίο ξεκίνησες πλοήγηση.',
             'Πύλη διαχειριστών: χρησιμοποιούμε μόνο cookies που είναι απολύτως αναγκαία για τη λειτουργία της υπηρεσίας που ζητάς. Σύμφωνα με το άρθρο 4 παρ. 5 του Ν. 3471/2006 και το άρθρο 5 παρ. 3 της Οδηγίας 2002/58/ΕΚ δεν απαιτείται συγκατάθεση για αυτά, και γι’ αυτό δεν εμφανίζουμε banner cookies.',
             {
               table: {
@@ -300,8 +328,8 @@ export const LEGAL = {
                   ],
                   [
                     'Google',
-                    'Σύνδεση με Google, χάρτες στην εφαρμογή και την πύλη, αυτόματη συμπλήρωση διευθύνσεων στην πύλη, έλεγχος σύνδεσης στο διαδίκτυο της εφαρμογής',
-                    'Στοιχεία προφίλ κατά τη σύνδεση· αιτήματα χάρτη και στοιχεία συσκευής· διεύθυνση IP στον έλεγχο σύνδεσης',
+                    'Σύνδεση με Google, χάρτες στην εφαρμογή και την πύλη, καθοδήγηση πλοήγησης στην εφαρμογή (Google Navigation SDK), αυτόματη συμπλήρωση διευθύνσεων στην πύλη, έλεγχος σύνδεσης στο διαδίκτυο της εφαρμογής',
+                    'Στοιχεία προφίλ κατά τη σύνδεση· αιτήματα χάρτη και στοιχεία συσκευής· τοποθεσία και προορισμός όσο διαρκεί η πλοήγηση· διεύθυνση IP στον έλεγχο σύνδεσης',
                   ],
                   ['Apple', 'Είσοδος με Apple', 'Στοιχεία ταυτότητας κατά τη σύνδεση'],
                   [
@@ -348,6 +376,10 @@ export const LEGAL = {
                   [
                     'Λογαριασμός οδηγού, τρόποι σύνδεσης, αγαπημένα, στοιχεία προφίλ, διακριτικό push (αν υπάρχει)',
                     'Μέχρι να διαγράψεις τον λογαριασμό σου. Η διαγραφή από την εφαρμογή (Προφίλ, Διαγραφή λογαριασμού) αφαιρεί αμέσως τα δεδομένα αυτά.',
+                  ],
+                  [
+                    'Αναφορές για δωρεάν χώρους (αναγνωριστικό λογαριασμού, χώρος, αποτέλεσμα, ώρα, βαθμός αξιοπιστίας, στρογγυλοποιημένη απόσταση)',
+                    'Μέχρι να διαγράψεις τον λογαριασμό σου· η διαγραφή τις αφαιρεί αμέσως. Τα συγκεντρωτικά στατιστικά ξαναδημιουργούνται κάθε βράδυ από τις αναφορές των τελευταίων 8 εβδομάδων, οπότε η συμβολή σου εξαφανίζεται από αυτά στην επόμενη ανανέωση.',
                   ],
                   [
                     'Σύνδεσμος επαναφοράς κωδικού',
@@ -739,7 +771,7 @@ export const LEGAL = {
             'sPark has three parts:',
             {
               ul: [
-                'A mobile app (iOS and Android) for drivers: map, search and comparison of parking facilities, saved favourites, account.',
+                'A mobile app (iOS and Android) for drivers: map, search and comparison of parking facilities, saved favourites, reports for free spots, in-app navigation, account.',
                 'A web portal for parking operators and platform staff. Access is by invitation only.',
                 'The public website {{SITE_HOST}} with information, these legal texts and an interest form for drivers and businesses.',
               ],
@@ -789,6 +821,11 @@ export const LEGAL = {
                     'Show nearby facilities and distances',
                   ],
                   [
+                    'Free-spot reports (if you send one): spot, outcome, time, a reliability grade and a rounded distance to the spot, linked to your account. Never your coordinates: see “Free-spot reports”',
+                    'You and your device',
+                    'Show free-spot activity to drivers, limit abuse',
+                  ],
+                  [
                     'Server technical data: IP address, time and path of the request (without its parameters)',
                     'Automatically, with every request',
                     'Security, troubleshooting, abuse prevention',
@@ -836,6 +873,7 @@ export const LEGAL = {
               ul: [
                 'To create and maintain your account and sign you in securely.',
                 'To show you parking facilities, prices and availability near you, and to store your favourites.',
+                'To show everyone how busy free public spots usually are, from anonymous aggregates of drivers’ reports, and to guide you along your route when you use in-app navigation.',
                 'To send you service messages, such as a password reset or an invitation.',
                 'To let you know when the app or the portal becomes available to you, and to answer requests you send us through the website form.',
                 'To keep the platform secure: prevent abuse and fraud, investigate errors, keep a log of administrative actions.',
@@ -875,10 +913,32 @@ export const LEGAL = {
           id: 'location',
           h: 'Location',
           body: [
-            'The app asks for permission to use your device location only while the app is open (not in the background). We do not track your position continuously.',
+            'The app asks for permission to use your device location only while you are using it, and does not ask for background location (that permission is blocked in the Android app). We do not track your position continuously. The one exception is in-app navigation, described below, which uses your location while a route is active.',
             'It is used to centre the map on you, show where you are, and compute the distance to each facility. Distances are calculated on your device.',
             'To find nearby facilities, the app sends the coordinates of the search area to our servers. On the first search these are your position, and afterwards the centre of the map you are viewing. Before they are sent, their precision is limited to about 110 metres. The request needs no account and is not linked to your account, and the coordinates are neither stored in our database nor written to the server’s technical logs, which keep only the request path, the time and the IP address for the period stated in “How long we keep data”.',
             'If you do not grant permission, the app works normally with the map centred on Athens, and you can search manually. You can change the permission at any time in your device settings.',
+          ],
+        },
+        {
+          id: 'free-spot-checkins',
+          h: 'Free-spot reports (check-ins)',
+          body: [
+            'At free public parking spots the app lets you report how it went: that you parked, that the spot was full, or that you gave up. A report is sent only when you choose an answer, and it needs a signed-in account with a verified email. You can send up to 10 reports in 24 hours.',
+            'When you send a report, the app sends your device position once, together with its accuracy, your speed, whether the device flags the position as simulated and, if you were guided or sent to this spot in the last hour, the time that started. Our server uses these only to compare your position with the spot and judge how far to trust the report, and then discards them. We do not store your coordinates, the accuracy, the speed or the navigation time, and they are not written to our technical logs. If your position is not available you can still send a report; it is then graded as self-reported.',
+            'For each report we store: your account identifier, the spot, the outcome, the time (and the time you reported leaving, if any), how reliable it looks (verified, likely, self-reported or rejected), the distance in metres between your position and the spot, rounded, and whether the app prompted you or you started it. As the app says, only the distance is stored, never your location. Note that a distance to a known spot does show that you were within that distance of it at that time.',
+            'Reports are linked to your account so that we can enforce the limit, close your earlier “parked” report when you park again, show you your own active report and delete them when you delete your account. They are not shown to other drivers or to operators.',
+            'Free-spot activity: every night we rebuild, from the reliable (verified or likely) reports of the last 8 weeks, aggregate figures for each spot: how busy it usually is by hour and weekday, how many drivers found a place in the last 30 days and the typical length of stay, plus, in real time, the outcome and age of the latest report (for example “Someone parked 20 minutes ago”). These figures are shown to all users of the app and contain no account identifiers, distances or coordinates. A driver counts at most once per spot per hour, and most figures are shown only once enough reports exist.',
+          ],
+        },
+        {
+          id: 'in-app-navigation',
+          h: 'In-app navigation',
+          body: [
+            'On Android the app can guide you turn by turn to a parking spot inside the app itself. In Profile, under “Navigation”, you choose “In sPark” or “Other app”. The guidance is provided by the Google Navigation SDK, a Google service. When you start it, Google may ask you to accept its terms. While guidance is active, Google receives your precise location, your destination and device data to calculate the route and traffic and give you instructions; Google handles this data under its own terms and privacy policy (policies.google.com/privacy). We do not receive or store it.',
+            'Navigation runs only while you are navigating. On Android it uses a foreground service with a persistent notification, so guidance continues when the screen is off or you switch apps. It stops when you tap End or when you arrive. The app does not request or use background location permission.',
+            'The route preview and drive times before you start come from our own routing service on our servers (the Valhalla software), not from Google. For these the app sends your position rounded to about 110 metres, and the spot. The API does not write these coordinates to its logs or database; they are used for the calculation and held in server memory only briefly (up to five minutes) so that repeated requests are fast.',
+            'If you choose “Other app” in Profile, Navigation, or if in-app navigation is not available on your device, the app opens the route in Google Maps or Waze, which handle your location under their own policies. We send them only the destination.',
+            'On your device the app remembers, for up to one hour, the spot you set off to, so that it can ask you on arrival whether you found a place. This stays on your device, apart from the start time that can be included in a report as described above.',
           ],
         },
         {
@@ -925,7 +985,7 @@ export const LEGAL = {
           id: 'cookies-and-storage',
           h: 'Cookies and local storage',
           body: [
-            'Mobile app: your sign-in token is stored in the operating system’s secure storage. The app also stores on your device your language and theme preferences, the fact that you completed the introduction, and your list of favourites.',
+            'Mobile app: your sign-in token is stored in the operating system’s secure storage. The app also stores on your device your language and theme preferences, the fact that you completed the introduction, your list of favourites and, for up to one hour, the last spot you set off to by navigation.',
             'Web portal: we use only cookies that are strictly necessary to provide the service you request. Under Article 4(5) of Greek Law 3471/2006 and Article 5(3) of Directive 2002/58/EC they do not need consent, so we show no cookie banner.',
             {
               table: {
@@ -970,8 +1030,8 @@ export const LEGAL = {
                   ],
                   [
                     'Google',
-                    'Sign-in with Google, maps in the app and portal, address autocomplete in the portal, the app’s internet-connectivity check',
-                    'Profile data at sign-in; map requests and device data; IP address in the connectivity check',
+                    'Sign-in with Google, maps in the app and portal, turn-by-turn guidance in the app (Google Navigation SDK), address autocomplete in the portal, the app’s internet-connectivity check',
+                    'Profile data at sign-in; map requests and device data; location and destination while you navigate; IP address in the connectivity check',
                   ],
                   ['Apple', 'Sign in with Apple', 'Identity data at sign-in'],
                   ['Meta (Facebook)', 'Sign-in with Facebook (iOS)', 'Profile data at sign-in'],
@@ -1014,6 +1074,10 @@ export const LEGAL = {
                   [
                     'Driver account, sign-in methods, favourites, profile data, push token (if any)',
                     'Until you delete your account. Deleting from the app (Profile, Delete account) removes this data immediately.',
+                  ],
+                  [
+                    'Free-spot reports (account identifier, spot, outcome, time, reliability grade, rounded distance)',
+                    'Until you delete your account; deleting it removes them immediately. The aggregate statistics are rebuilt every night from the reports of the last 8 weeks, so your contribution disappears from them at the next rebuild.',
                   ],
                   [
                     'Password-reset link',
